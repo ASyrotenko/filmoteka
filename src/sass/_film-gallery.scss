@@ -1,0 +1,97 @@
+.film {
+  &__section {
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: 768px) {
+      padding-top: 60px;
+      padding-bottom: 160px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media screen and (min-width: 768px) {
+      flex-wrap: wrap;
+      flex-direction: row;
+      gap: 32px;
+    }
+
+    @media screen and (min-width: 1280px) {
+      column-gap: 16px;
+    }
+  }
+
+  &__item {
+    width: 280px;
+    background-color: white;
+    overflow: hidden;
+
+    transition: box-shadow 250ms linear;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+        0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+    }
+
+    @media screen and (min-width: 768px) {
+      flex-basis: calc((100% - 1 * 32px) / 2);
+    }
+
+    @media screen and (min-width: 1280px) {
+      flex-basis: calc((100% - 2 * 16px) / 3);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 5px 5px 5px 5px;
+  }
+
+  &__content {
+    margin-top: 10px;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 8px;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-top: 12px;
+    }
+  }
+
+  &__film__title,
+  &__genres,
+  &__date {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.17;
+
+    @media screen and (min-width: 768px) {
+      line-height: 1.33;
+    }
+
+    @media screen and (min-width: 1280px) {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+  }
+
+  &__film__title {
+    text-transform: uppercase;
+    color: #000000;
+  }
+  &__genres,
+  &__date {
+    display: inline-block;
+
+    color: #ff6b08;
+  }
+  &__value {
+    display: none;
+  }
+}
