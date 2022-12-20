@@ -65,7 +65,7 @@ body.modal-open {
   width: 18px;
   height: 18px;
   transition: fill 250ms ease, transform 250ms ease;
-  transform: rotate(45deg);
+  // transform: rotate(45deg);
   fill: var(--primary-color);
 
   &:hover,
