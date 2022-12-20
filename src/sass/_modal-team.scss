@@ -3,7 +3,7 @@ body.show-modal .team-backdrop
     opacity: 1;
     visibility: visible;
     pointer-events: initial;
-    // overflow: hidden;
+     overflow: hidden;
     height: 100wh;
 }
 
@@ -133,15 +133,13 @@ body.show-modal .team-backdrop
     }
 
     @media screen and (max-width:768px){
-        flex-basis: calc(33% - 10px);
-}
-    @media screen and (max-width: 465px) {
         flex-basis: calc(50% - 10px);
-        
+}
+    @media screen and (max-width: 479px) {
+        flex-basis: 100%;
+       
     }
 }
-
-
 
 .team-list {
     display: flex;
