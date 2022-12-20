@@ -68,24 +68,12 @@ export class Firebase {
     const userId = auth.currentUser.uid;
     const movieRef = doc(db, userId, value);
 
-    console.log('add: ', { userId, movieId });
+    console.log(`add to ${value}: `, { userId, movieId });
 
     await setDoc(movieRef, { [movieId]: movieId }, { merge: true });
   }
 
   async getDoc(value) {
-    const userId = auth.currentUser.uid;
-    const docRef = doc(db, userId, value);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log(`${value}:`, docSnap.data());
-    } else {
-      console.log('No such document!');
-    }
-  }
-
-  async getWatchedMovie(value) {
     const userId = auth.currentUser.uid;
     const docRef = doc(db, userId, value);
     const docSnap = await getDoc(docRef);
@@ -104,7 +92,7 @@ export class Firebase {
     const movieId = movieCardIdRef.id;
     const movieRef = doc(db, userId, value);
 
-    console.log('remove: ', { userId, movieId });
+    console.log(`remove from ${value}: `, { userId, movieId });
 
     await updateDoc(movieRef, {
       [movieId]: deleteField(),
