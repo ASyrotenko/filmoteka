@@ -6,7 +6,14 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  deleteField,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAulP83L0QY90_yCDYRohOctOjcPDqfmkw',
@@ -61,8 +68,7 @@ export class Firebase {
     const userId = auth.currentUser.uid;
     const movieRef = doc(db, userId, value);
 
-    console.log(movieId);
-    console.log(userId);
+    console.log('add: ', { userId, movieId });
 
     await setDoc(movieRef, { [movieId]: movieId }, { merge: true });
   }
@@ -77,5 +83,31 @@ export class Firebase {
     } else {
       console.log('No such document!');
     }
+  }
+
+  async getWatchedMovie(value) {
+    const userId = auth.currentUser.uid;
+    const docRef = doc(db, userId, value);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log(`${value}:`, docSnap.data());
+      return docSnap.data();
+    } else {
+      console.log('No such document!');
+    }
+  }
+
+  async removeFilmById(value) {
+    const userId = auth.currentUser.uid;
+    const movieCardIdRef = document.querySelector('.movie__id');
+    const movieId = movieCardIdRef.id;
+    const movieRef = doc(db, userId, value);
+
+    console.log('remove: ', { userId, movieId });
+
+    await updateDoc(movieRef, {
+      [movieId]: deleteField(),
+    });
   }
 }

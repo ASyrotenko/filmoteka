@@ -57,11 +57,15 @@ button {
 }
 
 .container {
-  max-width: 320px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 
   outline: 1px solid tomato;
+
+  @media screen and (min-width: 480px) {
+    max-width: 480px;
+  }
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
