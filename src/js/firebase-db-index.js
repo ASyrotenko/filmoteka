@@ -10,8 +10,10 @@ refs.addToQueue.addEventListener('click', pullToQueue);
 
 function pullToWatched() {
   firebase.setDoc('watched');
+  refs.addToWatched.textContent = 'Remove from Watched';
 }
 
 function pullToQueue() {
   firebase.setDoc('queue');
+  refs.addToQueue.textContent = 'Remove from Queue';
 }
