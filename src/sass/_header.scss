@@ -1,6 +1,7 @@
 .header__container {
   padding-top: 36px;
   padding-bottom: 95px;
+  height: 230px;
 
   background-color: rgb(34, 33, 33);
   background-image: url(../images/header/header-bg-320px.jpg);
@@ -17,6 +18,7 @@
   @media screen and (min-width: 768px) {
     padding-top: 33px;
     padding-bottom: 88px;
+    height: 216px;
 
     background-image: url(../images/header/header-bg-768px.jpg);
 
@@ -73,14 +75,41 @@
   width: 24px;
   height: 24px;
   display: block;
+   
+  animation-name: header-icon;
+  animation-timing-function:ease;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  margin-right: 10px;
 
   @media screen and (min-width: 768px) {
     margin-right: 8px;
   }
 }
 
-.header_logo-img {
+   
+@keyframes header-icon {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+.header__logo-img {
   fill: currentColor;
+
 }
 
 .header__logo-text {
@@ -138,10 +167,16 @@
 .header__form {
   margin: 55px auto 0px auto;
   position: relative;
+  width: 280px;
 
   @media screen and (min-width: 768px) {
     margin-top: 40px;
     width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 40px;
+    width: 394px;
   }
 }
 
@@ -190,6 +225,7 @@ input:-webkit-autofill:focus {
 .header__container--library {
   padding-top: 36px;
   padding-bottom: 62px;
+  height: 230px;
 
   background-color: rgb(34, 33, 33);
   background-image: linear-gradient(to right, #0000008f, #0000008f),
@@ -208,6 +244,7 @@ input:-webkit-autofill:focus {
   @media screen and (min-width: 768px) {
     padding-top: 33px;
     padding-bottom: 60px;
+    height: 216px;
 
     background-image: linear-gradient(to right, #0000008f, #0000008f),
       url(../images/header/library-header-bg-768px.jpg);

@@ -14,7 +14,7 @@ body.modal-open {
   background: rgba(0, 0, 0, 0.25);
   transition: opacity 250ms linear;
   &.is-hidden {
-    visibility: hidden;
+    // visibility: hidden;
     opacity: 0;
     pointer-events: none;
   }
@@ -24,11 +24,13 @@ body.modal-open {
   position: relative;
   background-color: var(--primary-bg-color);
   padding: 48px 20px 40px 20px;
-  width: 280px;
-  position: absolute;
+  width: 440px;
   top: 20px;
   left: 50%;
   transform: translate(-50%);
+  @media screen and (max-width: 480px) {
+    max-width: calc(100% - 20px);
+  }
 }
 
 .close-modal-btn {
@@ -49,12 +51,14 @@ body.modal-open {
 .close-btn-icon {
   width: 18px;
   height: 18px;
-  transition: fill 250ms ease;
+  transition: fill 250ms ease, transform 250ms ease;
+  transform: rotate(45deg);
   fill: var(--primary-color);
 
   &:hover,
   &:focus {
     fill: var(--accent-color);
+    transform: rotate(0deg);
   }
 }
 
