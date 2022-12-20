@@ -97,26 +97,36 @@ body.modal-open {
   text-transform: uppercase;
   border-radius: 5px;
   cursor: pointer;
-  &-wached {
-    background: var(--accent-color);
-    color: var(--primary-bg-color);
-    border: none;
+  &-watched {
+    color: var(--primary-color);
+    border: 1px solid #000000;
+    background-color: transparent;
   }
   &-queue {
     color: var(--primary-color);
     border: 1px solid #000000;
-    background-color: var(--primary-bg-color);
+    background-color: transparent;
+  }
+  &--active {
+    color: #fff;
+    background-color: #ff6b01;
+    border-color: #ff6b01;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   }
 }
 
-.film-btn-wached,
+.film-btn-watched,
 .film-btn-queue {
   box-shadow: none;
-  transition: box-shadow 250ms linear;
+  transition: background-color 250ms linear, border-color 250ms linear,
+    box-shadow 250ms linear, color 250ms linear;
+
   &:hover,
   &:focus {
-    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
-      0px 2px 2px rgba(0, 0, 0, 0.12);
+    color: #fff;
+    background-color: #ff6b01;
+    border-color: #ff6b01;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   }
 }
 
@@ -150,7 +160,7 @@ body.modal-open {
 
   .film-btn {
     width: 125px;
-    &-wached {
+    &-watched {
       margin-right: 14px;
     }
   }
@@ -175,7 +185,7 @@ body.modal-open {
     width: 391px;
   }
 
-  .film-btn-wached {
+  .film-btn-watched {
     margin-left: 8px;
     margin-right: 15px;
   }
