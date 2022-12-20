@@ -10,7 +10,6 @@ body.modal-open {
   left: 0px;
   top: 0px;
   opacity: 1;
-  // padding: 20px 0;
   background: rgba(0, 0, 0, 0.25);
   transition: opacity 250ms linear;
   &.is-hidden {
@@ -25,11 +24,25 @@ body.modal-open {
   background-color: var(--primary-bg-color);
   padding: 48px 20px 40px 20px;
   width: 440px;
+  position: absolute;
+  width: 440px;
   top: 20px;
   left: 50%;
   transform: translate(-50%);
   @media screen and (max-width: 480px) {
     max-width: calc(100% - 20px);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 36px;
+    width: 704px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (min-width: 1280px) {
+    width: 806px;
+    padding: 40px 12px;
   }
 }
 
@@ -52,207 +65,12 @@ body.modal-open {
   width: 18px;
   height: 18px;
   transition: fill 250ms ease, transform 250ms ease;
-  transform: rotate(45deg);
+  // transform: rotate(45deg);
   fill: var(--primary-color);
 
   &:hover,
   &:focus {
     fill: var(--accent-color);
     transform: rotate(0deg);
-  }
-}
-
-.img-wrap {
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 767.98px) {
-  .film-info-wrap {
-    margin-top: 20px;
-  }
-}
-
-.film-btn-wrap {
-  margin-top: 20px;
-  display: flex;
-
-  @media screen and (max-width: 767.98px) {
-    justify-content: flex-start;
-  }
-}
-
-.film-preview.not-active {
-  display: none;
-}
-
-.film-btn {
-  width: 110px;
-  height: 44px;
-  font-family: 'Roboto';
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  text-align: center;
-  text-transform: uppercase;
-  border-radius: 5px;
-  cursor: pointer;
-  &-watched {
-    color: var(--primary-color);
-    border: 1px solid #000000;
-    background-color: transparent;
-  }
-  &-queue {
-    color: var(--primary-color);
-    border: 1px solid #000000;
-    background-color: transparent;
-  }
-  &--active {
-    color: #fff;
-    background-color: #ff6b01;
-    border-color: #ff6b01;
-    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
-  }
-}
-
-.film-btn-watched,
-.film-btn-queue {
-  box-shadow: none;
-  transition: background-color 250ms linear, border-color 250ms linear,
-    box-shadow 250ms linear, color 250ms linear;
-
-  &:hover,
-  &:focus {
-    color: #fff;
-    background-color: #ff6b01;
-    border-color: #ff6b01;
-    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
-  }
-}
-
-.film-btn[disabled] {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-  cursor: auto;
-  &:hover,
-  &:focus {
-    box-shadow: none;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .modal-window {
-    padding: 40px 36px;
-    width: 704px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .img-wrap {
-    margin-right: 68px;
-  }
-
-  .film-info-container {
-    display: flex;
-  }
-
-  .film-btn {
-    width: 125px;
-    &-watched {
-      margin-right: 14px;
-    }
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .modal-window {
-    width: 806px;
-    padding: 40px 12px;
-  }
-
-  .img-wrap {
-    width: 375px;
-    margin-right: 16px;
-  }
-
-  .img-wrap img {
-    width: 100%;
-  }
-
-  .film-info-wrap {
-    width: 391px;
-  }
-
-  .film-btn-watched {
-    margin-left: 8px;
-    margin-right: 15px;
-  }
-}
-
-.film-preview {
-  cursor: pointer;
-  margin: 10px;
-  color: var(--accent-color);
-  font-weight: 500;
-  background: transparent;
-  &:hover,
-  &:focus {
-    font-weight: 700;
-  }
-
-  &[disabled] {
-    opacity: 0;
-  }
-}
-
-.film-preview-close {
-  position: fixed;
-  top: 20px;
-  right: 10;
-  cursor: pointer;
-  margin: 10px;
-  color: var(--accent-color);
-  font-weight: 500;
-  font-size: 18px;
-  background: transparent;
-  &:hover,
-  &:focus {
-    font-weight: 700;
-  }
-
-  &[disabled] {
-    opacity: 0;
-  }
-}
-.trailer-box {
-  width: 100%;
-
-  // position: relative;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.film-tiezer {
-  width: 100%;
-  display: none;
-  margin-top: 20px;
-  height: 300px;
-}
-.film-tiezer.is-active {
-  display: block;
-}
-
-@media screen and (min-width: 768px) {
-  .film-tiezer {
-    height: 380px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .film-tiezer {
-    height: 480px;
   }
 }
