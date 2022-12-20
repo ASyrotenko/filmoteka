@@ -35,9 +35,8 @@ function pullToWatched(e) {
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('watched');
-    firebase.removeFilmById('queue');
-    refs.addToQueue.textContent = 'add to queue';
-    refs.addToQueue.classList.remove('film-btn--active');
+    refs.addToWatched.textContent = textContentRemove;
+    refs.addToWatched.classList.remove('film-btn--active');
   } else if (e.target.textContent.includes(textContentRemove)) {
     e.target.textContent = textContentAdd;
     firebase.removeFilmById('watched');
@@ -51,9 +50,8 @@ function pullToQueue(e) {
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('queue');
-    firebase.removeFilmById('watched');
-    refs.addToWatched.textContent = 'add to watched';
-    refs.addToWatched.classList.remove('film-btn--active');
+    refs.addToQueue.textContent = textContentRemove;
+    refs.addToQueue.classList.remove('film-btn--active');
   } else if (e.target.textContent.includes(textContentRemove)) {
     e.target.textContent = textContentAdd;
     firebase.removeFilmById('queue');

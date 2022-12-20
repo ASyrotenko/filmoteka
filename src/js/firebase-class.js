@@ -62,6 +62,7 @@ export class Firebase {
         console.log(error);
       });
   }
+
   async setDoc(value) {
     const movieCardIdRef = document.querySelector('.movie__id');
     const movieId = movieCardIdRef.id;
@@ -79,8 +80,8 @@ export class Firebase {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log(`${value}:`, docSnap.data());
-      return docSnap.data();
+      let values = Object.values(docSnap.data());
+      return values;
     } else {
       console.log('No such document!');
     }
