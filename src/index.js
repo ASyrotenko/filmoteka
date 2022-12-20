@@ -1,7 +1,7 @@
 import './js/modal-team';
 import './js/addvideo';
 import './js/firebase-auth';
-import './js/firebase-db-index';
+// import './js/firebase-db-index';
 import './js/firebase-class';
 import './js/movie-card';
 import './js/search-movie';
