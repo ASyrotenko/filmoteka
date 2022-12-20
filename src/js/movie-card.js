@@ -4,9 +4,9 @@ const posterLargeUrl = 'https://image.tmdb.org/t/p/original';
 import { filmsApiService } from '../index';
 import { getRefs } from './get-refs';
 import { closeVideo, renderVideoBox } from './addvideo';
+import { throttle } from 'lodash';
 
 const refs = getRefs();
-
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
 
@@ -136,10 +136,12 @@ export function getPosterForCard({
 `;
 }
 
-refs.filmGallery.addEventListener('click', onMovieCardClick);
+refs.filmGallery.addEventListener('click', throttle(onMovieCardClick, 5000));
 
 async function onMovieCardClick(e) {
   e.preventDefault();
+  document.querySelector('.spinner').style.display = 'block';
+
   if (!e.target.classList.contains('film__image')) {
     return;
   }
