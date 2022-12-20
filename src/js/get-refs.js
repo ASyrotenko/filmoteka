@@ -12,7 +12,7 @@ export function getRefs() {
     modalCloseBtn: document.querySelector('.close-modal-btn'),
     backdrop: document.querySelector('.backdrop'),
     searchForm: document.querySelector('.header__form'),
-    addToWatched: document.querySelector('.film-btn-wached'),
+    addToWatched: document.querySelector('.film-btn-watched'),
     addToQueue: document.querySelector('.film-btn-queue'),
     watched: document.querySelector('#watched'),
     queue: document.querySelector('#queue'),
