@@ -19,15 +19,15 @@
 }
 
 .heart{
-    // animation: heartbeat 1s infinite;
+    animation: heartbeat 1s infinite;
     background-color: var(--accent-color);
     display: inline-block;
     height: 12px;
     margin: 0 12px;
     top: 0;
     transform: rotate(-45deg);
-    // left: 45%;
-    // top: 45%;
+    left: 45%;
+    top: 45%;
     width: 12px;
     margin-left: 10px;
     margin-right: 10px;
@@ -51,17 +51,17 @@
     top: 0;
 }
 
-// @keyframes heartbeat {
-//     0% {
-//         transform: scale(0.8) rotate(-45deg);
-//     }
-//     20% {
-//         transform: scale(1) rotate(-45deg);
-//     }
-//     40% {
-//         transform: scale(1.25) rotate(-45deg);
-//     }
-// }
+@keyframes heartbeat {
+    0% {
+        transform: scale(0.8) rotate(-45deg);
+    }
+    20% {
+        transform: scale(1) rotate(-45deg);
+    }
+    40% {
+        transform: scale(1.25) rotate(-45deg);
+    }
+}
 
 .footer__container {
     display: flex;
@@ -103,7 +103,7 @@
 //     }
 // }
 
-
+//додати клас коли бібліотека порожня, зафіксувати сам футер
 // .footer--empty-library {
 //     position: fixed;
 //     bottom: 0;
