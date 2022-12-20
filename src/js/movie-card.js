@@ -69,7 +69,7 @@ export function movieCardTpl(movie) {
     ${
       popularity
         ? `
-            <td class="movie__info-data">${popularity.toFixed(2)}</td>
+            <td class="movie__info-data">${popularity.toFixed(1)}</td>
         `
         : ''
     }
