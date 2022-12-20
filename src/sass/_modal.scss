@@ -23,11 +23,25 @@ body.modal-open {
   position: relative;
   background-color: var(--primary-bg-color);
   padding: 48px 20px 40px 20px;
-  min-width: 280px;
+  width: 440px;
   position: absolute;
   top: 20px;
   left: 50%;
   transform: translate(-50%);
+  @media screen and (max-width: 480px) {
+    max-width: calc(100% - 20px);
+  }
+  @media screen and (min-width: 768px) {
+    padding: 40px 36px;
+    width: 704px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @media screen and (min-width: 1280px) {
+    width: 806px;
+    padding: 40px 12px;
+  }
 }
 
 .close-modal-btn {
@@ -54,22 +68,5 @@ body.modal-open {
   &:hover,
   &:focus {
     fill: var(--accent-color);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .modal-window {
-    padding: 40px 36px;
-    width: 704px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .modal-window {
-    width: 806px;
-    padding: 40px 12px;
   }
 }

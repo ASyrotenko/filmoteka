@@ -1,6 +1,5 @@
 .film-info-js {
-  //   display: flex;
-  //   color: red;
+  margin-bottom: 20px;
 }
 .movie {
   &__info-container {
@@ -76,14 +75,28 @@
 .img-wrap {
   border-radius: 5px;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
-@media screen and (max-width: 767.98px) {
+@media screen and (min-width: 768px) {
   .img-wrap {
-    margin-bottom: 20px;
+    width: 264px;
+    height: 374px;
+    // margin-bottom: 20px;
   }
-  .film-info-js {
-    margin-bottom: 20px;
+
+  .img-wrap {
+    //     margin-right: 68px;
+    //   }
+
+    //   .film-info-container {
+    //     display: flex;
+    //   }
+    //   .film-btn {
+    //     // width: 125px;
+    //     &-wached {
+    //       // margin-right: 14px;
+    //     }
   }
 }
 
@@ -91,6 +104,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 20px;
 
   //   @media screen and (max-width: 767.98px) {
   //     justify-content: flex-start;
@@ -146,19 +160,7 @@
   }
 }
 // @media screen and (min-width: 768px) {
-//   .img-wrap {
-//     margin-right: 68px;
-//   }
-
-//   .film-info-container {
-//     display: flex;
-//   }
-//   .film-btn {
-//     // width: 125px;
-//     &-wached {
-//       // margin-right: 14px;
-//     }
-//   }
+//
 // }
 
 // @media screen and (min-width: 1280px) {
@@ -218,6 +220,7 @@
   color: var(--accent-color);
   font-weight: 500;
   background: transparent;
+  padding: 6[x];
   &:hover,
   &:focus {
     font-weight: 700;
@@ -228,6 +231,14 @@
   }
 }
 
+// border: 1px solid #999999;
+// background-color: #cccccc;
+// color: #666666;
+// cursor: auto;
+// &:hover,
+// &:focus {
+//   box-shadow: none;
+// }
 .film-preview-close {
   position: fixed;
   top: 20px;
