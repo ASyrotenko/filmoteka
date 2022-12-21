@@ -17,8 +17,6 @@ export function getRefs() {
     watched: document.querySelector('#watched'),
     queue: document.querySelector('#queue'),
     insertVideoCont: document.querySelector('.film-tiezer'),
-    closeVideoBtn: document.querySelector('.film-preview-close'),
-    watchBtn: document.querySelector('.film-preview'),
     videoBtnBox: document.querySelector('.film-btn-wrap'),
     iframeEl: document.querySelector('.iframe'),
     trailerOverlay: document.querySelector('.trailer__overlay'),
@@ -27,5 +25,6 @@ export function getRefs() {
     closeModalBtn: document.querySelector('[data-action="close-modal"]'),
     backdropTeam: document.querySelector('.team-backdrop'),
     body: document.querySelector('body'),
+    myLibrary: document.querySelector('.library'),
   };
 }

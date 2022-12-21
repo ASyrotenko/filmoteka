@@ -15,9 +15,9 @@ async function showWatched() {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
-      `<li>
-      <p>В бібліотеці не знайдено переглянутих фільмів</p>
-      <img src="https://nejdancs.github.io/filmoteka/cat__1.21cb105d.png" alt="Помилка пошуку" loading="lazy"/>
+      `<li class="film__list-error">
+      <p class="library__text">No watched movies found in the library</p>
+      <img src="../images/smile-icon.webp" alt="No watched movies found in the library"/>
     </li>`
     );
   } else {
@@ -36,9 +36,9 @@ async function showQueue() {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
-      `<li>
-        <p>В бібліотеці не знайдено збережених для перегляду фільмів</p>
-        <img src="https://nejdancs.github.io/filmoteka/cat__1.21cb105d.png" alt="Помилка пошуку" loading="lazy"/>
+      `<li class="film__list-error">
+        <p class="library__text">No movies saved for viewing were found in the library</p>
+        <img src="../images/smile-icon.webp" alt="No movies saved for viewing were found in the library"/>
       </li>`
     );
   } else {

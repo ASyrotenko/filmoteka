@@ -6,6 +6,7 @@ import './js/firebase-class';
 import './js/movie-card';
 import './js/search-movie';
 import './js/change-color-scheme.js';
+import './js/library-auth';
 // import './js/pagination';
 
 import { FilmsApiService } from './js/films-service';
