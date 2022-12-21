@@ -1,89 +1,98 @@
+.body-theme {
+  background-color: #1d1917;
 
-body.dark-mode {
+  .modal-window,
+  .modal-team,
+  .movie-card__title,
+  .movie__info-data,
+  .movie__about-info,
+  .team-modal-open,
+  .close-modal-btn,
+  .close-btn-icon,
+  .footer,
+  .film__content,
+  .film__item,
+  .film__film__title,
+  .team-list-name,
+  .modal-team-title {
     background-color: #333;
+    color: #fff;
+  }
+
+  .movie__about {
+    color: #8c8c8c;
+  }
 }
 
-.body-theme {
-    background-color: #1d1917;
-    
-     .modal-window, .modal-team {
-          background-color: #333;
-          color: #fff;
-        }
+.btnContainer {
+  width: 50px;
+  height: 20px;
+  position: absolute;
 
-     .footer {
-        background-color: #333;
-     }
-      }
+  top: 100px;
 
+  //outline: 1px solid red;
+}
 
-
-  
-
-
+@media screen and (max-width: 480px) {
   .btnContainer {
-    width: 80px;
-    height: 40px;
-    position: relative;
+    top: 180px;
+  }
+}
+.btn {
+  //outline: 1px solid green;
 
-    margin-left: auto;
-    //outline: 1px solid red;
-  }
-  
-  .btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #2f4858;
+  border-radius: 999px;
 
-    //outline: 1px solid green;
+  border-color: #7d0000;
 
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    background: #3c3459;
-    border-radius: 999px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    
-    cursor: pointer;
-  }
-  
-  .knob {
+  cursor: pointer;
+}
 
-   // outline: 1px solid yellow;
-    width: 35px;
-    height: 35px;
-    position: relative;
-  }
-  
-  .top {
-    background-color: #827d96;
-    border-radius: 999px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  
-  .light {
-    border-radius: 999px;
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    background: radial-gradient(
-      50% 50% at 50% 50%,
-      #4cc3e2 10.42%,
-      rgba(94, 199, 227, 0.791579) 27.08%,
-      rgba(113, 204, 229, 0.35) 45.31%,
-      rgba(144, 213, 231, 0.11) 65.1%,
-      rgba(158, 216, 231, 0.02) 78.12%,
-      rgba(177, 221, 233, 0) 95.83%
-    );
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .hidden {
-    visibility: hidden;
-  }
+.knob {
+  // outline: 1px solid yellow;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.top {
+  background-color: #7d0000;
+  border-radius: 999px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.light {
+  border-radius: 999px;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(
+    50% 50%,
+    #e24c64 10.42%,
+    #e35e72ca 27.08%,
+    #e5717d59 45.31%,
+    #90d5e71c 65.1%,
+    #9ed8e705 78.12%,
+    #b1dde900 95.83%
+  );
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+

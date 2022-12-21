@@ -14,6 +14,7 @@ async function getMovieStatus(e) {
   const watchedMovies = await firebase.getDoc('watched');
   const watchedMoviesId = Object.values(watchedMovies);
   const currentWatchedMovieStatus = watchedMoviesId.includes(e.target.id);
+
   if (currentWatchedMovieStatus) {
     refs.addToWatched.textContent = textContentRemoveWatched;
     refs.addToWatched.classList.add('film-btn--active');
@@ -23,6 +24,7 @@ async function getMovieStatus(e) {
   const queueMovies = await firebase.getDoc('queue');
   const queueMoviesId = Object.values(queueMovies);
   const currentQueueMovieStatus = queueMoviesId.includes(e.target.id);
+
   if (currentQueueMovieStatus) {
     refs.addToQueue.textContent = textContentRemoveQueue;
     refs.addToQueue.classList.add('film-btn--active');

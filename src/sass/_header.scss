@@ -1,4 +1,5 @@
 .header__container {
+  position: relative;
   padding-top: 36px;
   padding-bottom: 95px;
   height: 230px;
@@ -276,8 +277,11 @@ input:-webkit-autofill:focus {
 }
 
 .header__btn-wrap {
+  //outline: 1px solid red;
+
   padding-top: 60px;
   text-align: center;
+
 
   @media screen and (max-width: 768px) {
     padding-top: 40px;

@@ -175,6 +175,11 @@ function onMovieModalClose(e) {
   closeVideo();
   document.querySelector('body').classList.remove('modal-open');
   refs.insertVideoCont.innerHTML = ' ';
+
+  refs.addToWatched.textContent = 'add to watched';
+  refs.addToWatched.classList.remove('film-btn--active');
+  refs.addToQueue.textContent = 'add to queue';
+  refs.addToQueue.classList.remove('film-btn--active');
 }
 
 function onEscPress(e) {
