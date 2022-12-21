@@ -31,15 +31,14 @@ export function filmTpl({ results }, genresDict) {
                 ? `
         src="${posterLargeUrl}${poster}"
         `
-                : `src = ''`
+                : `src = 'https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg'`
             }
                         alt="Movie: ${filmTitle}"
-            loading="lazy"
           />
         </a>
       </div>
       <div class="film__info">
-      <p class="film__info--text">Watch ${filmTitle} online</p>
+      <p class="film__info--text">Watch "${filmTitle}" online</p>
       </div>
       <div class="film__content">
         ${
@@ -59,13 +58,7 @@ export function filmTpl({ results }, genresDict) {
         `
             : ''
         } 
-        ${
-          votes
-            ? `
-        <p class="film__value">${votes.toFixed(2)}</p>
-        `
-            : ''
-        }
+
         ${
           filmDate
             ? `

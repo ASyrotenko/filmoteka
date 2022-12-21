@@ -99,4 +99,8 @@ export class Firebase {
       [movieId]: deleteField(),
     });
   }
+  userStatus() {
+    const userId = auth.currentUser.uid;
+    return userId;
+  }
 }

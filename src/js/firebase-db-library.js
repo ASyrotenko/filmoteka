@@ -1,6 +1,6 @@
 import { Firebase } from './firebase-class';
 import { getRefs } from './get-refs';
-
+import { renderLibrary } from './library-gallery';
 const refs = getRefs();
 
 const firebase = new Firebase();
@@ -22,11 +22,13 @@ async function showWatched() {
     );
   } else {
     refs.filmGallery.innerHTML = '';
-    console.log(watched);
+    renderLibrary(watched);
+    // console.log(watched);
   }
 }
 
 async function showQueue() {
+  refs.watched.classList.remove('film-btn--active');
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
@@ -41,6 +43,20 @@ async function showQueue() {
     );
   } else {
     refs.filmGallery.innerHTML = '';
-    console.log(queue);
+    renderLibrary(queue);
+    // console.log(queue);
+  }
+}
+const qwe = setInterval(getUserStatus, 250);
+
+function getUserStatus(params) {
+  try {
+    refs.watched.classList.add('film-btn--active');
+    firebase.userStatus();
+    console.log('got id');
+    showWatched();
+    clearInterval(qwe);
+  } catch (error) {
+    console.log('error');
   }
 }
