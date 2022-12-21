@@ -73,23 +73,6 @@
   border-spacing: 0 8px;
 }
 
-.img-wrap {
-  // border-radius: 5px;
-  // overflow: hidden;
-  // margin-bottom: 20px;
-  // @media screen and (min-width: 768px) {
-  //   width: 264px;
-  //   height: 374px;
-  //   margin-bottom: 0px;
-  //   margin-right: 68px;
-  // }
-  // @media screen and (min-width: 1280px) {
-  //   width: 375px;
-  //   height: 478px;
-  //   // margin-bottom: 40px;
-  //   margin-right: 16px;
-  // }
-}
 .film-info-wrap {
   @media screen and (min-width: 768px) {
     width: 268px;
@@ -184,8 +167,9 @@
   }
 }
 
-.img-wrap img {
+.img-wrap {
   width: 100%;
+  height: 100%;
 }
 
 .trailer-box {
@@ -204,9 +188,7 @@
 .trailer__overlay.not-active {
   display: none;
 }
-.trailer__overlay.not-active {
-  display: none;
-}
+
 .film-tiezer {
   width: 100%;
   opacity: 0;
@@ -300,6 +282,14 @@
     margin-right: 16px;
   }
 }
+@media screen and (min-width: 1280px) {
+  .movie__poster {
+    height: 478px;
+    width: 478px;
+    object-fit: cover;
+  }
+}
+
 .trailer {
   &__overlay {
     position: absolute;
