@@ -12,16 +12,21 @@ refs.searchForm.addEventListener('submit', onSearch);
 async function onSearch(e) {
   e.preventDefault();
   const form = e.target;
-  filmsApiService.query = e.target.elements.search.value.trim();
+  filmsApiService.query = e.target.search.value.trim();
 
   if (filmsApiService.query === '') {
     onError();
     return;
   }
+
   const genres = await combineGenres();
   const filmOnSearch = await filmsApiService.fetchFilmsOnSearch(
     filmsApiService.query
   );
+  if (!filmOnSearch?.results?.length) {
+    onError();
+    return;
+  }
   clearGalleryContainer();
   renderFilmGallery(filmOnSearch, genres);
   form.reset();
