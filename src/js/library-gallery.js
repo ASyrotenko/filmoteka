@@ -6,18 +6,6 @@ import { getRefs } from './get-refs';
 const refs = getRefs();
 const posterLargeUrl = 'https://image.tmdb.org/t/p/original';
 
-// refs.addToWatched.addEventListener('click', toggleBtnRemove);
-// refs.addToQueue.addEventListener('click', toggleBtnAdd);
-
-// function toggleBtnAdd() {
-//   refs.addToQueue.classList.add('header__btn--active');
-//   refs.addToWatched.classList.remove('header__btn--active');
-// }
-
-function toggleBtnRemove() {
-  refs.addToQueue.classList.remove('header__btn--active');
-  refs.addToWatched.classList.add('header__btn--active');
-}
 export function renderLibrary(filmsIds) {
   return filmsIds.map(renderMovieCardLib).join('');
 }
