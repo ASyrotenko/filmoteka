@@ -10,7 +10,7 @@ const refs = getRefs();
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
 
-function renderMovieCard(movie) {
+export function renderMovieCard(movie) {
   refs.insertImgCont.insertAdjacentHTML('beforeend', getPosterForCard(movie));
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
   document.querySelector('.spinner').style.display = 'none';

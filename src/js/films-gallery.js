@@ -58,13 +58,7 @@ export function filmTpl({ results }, genresDict) {
         `
             : ''
         } 
-        ${
-          votes
-            ? `
-        <p class="film__value">${votes.toFixed(2)}</p>
-        `
-            : ''
-        }
+
         ${
           filmDate
             ? `

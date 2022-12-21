@@ -43,7 +43,6 @@
       display: block;
     }
 
-
     @media screen and (min-width: 768px) {
       flex-basis: calc((100% - 1 * 32px) / 2);
     }
@@ -65,7 +64,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    @include animation(transform, null, null, 250ms, cubic-bezier(0.4, 0, 0.2, 1)); 
+    @include animation(
+      transform,
+      null,
+      null,
+      250ms,
+      cubic-bezier(0.4, 0, 0.2, 1)
+    );
     width: 80%;
     height: 45px;
     border-radius: 5px;
@@ -75,12 +80,10 @@
     text-align: center;
 
     &--text {
-      
       font-size: 14px;
       color: var(--secondary-color);
     }
   }
-
 
   &__content {
     margin-top: 10px;
@@ -122,6 +125,14 @@
     color: #ff6b08;
   }
   &__value {
-    display: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 36px;
+    border-radius: 5px;
+    height: 16px;
+    background-color: #ff6b01;
+    color: #ffffff;
+    font-size: 12px;
   }
 }
