@@ -167,9 +167,10 @@
   }
 }
 
-// .img-wrap > img {
-//   object-fit: cover;
-// }
+.img-wrap {
+  width: 100%;
+  height: 100%;
+}
 
 .trailer-box {
   padding: 25px;
