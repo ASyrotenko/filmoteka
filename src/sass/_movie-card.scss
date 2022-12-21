@@ -239,19 +239,18 @@
 
 .film-preview-close {
   position: fixed;
-  z-index: 10;
-  top: 40px;
-  right: 20;
+  // z-index: 10;
+  top: 45px;
+  right: 25;
   cursor: pointer;
   margin: 10px;
-  color: var(--accent-color);
-  font-weight: 500;
-  font-size: 18px;
+  // color: var(--accent-color);
+
   background: transparent;
-  &:hover,
-  &:focus {
-    font-weight: 700;
-  }
+  // &:hover,
+  // &:focus {
+  //   // color: ;
+  // }
 
   &[disabled] {
     opacity: 0;
@@ -312,4 +311,11 @@
 }
 .play__icon {
   fill: #ffffff;
+}
+.close-btn-icon--trailer {
+  fill: #ff6b01;
+  &:hover,
+  &:focus {
+    fill: hsl(9, 90%, 43%);
+  }
 }
