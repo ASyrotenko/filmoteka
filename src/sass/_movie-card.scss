@@ -133,7 +133,7 @@
   padding-right: 12px;
   padding-top: 6px;
   padding-bottom: 6px;
-  &-wached {
+  &-watched {
     background: var(--accent-color);
     color: var(--primary-bg-color);
     border: none;
@@ -151,7 +151,7 @@
   }
 }
 
-.film-btn-wached,
+.film-btn-watched,
 .film-btn-queue {
   box-shadow: none;
   transition: box-shadow 250ms linear;

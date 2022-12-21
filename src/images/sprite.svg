@@ -22,5 +22,6 @@
                         <path fill="none" style="stroke: var(--color1, currentColor)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M22.667 22.667h6.667"></path>
                         <path fill="none" style="stroke: var(--color1, currentColor)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M22.667 9.333h6.667"></path>
                 </symbol>
+
         </defs>
 </svg>

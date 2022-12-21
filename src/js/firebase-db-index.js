@@ -7,6 +7,27 @@ const firebase = new Firebase();
 
 refs.addToWatched.addEventListener('click', pullToWatched);
 refs.addToQueue.addEventListener('click', pullToQueue);
+refs.filmGallery.addEventListener('click', getMovieStatus);
+
+async function getMovieStatus(e) {
+  const textContentRemoveWatched = 'remove from watched';
+  const watchedMovies = await firebase.getDoc('watched');
+  const watchedMoviesId = Object.values(watchedMovies);
+  const currentWatchedMovieStatus = watchedMoviesId.includes(e.target.id);
+  if (currentWatchedMovieStatus) {
+    refs.addToWatched.textContent = textContentRemoveWatched;
+    refs.addToWatched.classList.add('film-btn--active');
+  }
+
+  const textContentRemoveQueue = 'remove from queue';
+  const queueMovies = await firebase.getDoc('queue');
+  const queueMoviesId = Object.values(queueMovies);
+  const currentQueueMovieStatus = queueMoviesId.includes(e.target.id);
+  if (currentQueueMovieStatus) {
+    refs.addToQueue.textContent = textContentRemoveQueue;
+    refs.addToQueue.classList.add('film-btn--active');
+  }
+}
 
 function pullToWatched(e) {
   const textContentAdd = 'add to watched';
@@ -14,9 +35,12 @@ function pullToWatched(e) {
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('watched');
+    refs.addToWatched.textContent = textContentRemove;
+    refs.addToWatched.classList.remove('film-btn--active');
   } else if (e.target.textContent.includes(textContentRemove)) {
     e.target.textContent = textContentAdd;
     firebase.removeFilmById('watched');
+    refs.addToWatched.classList.remove('film-btn--active');
   }
 }
 
@@ -26,8 +50,11 @@ function pullToQueue(e) {
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('queue');
+    refs.addToQueue.textContent = textContentRemove;
+    refs.addToQueue.classList.remove('film-btn--active');
   } else if (e.target.textContent.includes(textContentRemove)) {
     e.target.textContent = textContentAdd;
     firebase.removeFilmById('queue');
+    refs.addToQueue.classList.remove('film-btn--active');
   }
 }
