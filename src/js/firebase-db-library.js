@@ -47,3 +47,16 @@ async function showQueue() {
     // console.log(queue);
   }
 }
+const qwe = setInterval(getUserStatus, 250);
+
+function getUserStatus(params) {
+  try {
+    refs.watched.classList.add('film-btn--active');
+    firebase.userStatus();
+    console.log('got id');
+    showWatched();
+    clearInterval(qwe);
+  } catch (error) {
+    console.log('error');
+  }
+}
