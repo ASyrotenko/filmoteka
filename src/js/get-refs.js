@@ -21,5 +21,8 @@ export function getRefs() {
     watchBtn: document.querySelector('.film-preview'),
     videoBtnBox: document.querySelector('.film-btn-wrap'),
     iframeEl: document.querySelector('.iframe'),
+    trailerOverlay: document.querySelector('.trailer__overlay'),
+    trailerBox: document.querySelector('.trailer-box'),
+    // overlayBox: document.querySelector('.overlay-box'),
   };
 }
