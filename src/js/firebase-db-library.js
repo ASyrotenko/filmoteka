@@ -17,7 +17,7 @@ async function showWatched() {
       'beforeend',
       `<li class="film__list-error">
       <p class="library__text">No watched movies found in the library</p>
-      <img src="../images/smile-icon.webp" alt="No watched movies found in the library"/>
+      <img src="https://nejdancs.github.io/filmoteka/cat__1.21cb105d.png" alt="No watched movies found in the library"/>
     </li>`
     );
   } else {
@@ -38,7 +38,7 @@ async function showQueue() {
       'beforeend',
       `<li class="film__list-error">
         <p class="library__text">No movies saved for viewing were found in the library</p>
-        <img src="../images/smile-icon.webp" alt="No movies saved for viewing were found in the library"/>
+        <img src="https://nejdancs.github.io/filmoteka/cat__1.21cb105d.png" alt="No movies saved for viewing were found in the library"/>
       </li>`
     );
   } else {
