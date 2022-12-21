@@ -1,6 +1,7 @@
 import { getRefs } from './get-refs';
 import { FilmsApiService } from './films-service';
 import { filmTpl } from './films-gallery';
+import { filmShortTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 
 const refs = getRefs();
@@ -44,3 +45,5 @@ function renderFilmGallery(films, genres) {
 function clearGalleryContainer() {
   refs.filmGallery.innerHTML = '';
 }
+
+function renderFilmSearchList(films) {}
