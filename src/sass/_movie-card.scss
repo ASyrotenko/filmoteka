@@ -204,6 +204,9 @@
 .trailer__overlay.not-active {
   display: none;
 }
+.trailer__overlay.not-active {
+  display: none;
+}
 .film-tiezer {
   width: 100%;
   opacity: 0;
@@ -247,6 +250,9 @@
   // @media (hover: hover) {
   //   display: none;
   // }
+}
+.film-preview.not-active {
+  display: none;
 }
 
 .film-preview-close {
@@ -305,7 +311,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(74, 4, 4, 0.5);
+    background-color: rgba(118, 49, 9, 0.65);
     opacity: 0;
     pointer-events: none;
     transition: opacity 450ms linear;

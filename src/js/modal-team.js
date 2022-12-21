@@ -1,11 +1,10 @@
-const openModalBtn = document.querySelector('[data-action="open-modal"]');
-const closeModalBtn = document.querySelector('[data-action="close-modal"]');
-const backdropTeam = document.querySelector('.team-backdrop');
-const body = document.querySelector('body');
+import { getRefs } from './get-refs';
 
-openModalBtn.addEventListener('click', openModalOpen);
-closeModalBtn.addEventListener('click', closeModalClose);
-backdropTeam.addEventListener('click', clickBackdropClick);
+const refs = getRefs();
+
+refs.openModalBtn.addEventListener('click', openModalOpen);
+refs.closeModalBtn.addEventListener('click', closeModalClose);
+refs.backdropTeam.addEventListener('click', clickBackdropClick);
 
 function openModalOpen() {
   window.addEventListener('keydown', onEscPress);

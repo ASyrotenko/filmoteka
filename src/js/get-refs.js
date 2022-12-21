@@ -23,6 +23,9 @@ export function getRefs() {
     iframeEl: document.querySelector('.iframe'),
     trailerOverlay: document.querySelector('.trailer__overlay'),
     trailerBox: document.querySelector('.trailer-box'),
-    // overlayBox: document.querySelector('.overlay-box'),
+    openModalBtn: document.querySelector('[data-action="open-modal"]'),
+    closeModalBtn: document.querySelector('[data-action="close-modal"]'),
+    backdropTeam: document.querySelector('.team-backdrop'),
+    body: document.querySelector('body'),
   };
 }
