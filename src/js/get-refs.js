@@ -23,6 +23,7 @@ export function getRefs() {
     iframeEl: document.querySelector('.iframe'),
     trailerOverlay: document.querySelector('.trailer__overlay'),
     trailerBox: document.querySelector('.trailer-box'),
+    btnUp: document.querySelector('.btn-up'),
     // overlayBox: document.querySelector('.overlay-box'),
   };
 }
