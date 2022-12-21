@@ -42,8 +42,8 @@ export function filmTpl({ results }, genresDict) {
         ${
           filmTitle
             ? `
-        <p class="film__film__title">
-          ${filmTitle}</p>
+        <h3 class="film__film__title">
+          ${filmTitle}</h3>
         `
             : ''
         } ${
