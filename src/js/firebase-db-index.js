@@ -32,11 +32,13 @@ async function getMovieStatus(e) {
 function pullToWatched(e) {
   const textContentAdd = 'add to watched';
   const textContentRemove = 'remove from watched';
+  console.log(firebase.setDoc.userId);
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('watched');
-    refs.addToWatched.textContent = textContentRemove;
-    refs.addToWatched.classList.remove('film-btn--active');
+    firebase.removeFilmById('queue');
+    refs.addToQueue.textContent = 'add to queue';
+    refs.addToQueue.classList.remove('film-btn--active');
   } else if (e.target.textContent.includes(textContentRemove)) {
     e.target.textContent = textContentAdd;
     firebase.removeFilmById('watched');
@@ -50,8 +52,9 @@ function pullToQueue(e) {
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('queue');
-    refs.addToQueue.textContent = textContentRemove;
-    refs.addToQueue.classList.remove('film-btn--active');
+    firebase.removeFilmById('watched');
+    refs.addToWatched.textContent = 'add to watched';
+    refs.addToWatched.classList.remove('film-btn--active');
   } else if (e.target.textContent.includes(textContentRemove)) {
     e.target.textContent = textContentAdd;
     firebase.removeFilmById('queue');
