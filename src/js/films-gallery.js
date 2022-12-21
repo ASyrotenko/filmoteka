@@ -38,6 +38,9 @@ export function filmTpl({ results }, genresDict) {
           />
         </a>
       </div>
+      <div class="film__info">
+      <p class="film__info--text">Watch ${filmTitle} online</p>
+      </div>
       <div class="film__content">
         ${
           filmTitle

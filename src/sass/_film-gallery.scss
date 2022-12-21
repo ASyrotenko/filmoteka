@@ -26,6 +26,7 @@
   }
 
   &__item {
+    position: relative;
     width: 100%;
     background-color: white;
     overflow: hidden;
@@ -37,6 +38,11 @@
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
         0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
     }
+
+    &:hover .film__info {
+      display: block;
+    }
+
 
     @media screen and (min-width: 768px) {
       flex-basis: calc((100% - 1 * 32px) / 2);
@@ -51,6 +57,27 @@
     width: 100%;
     border-radius: 5px 5px 5px 5px;
   }
+
+  &__info {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include animation(transform, null, null, 250ms, cubic-bezier(0.4, 0, 0.2, 1)); 
+    padding: 10px;
+    width: 80%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(88, 85, 85);
+
+    &--text {
+      font-size: 14px;
+      text-align: center;
+      color: var(--secondary-color);
+    }
+  }
+
 
   &__content {
     margin-top: 10px;
