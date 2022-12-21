@@ -8,9 +8,32 @@ const refs = getRefs();
 
 const filmsApiService = new FilmsApiService();
 
-refs.searchForm.addEventListener('submit', onSearch);
+refs.searchForm.addEventListener('submit', onSearchSubmit);
 
-async function onSearch(e) {
+refs.searchForm.addEventListener('input', onSearchInput);
+
+async function onSearchInput(e) {
+  // e.preventDefault();
+
+  filmsApiService.query = e.currentTarget.elements.query.value;
+
+  if (filmsApiService.query === '') {
+    onError();
+    return;
+  }
+
+  const filmOnSearch = await filmsApiService.fetchFilmsOnSearch(
+    filmsApiService.query
+  );
+  if (!filmOnSearch?.results?.length) {
+    onError();
+    return;
+  }
+
+  renderFilmSearchList(filmOnSearch);
+}
+
+async function onSearchSubmit(e) {
   e.preventDefault();
   const form = e.target;
   filmsApiService.query = e.target.search.value.trim();
@@ -46,4 +69,6 @@ function clearGalleryContainer() {
   refs.filmGallery.innerHTML = '';
 }
 
-function renderFilmSearchList(films) {}
+function renderFilmSearchList(films) {
+  refs.searchQueryList.insertAdjacentHTML('beforeend', filmShortTpl(films));
+}

@@ -37,7 +37,7 @@ export function filmTpl({ results }, genresDict) {
             loading="lazy"
           />
         </a>
-      </div>
+      
       <div class="film__content">
         ${
           filmTitle
@@ -92,13 +92,12 @@ export function filmShortTpl({ results }) {
       }) => {
         const filmTitle = original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
-        return ` <li   class="film__item">
-    
+        return ` <li   class="header__form-list-item">
         <a class="film__link"
         href="#"
         >
           <img id='${id}'
-            class="film__image"
+            class="film-short__image"
             ${
               poster
                 ? `
@@ -110,8 +109,7 @@ export function filmShortTpl({ results }) {
             loading="lazy"
           />
         </a>
-      </div>
-      <div class="film__content">
+      <div class="film-short__content">
         ${
           filmTitle
             ? `

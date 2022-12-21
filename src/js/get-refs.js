@@ -3,6 +3,7 @@ export function getRefs() {
     filmGallery: document.querySelector('.film__list'),
     movieCard: document.querySelectorAll('.film__item'),
     searchQuery: document.querySelector('.header__form-input'),
+    searchQueryList: document.querySelector('.header__form-list'),
     searchBtn: document.querySelector('.header__form-button'),
     modalBackdrop: document.querySelector('.backdrop'),
     insertImgCont: document.querySelector('.img-wrap'),
