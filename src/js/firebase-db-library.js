@@ -9,6 +9,9 @@ refs.watched.addEventListener('click', showWatched);
 refs.queue.addEventListener('click', showQueue);
 
 async function showWatched() {
+  refs.queue.classList.remove('film-btn--active');
+  refs.watched.classList.add('film-btn--active');
+
   let watched = await firebase.getDoc('watched');
   if (watched.length === 0) {
     console.log('ERROR');
@@ -29,6 +32,8 @@ async function showWatched() {
 
 async function showQueue() {
   refs.watched.classList.remove('film-btn--active');
+  refs.queue.classList.add('film-btn--active');
+
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
