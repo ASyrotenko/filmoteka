@@ -140,6 +140,7 @@ refs.filmGallery.addEventListener('click', onMovieCardClick);
 
 async function onMovieCardClick(e) {
   e.preventDefault();
+
   if (!e.target.classList.contains('film__image')) {
     return;
   }
@@ -167,6 +168,8 @@ async function onMovieCardClick(e) {
 refs.modalCloseBtn.addEventListener('click', onMovieModalClose);
 
 function onMovieModalClose(e) {
+  refs.trailerOverlay.classList.remove('not-active');
+
   refs.modalBackdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', onEscPress);
   closeVideo();

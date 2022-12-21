@@ -74,21 +74,21 @@
 }
 
 .img-wrap {
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  @media screen and (min-width: 768px) {
-    width: 264px;
-    height: 374px;
-    margin-bottom: 0px;
-    margin-right: 68px;
-  }
-  @media screen and (min-width: 1280px) {
-    width: 375px;
-    height: 478px;
-    // margin-bottom: 40px;
-    margin-right: 16px;
-  }
+  // border-radius: 5px;
+  // overflow: hidden;
+  // margin-bottom: 20px;
+  // @media screen and (min-width: 768px) {
+  //   width: 264px;
+  //   height: 374px;
+  //   margin-bottom: 0px;
+  //   margin-right: 68px;
+  // }
+  // @media screen and (min-width: 1280px) {
+  //   width: 375px;
+  //   height: 478px;
+  //   // margin-bottom: 40px;
+  //   margin-right: 16px;
+  // }
 }
 .film-info-wrap {
   @media screen and (min-width: 768px) {
@@ -189,21 +189,32 @@
 }
 
 .trailer-box {
+  padding: 25px;
   width: 100%;
 
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.trailer-box.is-active {
+  pointer-events: initial;
+}
+.trailer__overlay.not-active {
+  display: none;
 }
 .film-tiezer {
   width: 100%;
-  display: none;
+  opacity: 0;
+  pointer-events: none;
   margin-top: 20px;
   height: 300px;
+  transition: opacity 450ms linear;
 }
 .film-tiezer.is-active {
-  display: block;
+  opacity: 1;
+  pointer-events: initial;
 }
 
 @media screen and (min-width: 768px) {
@@ -233,12 +244,16 @@
   &[disabled] {
     opacity: 0;
   }
+  // @media (hover: hover) {
+  //   display: none;
+  // }
 }
 
 .film-preview-close {
   position: fixed;
-  top: 20px;
-  right: 10;
+  z-index: 10;
+  top: 40px;
+  right: 20;
   cursor: pointer;
   margin: 10px;
   color: var(--accent-color);
@@ -254,4 +269,51 @@
     opacity: 0;
     display: none;
   }
+}
+.overlay-box {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  &:hover,
+  &:focus {
+    .trailer__overlay {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 374px;
+    margin-bottom: 0px;
+    margin-right: 68px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 375px;
+    height: 478px;
+    margin-right: 16px;
+  }
+}
+.trailer {
+  &__overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(74, 4, 4, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 450ms linear;
+  }
+}
+.overlay-content {
+  color: #ffffff;
+}
+.play__icon {
+  fill: #ffffff;
 }
