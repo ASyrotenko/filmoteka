@@ -9,10 +9,10 @@ const firebase = new Firebase();
 refs.myLibrary.addEventListener('click', () => {
   if (!auth.lastNotifiedUid) {
     Confirm.show(
-      'Ви не авторизовані',
-      'Для перегляду збережених фільмів потрібно авторизуватися. Здійснити авторизацію через Google ?',
-      'Так',
-      'Ні',
+      'You are not authorized',
+      'You need to log in to view saved movies. Authorize through Google ?',
+      'Yes',
+      'No',
       () => {
         firebase.singInWithGoogle();
       },

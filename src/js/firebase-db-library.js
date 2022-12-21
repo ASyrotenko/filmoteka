@@ -16,8 +16,8 @@ async function showWatched() {
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
       `<li class="film__list-error">
-      <p class="library__text">В бібліотеці не знайдено переглянутих фільмів</p>
-      <img src="./images/library-cat.png" alt="В бібліотеці не знайдено переглянутих фільмів"/>
+      <p class="library__text">No watched movies found in the library</p>
+      <img src="../images/smile-icon.webp" alt="No watched movies found in the library"/>
     </li>`
     );
   } else {
@@ -37,8 +37,8 @@ async function showQueue() {
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
       `<li class="film__list-error">
-        <p class="library__text">В бібліотеці не знайдено збережених для перегляду фільмів</p>
-        <img src="./images/library-cat.png" alt="В бібліотеці не знайдено збережених для перегляду фільмів"/>
+        <p class="library__text">No movies saved for viewing were found in the library</p>
+        <img src="../images/smile-icon.webp" alt="No movies saved for viewing were found in the library"/>
       </li>`
     );
   } else {
