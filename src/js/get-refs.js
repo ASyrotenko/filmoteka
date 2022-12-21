@@ -24,5 +24,6 @@ export function getRefs() {
     trailerOverlay: document.querySelector('.trailer__overlay'),
     trailerBox: document.querySelector('.trailer-box'),
     // overlayBox: document.querySelector('.overlay-box'),
+    myLibrary: document.querySelector('.library'),
   };
 }
