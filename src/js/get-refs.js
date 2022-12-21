@@ -26,5 +26,6 @@ export function getRefs() {
     backdropTeam: document.querySelector('.team-backdrop'),
     body: document.querySelector('body'),
     myLibrary: document.querySelector('.library'),
+    btnUp: document.querySelector('.btn-up'),
   };
 }
