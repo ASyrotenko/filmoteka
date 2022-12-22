@@ -31,7 +31,9 @@ function movieTplLib(movie, poster) {
     original_title,
     genres,
     vote_average,
+    vote_count,
     release_date,
+    poster_path: posterPath,
     id,
   } = movie;
 
@@ -46,20 +48,25 @@ function movieTplLib(movie, poster) {
           <img id='${id}'
             class="film__image"
             ${
-              poster
+              posterPath
                 ? `
         src="${poster}"
         `
-                : `src = ''`
+                 : `src = 'https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg'`
             }
                         alt="Movie: ${movieTitle}"
-            loading="lazy"
+            
           />
         </a>
       </div>
       <div class="film__info">
-      <p class="film__info--text">Watch ${movieTitle} online</p>
-      </div>
+          <div class="aver-rate">
+            <p class="film__info--text"> Average rate ${vote_average.toFixed(1)} </p>
+          </div>
+          <div class="votes-amount">
+            <p class="film__info--text"> Votes ${vote_count}</p>
+          </div>
+        </div>
       <div class="film__content">
         ${
           movieTitle
@@ -217,7 +224,7 @@ export function getPosterForCard({
                 ? `
         src="${posterLargeUrl}${moviePoster}"
         `
-                : `src = ''`
+                : `src = 'https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg'`
             }
                         alt="Movie: ${original_title ?? ''}"
           />
