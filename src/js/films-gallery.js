@@ -78,7 +78,7 @@ export function filmTpl({ results }, genresDict) {
     .join('');
 }
 
-//fetch small info about movies
+// small tpl info about movies
 export function filmShortTpl({ results }) {
   return results
     .map(
@@ -93,8 +93,7 @@ export function filmShortTpl({ results }) {
         const filmTitle = original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
         return ` <li   class="header__form-list-item">
-        <a class="film__link"
-        href="#"
+        <div class="img-thumb"
         >
           <img id='${id}'
             class="film-short__image"
@@ -108,12 +107,12 @@ export function filmShortTpl({ results }) {
                         alt="Movie: ${filmTitle}" width="35" height="53"
             loading="lazy"
           />
-        </a>
+        </div>
       <div class="film-short__content">
         ${
           filmTitle
             ? `
-        <h3 class="film__film__title">
+        <h3 class="film-short__title">
           ${filmTitle}</h3>
         `
             : ''
@@ -121,7 +120,7 @@ export function filmShortTpl({ results }) {
         ${
           filmDate
             ? `
-        <p class="film__date">| ${new Date(filmDate).getFullYear()}</p>
+        <p class="film-short__date"> ${new Date(filmDate).getFullYear()}</p>
         `
             : ''
         } 

@@ -3,43 +3,54 @@ import { FilmsApiService } from './films-service';
 import { filmTpl } from './films-gallery';
 import { filmShortTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
+import { renderMovieCard } from './movie-card';
+import Notiflix from 'notiflix';
+
+var debounce = require('debounce');
+
+const DEBOUNCE_DELAY = 300;
 
 const refs = getRefs();
 
 const filmsApiService = new FilmsApiService();
 
-refs.searchForm.addEventListener('submit', onSearchSubmit);
+refs.searchQueryList.addEventListener('click', event => {
+  renderMovieCard(event);
+});
 
-refs.searchForm.addEventListener('input', onSearchInput);
+refs.body.addEventListener('click', inputClose);
+
+//Input Search
+refs.searchForm.addEventListener(
+  'input',
+  debounce(onSearchInput, DEBOUNCE_DELAY)
+);
 
 async function onSearchInput(e) {
-  // e.preventDefault();
-
-  filmsApiService.query = e.currentTarget.elements.query.value;
-
-  if (filmsApiService.query === '') {
-    onError();
-    return;
-  }
+  filmsApiService.query = e.target.value.trim();
+  clearSearchList();
 
   const filmOnSearch = await filmsApiService.fetchFilmsOnSearch(
     filmsApiService.query
   );
   if (!filmOnSearch?.results?.length) {
-    onError();
+    clearSearchList();
+    Notiflix.Notify.failure('Sorry, film is not found');
     return;
   }
 
   renderFilmSearchList(filmOnSearch);
 }
 
+//Submit search
+refs.searchForm.addEventListener('submit', onSearchSubmit);
+
 async function onSearchSubmit(e) {
   e.preventDefault();
   const form = e.target;
   filmsApiService.query = e.target.search.value.trim();
-
   if (filmsApiService.query === '') {
-    onError();
+    Notiflix.Notify.failure('Please type something');
     return;
   }
 
@@ -47,18 +58,15 @@ async function onSearchSubmit(e) {
   const filmOnSearch = await filmsApiService.fetchFilmsOnSearch(
     filmsApiService.query
   );
+
   if (!filmOnSearch?.results?.length) {
-    onError();
+    Notiflix.Notify.failure('Sorry, film is not found');
     return;
   }
+
   clearGalleryContainer();
   renderFilmGallery(filmOnSearch, genres);
   form.reset();
-}
-
-function onError() {
-  alert('Please type something');
-  console.log('ERROR');
 }
 
 function renderFilmGallery(films, genres) {
@@ -67,6 +75,15 @@ function renderFilmGallery(films, genres) {
 
 function clearGalleryContainer() {
   refs.filmGallery.innerHTML = '';
+}
+
+function clearSearchList() {
+  refs.searchQueryList.innerHTML = '';
+}
+
+function inputClose(e) {
+  if (e.target.className !== 'header__form-input')
+    refs.searchQueryList.innerHTML = '';
 }
 
 function renderFilmSearchList(films) {

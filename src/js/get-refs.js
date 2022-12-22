@@ -1,5 +1,6 @@
 export function getRefs() {
   return {
+    body: document.querySelector('body'),
     filmGallery: document.querySelector('.film__list'),
     movieCard: document.querySelectorAll('.film__item'),
     searchQuery: document.querySelector('.header__form-input'),
