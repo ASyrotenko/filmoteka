@@ -129,9 +129,10 @@ export function getPosterForCard({
                 ? `
         src="${posterLargeUrl}${moviePoster}"
         `
-                : `src = ''`
+                : `src = 'https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg'`
             }
                         alt="Movie: ${original_title ?? ''}"
+                    width="375" height="478"
           />
 `;
 }

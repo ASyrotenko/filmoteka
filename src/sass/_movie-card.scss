@@ -87,8 +87,16 @@
 .film-info-container {
   @media screen and (min-width: 768px) {
     display: flex;
+    gap: 68px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    gap: 20px;
   }
 }
+
+
+
 
 .film-btn-wrap {
   display: flex;
@@ -271,9 +279,9 @@
   }
   @media screen and (min-width: 768px) {
     width: 264px;
-    height: 400px;
+    height: 374px;
     margin-bottom: 0px;
-    margin-right: 68px;
+    
   }
   @media screen and (min-width: 1280px) {
     width: 375px;
@@ -281,13 +289,76 @@
     margin-right: 16px;
   }
 }
-@media screen and (min-width: 1280px) {
-  .movie__poster {
+
+.movie__poster {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    height: 374px;
+    width: 264px;
+    object-fit: fill;
+  }
+
+  @media screen and (min-width: 1280px) {
     height: 478px;
     width: 375px;
-    object-fit: cover;
+    object-fit: fill;
+  }
+  
+}
+
+.left-wrap {
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 375px;
+  }
+  
+  @media  screen and (max-width: 767px){
+    margin-bottom: 20px;
   }
 }
+
+.like-dislike {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+
+.like, .dislike {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+  min-height: 25px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Roboto';
+  background-color: var(--primary-bg-color);
+  border: 1px solid #000;
+  box-shadow: none;
+  transition: border-color 250ms linear, color 250ms linear,
+    background-color 250ms linear, box-shadow 250ms linear;
+
+}
+
+.like:hover, .like:focus, .dislike:hover, .dislike:focus {
+    color: #fff;
+    background-color: #ff6b01;
+    border-color: #ff6b01;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  }
+
+  .icon-up, .icon-down {
+    fill: currentColor;
+  }
 
 .trailer {
   &__overlay {
