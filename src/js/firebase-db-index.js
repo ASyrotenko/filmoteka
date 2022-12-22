@@ -6,18 +6,6 @@ const refs = getRefs();
 
 const firebase = new Firebase();
 
-refs.addToWatched.addEventListener('click', () => {
-  if (!auth.lastNotifiedUid) {
-    authorizedGoogle();
-  }
-});
-
-refs.addToQueue.addEventListener('click', () => {
-  if (!auth.lastNotifiedUid) {
-    authorizedGoogle();
-  }
-});
-
 refs.addToWatched.addEventListener('click', pullToWatched);
 refs.addToQueue.addEventListener('click', pullToQueue);
 refs.filmGallery.addEventListener('click', getMovieStatus);
@@ -45,34 +33,43 @@ async function getMovieStatus(e) {
 }
 
 function pullToWatched(e) {
-  const textContentAdd = 'add to watched';
-  const textContentRemove = 'remove from watched';
-  console.log(firebase.setDoc.userId);
-  if (e.target.textContent.includes(textContentAdd)) {
-    e.target.textContent = textContentRemove;
-    firebase.setDoc('watched');
-    firebase.removeFilmById('queue');
-    refs.addToQueue.textContent = 'add to queue';
-    refs.addToQueue.classList.remove('film-btn--active');
-  } else if (e.target.textContent.includes(textContentRemove)) {
-    e.target.textContent = textContentAdd;
-    firebase.removeFilmById('watched');
-    refs.addToWatched.classList.remove('film-btn--active');
+  if (!auth.lastNotifiedUid) {
+    authorizedGoogle();
+  } else {
+    const textContentAdd = 'add to watched';
+    const textContentRemove = 'remove from watched';
+    if (e.target.textContent.includes(textContentAdd)) {
+      e.target.textContent = textContentRemove;
+      firebase.setDoc('watched');
+      firebase.removeFilmById('queue');
+      refs.addToQueue.textContent = 'add to queue';
+      refs.addToQueue.classList.remove('film-btn--active');
+    } else if (e.target.textContent.includes(textContentRemove)) {
+      e.target.textContent = textContentAdd;
+      firebase.removeFilmById('watched');
+      refs.watched.click();
+      refs.addToWatched.classList.remove('film-btn--active');
+    }
   }
 }
 
 function pullToQueue(e) {
-  const textContentAdd = 'add to queue';
-  const textContentRemove = 'remove from queue';
-  if (e.target.textContent.includes(textContentAdd)) {
-    e.target.textContent = textContentRemove;
-    firebase.setDoc('queue');
-    firebase.removeFilmById('watched');
-    refs.addToWatched.textContent = 'add to watched';
-    refs.addToWatched.classList.remove('film-btn--active');
-  } else if (e.target.textContent.includes(textContentRemove)) {
-    e.target.textContent = textContentAdd;
-    firebase.removeFilmById('queue');
-    refs.addToQueue.classList.remove('film-btn--active');
+  if (!auth.lastNotifiedUid) {
+    authorizedGoogle();
+  } else {
+    const textContentAdd = 'add to queue';
+    const textContentRemove = 'remove from queue';
+    if (e.target.textContent.includes(textContentAdd)) {
+      e.target.textContent = textContentRemove;
+      firebase.setDoc('queue');
+      firebase.removeFilmById('watched');
+      refs.addToWatched.textContent = 'add to watched';
+      refs.addToWatched.classList.remove('film-btn--active');
+    } else if (e.target.textContent.includes(textContentRemove)) {
+      e.target.textContent = textContentAdd;
+      firebase.removeFilmById('queue');
+      refs.queue.click();
+      refs.addToQueue.classList.remove('film-btn--active');
+    }
   }
 }

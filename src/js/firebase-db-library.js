@@ -14,7 +14,6 @@ async function showWatched() {
 
   let watched = await firebase.getDoc('watched');
   if (watched.length === 0) {
-    console.log('ERROR');
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
@@ -26,7 +25,6 @@ async function showWatched() {
   } else {
     refs.filmGallery.innerHTML = '';
     renderLibrary(watched);
-    // console.log(watched);
   }
 }
 
@@ -37,7 +35,6 @@ async function showQueue() {
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
-    console.log('ERROR');
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
@@ -49,7 +46,6 @@ async function showQueue() {
   } else {
     refs.filmGallery.innerHTML = '';
     renderLibrary(queue);
-    // console.log(queue);
   }
 }
 const qwe = setInterval(getUserStatus, 250);
@@ -58,7 +54,6 @@ function getUserStatus(params) {
   try {
     refs.watched.classList.add('film-btn--active');
     firebase.userStatus();
-    console.log('got id');
     showWatched();
     clearInterval(qwe);
   } catch (error) {
