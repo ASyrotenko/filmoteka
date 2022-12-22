@@ -243,18 +243,13 @@
 
 .film-preview-close {
   position: fixed;
-  // z-index: 10;
+
   top: 45px;
   right: 25;
   cursor: pointer;
   margin: 10px;
-  // color: var(--accent-color);
 
   background: transparent;
-  // &:hover,
-  // &:focus {
-  //   // color: ;
-  // }
 
   &[disabled] {
     opacity: 0;
