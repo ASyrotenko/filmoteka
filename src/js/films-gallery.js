@@ -1,3 +1,5 @@
+import { movieCardTpl } from "./movie-card";
+
 const posterUrl = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const posterLargeUrl = 'https://image.tmdb.org/t/p/original';
 // const posterLargeUrl = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
@@ -13,12 +15,14 @@ export function filmTpl({ results }, genresDict) {
         release_date,
         first_air_date,
         genre_ids,
-        vote_average: votes,
+        vote_count,
+        vote_average,
         poster_path: poster,
         id,
       }) => {
         const filmTitle = original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
+         
         return ` <li   class="film__item">
     
         <a class="film__link"
@@ -36,10 +40,16 @@ export function filmTpl({ results }, genresDict) {
                         alt="Movie: ${filmTitle}"
           />
         </a>
+        <div class="film__info">
+          <div class="aver-rate">
+            <p class="film__info--text"> Average rate ${vote_average.toFixed(1)} </p>
+          </div>
+          <div class="votes-amount">
+            <p class="film__info--text"> Votes ${vote_count}</p>
+          </div>
       </div>
-      <div class="film__info">
-      <p class="film__info--text">Watch "${filmTitle}" online</p>
       </div>
+      
       <div class="film__content">
         ${
           filmTitle
