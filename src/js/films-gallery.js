@@ -96,7 +96,7 @@ export function filmShortTpl({ results }) {
         <div class="img-thumb"
         >
           <img id='${id}'
-            class="film-short__image"
+            class="film__image"
             ${
               poster
                 ? `

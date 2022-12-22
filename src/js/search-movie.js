@@ -3,7 +3,7 @@ import { FilmsApiService } from './films-service';
 import { filmTpl } from './films-gallery';
 import { filmShortTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
-import { renderMovieCard } from './movie-card';
+import { onMovieCardClick } from './movie-card';
 import Notiflix from 'notiflix';
 
 var debounce = require('debounce');
@@ -15,7 +15,7 @@ const refs = getRefs();
 const filmsApiService = new FilmsApiService();
 
 refs.searchQueryList.addEventListener('click', event => {
-  renderMovieCard(event);
+  onMovieCardClick(event);
 });
 
 refs.body.addEventListener('click', inputClose);
