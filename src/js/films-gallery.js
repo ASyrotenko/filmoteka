@@ -90,3 +90,58 @@ export function filmTpl({ results }, genresDict) {
     )
     .join('');
 }
+
+export function filmShortTpl({ results }) {
+  return results
+    .map(
+      ({
+        original_name,
+        original_title,
+        release_date,
+        first_air_date,
+        poster_path: poster,
+        id,
+      }) => {
+        const filmTitle = original_name ?? original_title ?? '';
+        const filmDate = release_date ?? first_air_date ?? '';
+
+        return ` <li   class="header__form-list-item">
+    <div class="img-thumb">
+          <img
+  id="${id}"
+    data-imgpath=${poster}
+  class="film__image"
+  ${
+    poster
+      ? `
+  loading="lazy"
+  src="https://image.tmdb.org/t/p/w300/${poster}" width="35" height="53"
+  `
+      : `src="https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg"
+  `
+  }
+  alt="Movie: ${filmTitle}"
+/>
+        </div>
+      <div class="film__content">
+        ${
+          filmTitle
+            ? `
+        <h3 class="film-short__title">
+          ${filmTitle}</h3>
+        `
+            : ''
+        }
+        ${
+          filmDate
+            ? `
+        <p class="film-short__date"> ${new Date(filmDate).getFullYear()}</p>
+        `
+            : ''
+        } 
+    </li>
+    `;
+      }
+    )
+    .join('');
+}
