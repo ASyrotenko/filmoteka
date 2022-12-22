@@ -141,7 +141,7 @@ export function getPosterForCard(path) {
 
 refs.filmGallery.addEventListener('click', onMovieCardClick);
 
-async function onMovieCardClick(e) {
+export async function onMovieCardClick(e) {
   e.preventDefault();
 
   if (!e.target.classList.contains('film__image')) {
@@ -159,6 +159,7 @@ async function onMovieCardClick(e) {
   }
 
   refs.modalBackdrop.classList.remove('is-hidden');
+  refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
   let path = e.target.dataset.imgpath;
