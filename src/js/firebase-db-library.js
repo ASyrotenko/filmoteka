@@ -31,11 +31,12 @@ async function showWatched() {
 async function showQueue() {
   refs.watched.classList.remove('film-btn--active');
   refs.queue.classList.add('film-btn--active');
-
+  
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
     refs.filmGallery.innerHTML = '';
+    document.querySelector(".footer").classList.add('footer--empty-library');
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
       `<li class="film__list-error">
