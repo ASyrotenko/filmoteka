@@ -112,7 +112,7 @@ backdrop.addEventListener('click', backdropClick);
 function renderMovieCard(movie, path) {
   refs.insertImgCont.insertAdjacentHTML('beforeend', getPosterForCard(path));
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
-  //   document.querySelector('.spinner').style.display = 'none';
+  document.querySelector('.spinner').style.display = 'none';
 }
 function movieCardTpl(movie) {
   const {
