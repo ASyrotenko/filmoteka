@@ -27,6 +27,7 @@ refs.searchForm.addEventListener(
 );
 
 async function onSearchInput(e) {
+  refs.spanNotification.classList.add('hidden');
   filmsApiService.query = e.target.value.trim();
   clearSearchList();
 
@@ -53,7 +54,7 @@ async function onSearchSubmit(e) {
 
   if (filmsApiService.query === '') {
     Notiflix.Notify.failure('Please type something');
-
+    refs.spanNotification.classList.remove('hidden');
     return;
   }
 
@@ -64,6 +65,7 @@ async function onSearchSubmit(e) {
 
   if (!filmOnSearch?.results?.length) {
     Notiflix.Notify.failure('Sorry, film is not found');
+    refs.spanNotification.classList.remove('hidden');
 
     return;
   }

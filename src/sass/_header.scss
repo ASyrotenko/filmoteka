@@ -264,6 +264,24 @@ input:-webkit-autofill:focus {
   opacity: 0.6;
 }
 
+//-----Notification-----
+.fail-notification {
+  position: absolute;
+  left: 0;
+  top: 150%;
+  color: #ff001b;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+  }
+}
+
 // ----- MY LIBRARY STYLES -----
 
 .header__container--library {
