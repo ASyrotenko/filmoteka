@@ -30,11 +30,13 @@
     width: 100%;
     background-color: white;
     overflow: hidden;
+    border-radius: 5px 5px 5px 5px;
 
     transition: box-shadow 250ms linear;
 
     &:hover,
     &:focus {
+      cursor: pointer;
       box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
         0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
     }
@@ -72,7 +74,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include animation(transform, null, null, 250ms, cubic-bezier(0.4, 0, 0.2, 1));
+    @include animation(
+      transform,
+      null,
+      null,
+      250ms,
+      cubic-bezier(0.4, 0, 0.2, 1)
+    );
     @include form(100%, 10%, null);
     @include fonts(700, 24px, 1.56, 0.04em, var(--secondary-color), null);
     background-color: rgba(148, 141, 141, 0.3);
@@ -146,5 +154,11 @@
 .film__item:hover .film__info,
 .film__item:focus .film__info {
   transform: translateY(0);
-  @include animation(transform, null, null, 250ms, cubic-bezier(0.4, 0, 0.2, 1));
+  @include animation(
+    transform,
+    null,
+    null,
+    250ms,
+    cubic-bezier(0.4, 0, 0.2, 1)
+  );
 }
