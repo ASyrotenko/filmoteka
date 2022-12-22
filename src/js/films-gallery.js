@@ -47,7 +47,7 @@ export function filmTpl({ results }, genresDict) {
           <div class="votes-amount">
             <p class="film__info--text"> Votes ${vote_count}</p>
           </div>
-      </div>
+        </div>
       </div>
       
       <div class="film__content">
