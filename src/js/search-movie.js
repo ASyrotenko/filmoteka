@@ -7,11 +7,13 @@ const refs = getRefs();
 
 const filmsApiService = new FilmsApiService();
 
+
 refs.searchForm.addEventListener('submit', onSearch);
 
 async function onSearch(e) {
-  e.preventDefault();
+   e.preventDefault();
   const form = e.target;
+  
   filmsApiService.query = e.target.elements.search.value.trim();
 
   if (filmsApiService.query === '') {
@@ -22,9 +24,12 @@ async function onSearch(e) {
   const filmOnSearch = await filmsApiService.fetchFilmsOnSearch(
     filmsApiService.query
   );
+  
   clearGalleryContainer();
   renderFilmGallery(filmOnSearch, genres);
   form.reset();
+
+  document.querySelector('.spinner').classList.add('hidden');
 }
 
 function onError() {
@@ -33,9 +38,9 @@ function onError() {
 }
 
 function renderFilmGallery(films, genres) {
-  refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+    refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
 }
 
 function clearGalleryContainer() {
   refs.filmGallery.innerHTML = '';
-}
+  }
