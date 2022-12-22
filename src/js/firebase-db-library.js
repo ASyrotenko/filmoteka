@@ -26,7 +26,6 @@ async function showWatched() {
   } else {
     refs.filmGallery.innerHTML = '';
     renderLibrary(watched);
-    // console.log(watched);
   }
 }
 
@@ -49,7 +48,6 @@ async function showQueue() {
   } else {
     refs.filmGallery.innerHTML = '';
     renderLibrary(queue);
-    // console.log(queue);
   }
 }
 const qwe = setInterval(getUserStatus, 250);
