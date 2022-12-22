@@ -253,6 +253,7 @@ export async function onMovieCardClick(e) {
   }
 
   refs.modalBackdrop.classList.remove('is-hidden');
+  refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
   renderMovieCard(movieCard);
@@ -268,6 +269,7 @@ function onMovieModalClose(e) {
   refs.trailerOverlay.classList.remove('not-active');
 
   refs.modalBackdrop.classList.add('is-hidden');
+  refs.btnUp.classList.remove('btn-up_hide');
   window.removeEventListener('keydown', onEscPress);
   closeVideo();
   document.querySelector('body').classList.remove('modal-open');
