@@ -1,9 +1,22 @@
-import { Firebase } from './firebase-class';
+import { Firebase, auth } from './firebase-class';
 import { getRefs } from './get-refs';
+import { authorizedGoogle } from './library-auth';
 
 const refs = getRefs();
 
 const firebase = new Firebase();
+
+refs.addToWatched.addEventListener('click', () => {
+  if (!auth.lastNotifiedUid) {
+    authorizedGoogle();
+  }
+});
+
+refs.addToQueue.addEventListener('click', () => {
+  if (!auth.lastNotifiedUid) {
+    authorizedGoogle();
+  }
+});
 
 refs.addToWatched.addEventListener('click', pullToWatched);
 refs.addToQueue.addEventListener('click', pullToQueue);
