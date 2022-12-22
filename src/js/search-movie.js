@@ -59,7 +59,7 @@ async function onSearchSubmit(e) {
   e.preventDefault();
   const form = e.target;
 
-  filmsApiService.query = e.target.search.value.trim();>>>>>>> main
+  filmsApiService.query = e.target.search.value.trim();
 
   if (filmsApiService.query === '') {
     Notiflix.Notify.failure('Please type something');
