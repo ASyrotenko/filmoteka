@@ -258,6 +258,7 @@ async function onMovieCardClick(e) {
   }
 
   refs.modalBackdrop.classList.remove('is-hidden');
+  refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
   let path = e.target.dataset.imgpath;
