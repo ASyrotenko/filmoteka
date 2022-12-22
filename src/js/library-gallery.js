@@ -52,7 +52,7 @@ function movieTplLib(movie, poster) {
                 ? `
         src="${poster}"
         `
-                 : `src = 'https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg'`
+                : `src = 'https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg'`
             }
                         alt="Movie: ${movieTitle}"
             
@@ -61,7 +61,9 @@ function movieTplLib(movie, poster) {
       </div>
       <div class="film__info">
           <div class="aver-rate">
-            <p class="film__info--text"> Average rate ${vote_average.toFixed(1)} </p>
+            <p class="film__info--text"> Average rate ${vote_average.toFixed(
+              1
+            )} </p>
           </div>
           <div class="votes-amount">
             <p class="film__info--text"> Votes ${vote_count}</p>
@@ -275,6 +277,11 @@ function onMovieModalClose(e) {
   refs.addToWatched.classList.remove('film-btn--active');
   refs.addToQueue.textContent = 'add to queue';
   refs.addToQueue.classList.remove('film-btn--active');
+  if (refs.queue.classList.contains('film-btn--active')) {
+    refs.queue.click();
+  } else {
+    refs.watched.click();
+  }
 }
 
 function onEscPress(e) {
