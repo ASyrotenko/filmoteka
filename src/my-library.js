@@ -5,3 +5,4 @@ import './js/firebase-db-library';
 // import './js/firebase-movie-status-library';
 import './js/change-color-scheme.js';
 import './js/modal-team';
+import './js/backToTop';
