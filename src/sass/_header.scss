@@ -49,6 +49,7 @@
 .header__wrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header__logo-link {
@@ -81,7 +82,6 @@
   animation-timing-function: ease;
   animation-duration: 5000ms;
   animation-iteration-count: infinite;
-  margin-right: 10px;
 
   @media screen and (min-width: 768px) {
     margin-right: 8px;
