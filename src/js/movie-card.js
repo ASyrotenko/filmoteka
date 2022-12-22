@@ -139,7 +139,7 @@ export function getPosterForCard(path) {
 
 refs.filmGallery.addEventListener('click', onMovieCardClick);
 
-async function onMovieCardClick(e) {
+export async function onMovieCardClick(e) {
   e.preventDefault();
 
   if (!e.target.classList.contains('film__image')) {
