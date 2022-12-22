@@ -1,0 +1,20 @@
+@mixin animation($one, $two, $three, $time, $func) {
+  transition-property: $one, $two, $three;
+  transition-duration: $time;
+  transition-timing-function: $func;
+}
+
+@mixin fonts($fw, $fs, $lh, $ls, $col, $ta) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  letter-spacing: $ls;
+  color: $col;
+  text-align: $ta;
+}
+
+@mixin form($wid, $hei, $br) {
+  width: $wid;
+  height: $hei;
+  border-radius: $br;
+}

@@ -8,7 +8,15 @@
       </svg>
     </button>
     <div class="film-info-container">
-      <div class="img-wrap"></div>
+      <div class="overlay-box">
+        <div class="img-wrap"></div>
+        <a href="#" class="trailer__overlay">
+          <svg width="30px" height="30px" class="play__icon">
+            <use href="./images/sprite.svg#icon-play"></use>
+          </svg>
+          <p class="overlay-content">Watch the trailer</p>
+        </a>
+      </div>
 
       <div class="film-info-wrap">
         <div class="film-info-js"></div>
@@ -20,11 +28,20 @@
             add to queue
           </button>
         </div>
-        <button type="button" class="film-preview">Watch the trailer</button>
+        <button type="button" class="film-preview">
+          <svg width="30px" height="30px" class="play__icon play__icon--orange">
+            <use href="./images/sprite.svg#icon-play"></use>
+          </svg>
+          Watch the trailer
+        </button>
       </div>
     </div>
     <div class="trailer-box">
-      <button type="button" class="film-preview-close" disabled>X</button>
+      <button type="button" class="film-preview-close" disabled>
+        <svg class="close-btn-icon close-btn-icon--trailer">
+          <use href="./images/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
       <div class="film-tiezer"></div>
     </div>
   </div>

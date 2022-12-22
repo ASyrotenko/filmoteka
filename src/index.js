@@ -2,11 +2,12 @@ import './js/modal-team';
 import './js/addvideo';
 import './js/firebase-auth';
 import './js/firebase-db-index';
-// import './js/firebase-db-library';
 import './js/firebase-class';
 import './js/movie-card';
 import './js/search-movie';
 import './js/change-color-scheme.js';
+import './js/library-auth';
+import './js/backToTop';
 // import './js/pagination';
 
 import { FilmsApiService } from './js/films-service';

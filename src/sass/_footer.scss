@@ -97,6 +97,8 @@
     }
 }
 
+
+
 // @media screen and (min-width:1280px) {
 //     .footer {
 //         max-width: 1600px;
@@ -104,8 +106,8 @@
 // }
 
 //додати клас коли бібліотека порожня, зафіксувати сам футер
-// .footer--empty-library {
-//     position: fixed;
-//     bottom: 0;
-//     width: 100%;    
-// }
+.footer--empty-library {
+    position: fixed;
+    bottom: 0;
+    width: 100%;    
+}

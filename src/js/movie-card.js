@@ -1,6 +1,3 @@
-// const posterUrl = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
-const posterLargeUrl = 'https://image.tmdb.org/t/p/original';
-// const posterLargeUrl = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
 import { filmsApiService } from '../index';
 import { getRefs } from './get-refs';
 import { closeVideo, renderVideoBox } from './addvideo';
@@ -10,8 +7,8 @@ const refs = getRefs();
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
 
-export function renderMovieCard(movie) {
-  refs.insertImgCont.insertAdjacentHTML('beforeend', getPosterForCard(movie));
+export function renderMovieCard(movie, path) {
+  refs.insertImgCont.insertAdjacentHTML('beforeend', getPosterForCard(path));
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
   document.querySelector('.spinner').style.display = 'none';
 }
@@ -26,14 +23,12 @@ export function movieCardTpl(movie) {
     vote_count,
     overview,
     id,
-    video,
   } = movie;
 
   const movieTitle = original_name ?? original_title ?? '';
   const movieGenres = genres ? genres.map(genre => genre.name) : '';
 
   return `
-  <div class="img-box"></div>
   <div class="movie__id" id="${id}" ><h2 class="movie-card__title">
     ${title ?? movieTitle}
     </h2>
@@ -115,31 +110,38 @@ ${
 </div>`;
 }
 
-export function getPosterForCard({
-  original_title,
-  poster_path,
-  backdrop_path,
-} = {}) {
-  const moviePoster = poster_path ?? backdrop_path ?? '';
+export function getPosterForCard(path) {
   return `
-             <img
-            class="movie__poster"
-            ${
-              moviePoster
-                ? `
-        src="${posterLargeUrl}${moviePoster}"
-        `
-                : `src = ''`
-            }
-                        alt="Movie: ${original_title ?? ''}"
-          />
+         <img
+  class="movie__poster"
+  ${
+    path
+      ? `
+    srcset="
+    https://image.tmdb.org/t/p/w300/${path}      300w,
+    https://image.tmdb.org/t/p/w500/${path}      500w,
+    https://image.tmdb.org/t/p/w780/${path}      780w,
+    https://image.tmdb.org/t/p/w1280/${path}    1280w,
+    https://image.tmdb.org/t/p/original/${path} 2000w
+  "
+  src="https://image.tmdb.org/t/p/w300/${path}"
+  sizes="(min-width:1280px) 375px, (min-width:768px) 264px, 100vw"
+
+  
+  `
+      : `src="https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg"
+  `
+  }
+  alt="Movie title"
+/>
 `;
 }
 
 refs.filmGallery.addEventListener('click', onMovieCardClick);
 
-export async function onMovieCardClick(e) {
+async function onMovieCardClick(e) {
   e.preventDefault();
+
   if (!e.target.classList.contains('film__image')) {
     return;
   }
@@ -157,7 +159,8 @@ export async function onMovieCardClick(e) {
   refs.modalBackdrop.classList.remove('is-hidden');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
-  renderMovieCard(movieCard);
+  let path = e.target.dataset.imgpath;
+  renderMovieCard(movieCard, path);
   const movieCardIdRef = document.querySelector('.movie__id');
   const movieId = movieCardIdRef.id;
   const videos = await filmsApiService.fetchMovieVideo(movieId);
@@ -167,11 +170,18 @@ export async function onMovieCardClick(e) {
 refs.modalCloseBtn.addEventListener('click', onMovieModalClose);
 
 function onMovieModalClose(e) {
+  refs.trailerOverlay.classList.remove('not-active');
+
   refs.modalBackdrop.classList.add('is-hidden');
   window.removeEventListener('keydown', onEscPress);
   closeVideo();
   document.querySelector('body').classList.remove('modal-open');
   refs.insertVideoCont.innerHTML = ' ';
+
+  refs.addToWatched.textContent = 'add to watched';
+  refs.addToWatched.classList.remove('film-btn--active');
+  refs.addToQueue.textContent = 'add to queue';
+  refs.addToQueue.classList.remove('film-btn--active');
 }
 
 function onEscPress(e) {

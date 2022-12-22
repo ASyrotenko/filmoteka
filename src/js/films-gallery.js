@@ -1,9 +1,3 @@
-const posterUrl = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
-const posterLargeUrl = 'https://image.tmdb.org/t/p/original';
-// const posterLargeUrl = 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2';
-// import { filmsApiService } from '../index';
-//image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg
-
 export function filmTpl({ results }, genresDict) {
   return results
     .map(
@@ -13,30 +7,55 @@ export function filmTpl({ results }, genresDict) {
         release_date,
         first_air_date,
         genre_ids,
-        vote_average: votes,
+        vote_count,
+        vote_average,
         poster_path: poster,
         id,
       }) => {
         const filmTitle = original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
+
         return ` <li   class="film__item">
     
         <a class="film__link"
         href="#"
         >
-          <img id='${id}'
-            class="film__image"
-            ${
-              poster
-                ? `
-        src="${posterLargeUrl}${poster}"
-        `
-                : `src = ''`
-            }
-                        alt="Movie: ${filmTitle}"
-            loading="lazy"
-          />
+          <img
+  id="${id}"
+    data-imgpath=${poster}
+  class="film__image"
+  ${
+    poster
+      ? `
+  srcset="
+    https://image.tmdb.org/t/p/w300/${poster}      300w,
+    https://image.tmdb.org/t/p/w500/${poster}      500w,
+    https://image.tmdb.org/t/p/w780/${poster}      780w,
+    https://image.tmdb.org/t/p/w1280/${poster}    1280w,
+    https://image.tmdb.org/t/p/original/${poster} 2000w
+  "
+  loading="lazy"
+  src="https://image.tmdb.org/t/p/w300/${poster}"
+    sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw"
+
+  `
+      : `src="https://upload.wikimedia.org/wikipedia/commons/f/f9/No-image-available.jpg"
+  `
+  }
+  alt="Movie: ${filmTitle}"
+/>
         </a>
+        <div class="film__info">
+          <div class="aver-rate">
+            <p class="film__info--text"> Average rate ${vote_average.toFixed(
+              1
+            )} </p>
+          </div>
+          <div class="votes-amount">
+            <p class="film__info--text"> Votes ${vote_count}</p>
+          </div>
+        </div>
+      </div>
       
       <div class="film__content">
         ${
@@ -56,71 +75,11 @@ export function filmTpl({ results }, genresDict) {
         `
             : ''
         } 
-        ${
-          votes
-            ? `
-        <p class="film__value">${votes.toFixed(2)}</p>
-        `
-            : ''
-        }
+
         ${
           filmDate
             ? `
         <p class="film__date">| ${new Date(filmDate).getFullYear()}</p>
-        `
-            : ''
-        } 
-   
-    </li>
-    `;
-      }
-    )
-    .join('');
-}
-
-// small tpl info about movies
-export function filmShortTpl({ results }) {
-  return results
-    .map(
-      ({
-        original_name,
-        original_title,
-        release_date,
-        first_air_date,
-        poster_path: poster,
-        id,
-      }) => {
-        const filmTitle = original_name ?? original_title ?? '';
-        const filmDate = release_date ?? first_air_date ?? '';
-        return ` <li   class="header__form-list-item">
-        <div class="img-thumb"
-        >
-          <img id='${id}'
-            class="film__image"
-            ${
-              poster
-                ? `
-        src="${posterLargeUrl}${poster}"
-        `
-                : `src = ''`
-            }
-                        alt="Movie: ${filmTitle}" width="35" height="53"
-            loading="lazy"
-          />
-        </div>
-      <div class="film-short__content">
-        ${
-          filmTitle
-            ? `
-        <h3 class="film-short__title">
-          ${filmTitle}</h3>
-        `
-            : ''
-        } 
-        ${
-          filmDate
-            ? `
-        <p class="film-short__date"> ${new Date(filmDate).getFullYear()}</p>
         `
             : ''
         } 

@@ -11,8 +11,9 @@ const stopVideos = () => {
   });
 };
 
-refs.watchBtn.addEventListener('click', showVideo);
+refs.trailerOverlay.addEventListener('click', showVideo);
 refs.closeVideoBtn.addEventListener('click', closeVideo);
+refs.watchBtn.addEventListener('click', showVideo);
 
 function videoTpl(trailer) {
   const { key, site } = trailer;
@@ -25,6 +26,7 @@ export function renderVideoBox(videos) {
   const trailer = videos.find(video => video.name === 'Official Trailer' ?? {});
   if (!trailer) {
     refs.watchBtn.classList.add('not-active');
+    refs.trailerOverlay.classList.add('not-active');
     return;
   }
   refs.insertVideoCont.insertAdjacentHTML('beforeend', videoTpl(trailer));
@@ -32,6 +34,7 @@ export function renderVideoBox(videos) {
 
 export async function showVideo() {
   refs.insertVideoCont.classList.add('is-active');
+  refs.trailerBox.classList.add('is-active');
   refs.watchBtn.setAttribute('disabled', ' ');
   refs.closeVideoBtn.removeAttribute('disabled');
   refs.insertVideoCont.scrollIntoView();
@@ -40,6 +43,7 @@ export async function showVideo() {
 export function closeVideo() {
   stopVideos();
   refs.insertVideoCont.classList.remove('is-active');
+  refs.trailerBox.classList.remove('is-active');
   refs.closeVideoBtn.setAttribute('disabled', '');
   refs.watchBtn.removeAttribute('disabled');
 }
