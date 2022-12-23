@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { pagination } from './pagination';
 import Notiflix from 'notiflix';
 export const API_KEY = '62e7f60baa5f08ed1edf6bd3ed6b9146';
 export const BASE_URL = 'https://api.themoviedb.org/3';
@@ -25,15 +24,17 @@ export class FilmsApiService {
 
       return response.data;
     } catch (error) {
-     return Notiflix.Notify.failure('Error');
+      return Notiflix.Notify.failure('Error');
       // alert('ERROR');
     }
   }
   async fetchFilmsOnSearch() {
     try {
       //spinner
-      document.querySelector('.spinner').classList.remove('hidden');    
-      document.querySelector('.spinner').setAttribute('style', 'display:inline !important');
+      document.querySelector('.spinner').classList.remove('hidden');
+      document
+        .querySelector('.spinner')
+        .setAttribute('style', 'display:inline !important');
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
       const response = await axios.get(url);
       //   this.incrementPage();
