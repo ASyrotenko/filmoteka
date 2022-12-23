@@ -95,9 +95,6 @@
   }
 }
 
-
-
-
 .film-btn-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -280,7 +277,6 @@
     width: 264px;
     height: 373px;
     margin-bottom: 0px;
-    
   }
   @media screen and (min-width: 1280px) {
     width: 375px;
@@ -295,14 +291,13 @@
   @media screen and (min-width: 768px) {
     height: 374px;
     width: 264px;
-    object-fit: fill;
+    object-fit: cover;
   }
   @media screen and (min-width: 1280px) {
     height: 478px;
     width: 375px;
-    object-fit: fill;
+    object-fit: cover;
   }
-  
 }
 
 .left-wrap {
@@ -315,8 +310,8 @@
   @media screen and (min-width: 1280px) {
     width: 375px;
   }
-  
-  @media  screen and (max-width: 767px){
+
+  @media screen and (max-width: 767px) {
     margin-bottom: 20px;
   }
 }
@@ -328,8 +323,8 @@
   margin-top: 15px;
 }
 
-
-.like, .dislike {
+.like,
+.dislike {
   display: flex;
   gap: 5px;
   justify-content: center;
@@ -344,19 +339,22 @@
   box-shadow: none;
   transition: border-color 250ms linear, color 250ms linear,
     background-color 250ms linear, box-shadow 250ms linear;
-
 }
 
-.like:hover, .like:focus, .dislike:hover, .dislike:focus {
-    color: #fff;
-    background-color: #ff6b01;
-    border-color: #ff6b01;
-    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
-  }
+.like:hover,
+.like:focus,
+.dislike:hover,
+.dislike:focus {
+  color: #fff;
+  background-color: #ff6b01;
+  border-color: #ff6b01;
+  box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+}
 
-  .icon-up, .icon-down {
-    fill: currentColor;
-  }
+.icon-up,
+.icon-down {
+  fill: currentColor;
+}
 
 .trailer {
   &__overlay {

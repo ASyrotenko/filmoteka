@@ -1,6 +1,5 @@
 .film {
   &__section {
-
     flex: 1 1 auto;
 
     padding-top: 20px;
@@ -61,6 +60,7 @@
     @media screen and (min-width: 768px) {
       width: 336px;
       height: 455px;
+      object-fit: cover;
     }
 
     @media screen and (min-width: 1280px) {
