@@ -29,12 +29,13 @@ export class FilmsApiService {
   }
   async fetchFilmsOnSearch() {
     try {
-      const option = this.getOptionsMain();
-      const url = `${BASE_URL}/search/movie?${option}&query=${this.searchQuery}`;
+      //spinner
+      document.querySelector('.spinner').classList.remove('hidden');    
+      document.querySelector('.spinner').setAttribute('style', 'display:inline !important');
+      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
       const response = await axios.get(url);
       //   this.incrementPage();
       console.log('CHECK!!!!!!!!fetchFilmsOnSearch');
-
       return response.data;
     } catch (error) {
       alert(

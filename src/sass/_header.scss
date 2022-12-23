@@ -49,6 +49,7 @@
 .header__wrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header__logo-link {
@@ -76,19 +77,17 @@
   width: 24px;
   height: 24px;
   display: block;
-   
+
   animation-name: header-icon;
-  animation-timing-function:ease;
+  animation-timing-function: ease;
   animation-duration: 5000ms;
   animation-iteration-count: infinite;
-  margin-right: 10px;
 
   @media screen and (min-width: 768px) {
     margin-right: 8px;
   }
 }
 
-   
 @keyframes header-icon {
   0% {
     transform: rotate(0deg);
@@ -107,10 +106,8 @@
   }
 }
 
-
 .header__logo-img {
   fill: currentColor;
-
 }
 
 .header__logo-text {
@@ -220,6 +217,70 @@ input:-webkit-autofill:focus {
   height: 12px;
   display: block;
 }
+// --- DROPDOWN LIST STYLES ----
+.header__form-list {
+  position: absolute;
+  width: 280px;
+  max-height: 500px;
+  overflow-y: scroll;
+  left: 0;
+  top: 100%;
+  z-index: 10;
+
+  @media screen and (min-width: 768px) {
+    // margin-top: 40px;
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    // margin-top: 40px;
+    width: 394px;
+  }
+}
+.header__form-list-item {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  transition: background-color 300ms ease;
+  &:hover {
+    background-color: var(--tertiary-color);
+  }
+}
+.img-thumb {
+  width: 40px;
+  margin-right: 15px;
+}
+.img-thumb > .film__image {
+  width: 35;
+  height: 53;
+}
+
+.film-short__date {
+  margin-top: 10px;
+  opacity: 0.6;
+}
+
+//-----Notification-----
+.fail-notification {
+  position: absolute;
+  left: 0;
+  top: 150%;
+  color: #ff001b;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 394px;
+  }
+}
 
 // ----- MY LIBRARY STYLES -----
 
@@ -282,7 +343,6 @@ input:-webkit-autofill:focus {
 
   padding-top: 50px;
   text-align: center;
-
 
   @media screen and (max-width: 768px) {
     padding-top: 30px;

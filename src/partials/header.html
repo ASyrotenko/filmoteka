@@ -2,7 +2,7 @@
   <div class="container header__container">
     <div class="header__wrap">
       <a href="index.html" class="header__logo-link">
-        <svg aria-label="logo" class="header__logo-svg">
+        <svg aria-label="logo" class="header__logo-svg" width="24" height="24">
           <use
             class="header__logo-img"
             href="./images/sprite.svg#icon-film"
@@ -37,6 +37,8 @@
         placeholder="Movie search"
         class="header__form-input"
       />
+      <ul class="header__form-list"></ul>
+      <span class="fail-notification hidden">Search result not successful. Enter the correct movie name.</span>
       <button type="submit" class="header__form-button">
         <svg aria-label="submit" class="header__form-svg">
           <use

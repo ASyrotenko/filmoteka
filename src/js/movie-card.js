@@ -10,7 +10,9 @@ backdrop.addEventListener('click', backdropClick);
 export function renderMovieCard(movie, path) {
   refs.insertImgCont.insertAdjacentHTML('beforeend', getPosterForCard(path));
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
-  document.querySelector('.spinner').style.display = 'none';
+
+  //SPINNER
+  document.querySelector('.spinner').classList.add('hidden');
 }
 export function movieCardTpl(movie) {
   const {
@@ -139,7 +141,7 @@ export function getPosterForCard(path) {
 
 refs.filmGallery.addEventListener('click', onMovieCardClick);
 
-async function onMovieCardClick(e) {
+export async function onMovieCardClick(e) {
   e.preventDefault();
 
   if (!e.target.classList.contains('film__image')) {
@@ -157,6 +159,7 @@ async function onMovieCardClick(e) {
   }
 
   refs.modalBackdrop.classList.remove('is-hidden');
+  refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
   let path = e.target.dataset.imgpath;

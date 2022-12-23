@@ -14,6 +14,9 @@ async function showWatched() {
 
   let watched = await firebase.getDoc('watched');
   if (watched.length === 0) {
+
+    //SPINNER
+    document.querySelector('.spinner').classList.add('hidden');
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
@@ -31,6 +34,10 @@ async function showWatched() {
 async function showQueue() {
   refs.watched.classList.remove('film-btn--active');
   refs.queue.classList.add('film-btn--active');
+
+  // SPINNER
+  document.querySelector('.spinner').classList.add('hidden');
+
   
   let queue = await firebase.getDoc('queue');
 
