@@ -1,6 +1,6 @@
 .film-info-js {
   margin-bottom: 20px;
-  // flex-grow: 1;
+  // flex-grgitow: 1;
 }
 .movie {
   &__info-container {
@@ -356,22 +356,20 @@
   fill: currentColor;
 }
 
-.trailer {
-  &__overlay {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(118, 49, 9, 0.65);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 450ms linear;
-  }
+.trailer-overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(118, 49, 9, 0.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 450ms linear;
 }
 .overlay-content {
   color: #ffffff;
