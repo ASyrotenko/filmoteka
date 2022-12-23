@@ -37,7 +37,7 @@ async function onSearchInput(e) {
   );
   if (!filmOnSearch?.results?.length) {
     clearSearchList();
-    Notiflix.Notify.failure('Sorry, film is not found');
+    // Notiflix.Notify.failure('Sorry, film is not found');
     return;
   }
 
@@ -52,7 +52,7 @@ async function onSearchSubmit(e) {
   filmsApiService.query = e.target.search.value.trim();
 
   if (filmsApiService.query === '') {
-    Notiflix.Notify.failure('Please type something');
+    // Notiflix.Notify.failure('Please type something');
     refs.spanNotification.classList.remove('hidden');
     return;
   }
@@ -63,10 +63,12 @@ async function onSearchSubmit(e) {
   );
 
   if (!filmOnSearch?.results?.length) {
-    Notiflix.Notify.failure('Sorry, film is not found');
+    // Notiflix.Notify.failure('Sorry, film is not found');
     refs.spanNotification.classList.remove('hidden');
+
     return;
   }
+
   clearGalleryContainer();
   renderFilmGallery(filmOnSearch, genres);
   form.reset();
