@@ -20,7 +20,7 @@ async function showWatched() {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
-      `<li class="film-list-error">
+      `<li class="film__list-error">
       <p class="library__text">No watched movies found in the library</p>
       <img src="https://nejdancs.github.io/filmoteka/cat__1.21cb105d.png" alt="No watched movies found in the library"/>
     </li>`
@@ -47,7 +47,7 @@ async function showQueue() {
     document.querySelector(".footer").classList.add('footer--empty-library');
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
-      `<li class="film-list-error">
+      `<li class="film__list-error">
         <p class="library__text">No movies saved for viewing were found in the library</p>
         <img src="https://nejdancs.github.io/filmoteka/cat__1.21cb105d.png" alt="No movies saved for viewing were found in the library"/>
       </li>`
