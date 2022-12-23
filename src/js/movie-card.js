@@ -144,7 +144,7 @@ refs.filmGallery.addEventListener('click', onMovieCardClick);
 
 export async function onMovieCardClick(e) {
   e.preventDefault();
-
+  
   if (!e.target.classList.contains('film__image')) {
     return;
   }
@@ -159,7 +159,7 @@ export async function onMovieCardClick(e) {
     return;
     // Вивести повідомлення про помилку!!!!
   } 
-
+  document.querySelector('.spinner').classList.add('hidden');
   refs.modalBackdrop.classList.remove('is-hidden');
   refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
