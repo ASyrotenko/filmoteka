@@ -19,21 +19,21 @@
     margin-left: 10px;
   }
 }
-.navigation-button {
+.navigation__button {
   background-color: transparent;
   align-items: center;
 }
-.navigation-button.signOut {
+.navigation__button.signOut {
   display: none;
 }
 
-.navigation-button.signIn {
+.navigation__button.signIn {
   display: block;
 }
-.navigation-button.current {
+.navigation__button.current {
   position: relative;
 }
-.navigation-button.current::after {
+.navigation__button.current::after {
   position: absolute;
   top: 13px;
   display: block;

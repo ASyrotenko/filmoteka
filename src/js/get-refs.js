@@ -24,7 +24,7 @@ export function getRefs() {
     insertVideoCont: document.querySelector('.film-tiezer'),
     videoBtnBox: document.querySelector('.film-btn-wrap'),
     iframeEl: document.querySelector('.iframe'),
-    trailerOverlay: document.querySelector('.trailer-overlay'),
+    trailerOverlay: document.querySelector('.trailer__overlay'),
     trailerBox: document.querySelector('.trailer-box'),
     openModalBtn: document.querySelector('[data-action="open-modal"]'),
     closeModalBtn: document.querySelector('[data-action="close-modal"]'),
