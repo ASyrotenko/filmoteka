@@ -7,16 +7,21 @@ export const BASE_URL = 'https://api.themoviedb.org/3';
 export class FilmsApiService {
   constructor() {
     this.searchQuery = '';
-    this.page = 1;
   }
 
-  async fetchFilmsTrending() {
-    try {
-      const url = `${BASE_URL}/trending/all/day?api_key=${API_KEY}&language=en-US&page=${this.page}`;
-      const response = await axios.get(url);
+  getOptionsMain(page = 1) {
+    const options = new URLSearchParams({
+      api_key: `${API_KEY}`,
+      page: page,
+    });
+    return options;
+  }
 
-      //   this.incrementPage();
-      // console.log('CHECK!!!!!!!!fetchFilmsTrending');
+  async fetchFilmsTrending(page) {
+    try {
+      const option = this.getOptionsMain(page);
+      const url = `${BASE_URL}/trending/all/day?${option}`;
+      const response = await axios.get(url);
 
       return response.data;
     } catch (error) {
@@ -26,17 +31,14 @@ export class FilmsApiService {
   }
   async fetchFilmsOnSearch() {
     try {
-
       //spinner
       document.querySelector('.spinner').classList.remove('hidden');    
       document.querySelector('.spinner').setAttribute('style', 'display:inline !important');
-
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
       const response = await axios.get(url);
       //   this.incrementPage();
       // Notiflix.Notify.failure('CHECK!!!!!!!!fetchFilmsOnSearch');
       console.log('CHECK!!!!!!!!fetchFilmsOnSearch');
-
       return response.data;
     } catch (error) {
       alert(
