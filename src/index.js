@@ -19,6 +19,8 @@ import { getPaginationFromMainRequest } from './js/pagination';
 const refs = getRefs();
 
 function renderFilmGallery(films, genres) {
+  refs.filmGallery.innerHTML = '';
+
   refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
   //remove spinner
   document.querySelector('.spinner').style.display = 'none';
@@ -31,5 +33,4 @@ export async function load(page) {
   renderFilmGallery(filmsTrending, genres);
 }
 // load();
-// console.log(getPaginationFromMainRequest());
 getPaginationFromMainRequest();

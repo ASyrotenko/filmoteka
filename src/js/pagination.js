@@ -46,48 +46,14 @@ export async function getPaginationFromMainRequest() {
   );
 
   load(pagination.page);
+
   pagination.on('beforeMove', e => {
     load(e.page);
 
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: 'smooth',
     });
-    refs.filmGallery.innerHTML = '';
   });
-}
-
-export async function getPaginationFromSearchRequest() {
-  // const renderFilms = await apiService.fetchFilmsOnSearch().then(data => {
-  //   paginationOptions.totalItems = total_pages;
-  // });
-  // const pagination = new Pagination(
-  //   refs.paginationContainer,
-  //   paginationOptions
-  // );
-
-  const renderFilms = await apiService.fetchFilmsTrending().then(data => {
-    paginationOptions.totalItems = data.total_pages;
-    console.log(data.total_results);
-  });
-  const pagination = new Pagination(
-    refs.paginationContainer,
-    paginationOptions
-  );
-
-  const genres = await combineGenres();
-  const filmOnSearch = await apiService.fetchFilmsOnSearch(
-    apiService.searchQuery
-  );
-
-  refs.filmGallery.innerHTML = '';
-  // renderFilmGallery(filmOnSearch, genres);
-  // pagination.on('beforeMove', e => {
-  //   renderFilmGallery(filmOnSearch, genres);
-  //   window.scrollTo({
-  //     top: 0,
-  //     behavior: 'smooth',
-  //   });
-  //   refs.filmGallery.innerHTML = '';
-  // });
 }
