@@ -244,7 +244,7 @@ refs.filmGallery.addEventListener('click', onMovieCardClick);
 
 async function onMovieCardClick(e) {
   e.preventDefault();
-
+  
   if (!e.target.classList.contains('film__image')) {
     return;
   }
@@ -265,6 +265,7 @@ async function onMovieCardClick(e) {
   document.querySelector('body').classList.add('modal-open');
   let path = e.target.dataset.imgpath;
   renderMovieCard(movieCard, path);
+  document.querySelector('.spinner').classList.add('hidden');
   const movieCardIdRef = document.querySelector('.movie__id');
   const movieId = movieCardIdRef.id;
   const videos = await filmsApiService.fetchMovieVideo(movieId);
