@@ -14,15 +14,7 @@ const refs = getRefs();
 
 const filmsApiService = new FilmsApiService();
 
-
-
-refs.searchForm.addEventListener('submit', onSearch);
-
-async function onSearch(e) {
-   e.preventDefault();
-  const form = e.target;
-  
-  filmsApiService.query = e.target.elements.search.value.trim();
+refs.searchForm.addEventListener('submit', onSearchSubmit);
 
 refs.searchQueryList.addEventListener('click', event => {
   onMovieCardClick(event);
@@ -53,8 +45,6 @@ async function onSearchInput(e) {
 }
 
 //Submit search
-refs.searchForm.addEventListener('submit', onSearchSubmit);
-
 async function onSearchSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -72,17 +62,11 @@ async function onSearchSubmit(e) {
     filmsApiService.query
   );
 
-  
-
-
   if (!filmOnSearch?.results?.length) {
     Notiflix.Notify.failure('Sorry, film is not found');
     refs.spanNotification.classList.remove('hidden');
-
     return;
   }
-
-
   clearGalleryContainer();
   renderFilmGallery(filmOnSearch, genres);
   form.reset();
@@ -92,7 +76,7 @@ async function onSearchSubmit(e) {
 
 //render markup
 function renderFilmGallery(films, genres) {
-    refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+  refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
 }
 function renderFilmSearchList(films) {
   refs.searchQueryList.insertAdjacentHTML('beforeend', filmShortTpl(films));
@@ -101,9 +85,6 @@ function renderFilmSearchList(films) {
 //clear markup
 function clearGalleryContainer() {
   refs.filmGallery.innerHTML = '';
-
-  }
-
 }
 
 function clearSearchList() {
@@ -114,8 +95,3 @@ function inputClose(e) {
   if (e.target.className !== 'header__form-input')
     refs.searchQueryList.innerHTML = '';
 }
-
-
-
-
-
