@@ -1,3 +1,5 @@
+import { doc } from 'firebase/firestore';
+
 export function getRefs() {
   return {
     body: document.querySelector('body'),
@@ -30,5 +32,6 @@ export function getRefs() {
     body: document.querySelector('body'),
     myLibrary: document.querySelector('.library'),
     btnUp: document.querySelector('.btn-up'),
+    paginationContainer: document.querySelector('#pagination'),
   };
 }
