@@ -38,7 +38,7 @@ const apiService = new FilmsApiService();
 export async function getPaginationFromMainRequest() {
   const renderFilms = await apiService.fetchFilmsTrending().then(data => {
     paginationOptions.totalItems = data.total_pages;
-    console.log(data.total_results);
+    // console.log(data.total_results);
   });
   const pagination = new Pagination(
     refs.paginationContainer,
