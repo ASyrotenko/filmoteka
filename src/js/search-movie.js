@@ -71,9 +71,10 @@ async function onSearchSubmit(e) {
 
   clearGalleryContainer();
   renderFilmGallery(filmOnSearch, genres);
+  document.querySelector('.spinner').classList.add('hidden');
   form.reset();
 
-  document.querySelector('.spinner').classList.add('hidden');
+
 }
 
 //render markup
