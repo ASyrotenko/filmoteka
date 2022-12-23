@@ -28,6 +28,7 @@ async function showWatched() {
   } else {
     refs.filmGallery.innerHTML = '';
     renderLibrary(watched);
+    document.querySelector('.spinner').classList.add('hidden');
   }
 }
 
