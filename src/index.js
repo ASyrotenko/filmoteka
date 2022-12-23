@@ -32,5 +32,6 @@ export async function load(page) {
   const filmsTrending = await filmsApiService.fetchFilmsTrending(page);
   renderFilmGallery(filmsTrending, genres);
 }
-// load();
+
+//запуск пагінації - pagination.js
 getPaginationFromMainRequest();
