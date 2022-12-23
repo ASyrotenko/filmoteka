@@ -1,6 +1,7 @@
 import { filmsApiService } from '../index';
 import { getRefs } from './get-refs';
 import { closeVideo, renderVideoBox } from './addvideo';
+import Notiflix from 'notiflix';
 
 const refs = getRefs();
 
@@ -154,9 +155,10 @@ export async function onMovieCardClick(e) {
 
   const movieCard = await filmsApiService.fetchMovie(e.target.id);
   if (!movieCard) {
+    Notiflix.Notify.failure('Sorry, movie card is not found');
     return;
     // Вивести повідомлення про помилку!!!!
-  }
+  } 
 
   refs.modalBackdrop.classList.remove('is-hidden');
   refs.btnUp.classList.add('btn-up_hide');
