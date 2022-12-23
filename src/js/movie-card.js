@@ -157,7 +157,7 @@ export async function onMovieCardClick(e) {
   if (!movieCard) {
     return Notiflix.Notify.failure('Sorry, movie is not found');
   }
-
+  document.querySelector('.spinner').classList.add('hidden');
   refs.modalBackdrop.classList.remove('is-hidden');
   refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
