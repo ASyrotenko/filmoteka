@@ -155,10 +155,8 @@ export async function onMovieCardClick(e) {
 
   const movieCard = await filmsApiService.fetchMovie(e.target.id);
   if (!movieCard) {
-    Notiflix.Notify.failure('Sorry, movie card is not found');
-    return;
-    // Вивести повідомлення про помилку!!!!
-  } 
+    return Notiflix.Notify.failure('Sorry, movie is not found');
+  }
 
   refs.modalBackdrop.classList.remove('is-hidden');
   refs.btnUp.classList.add('btn-up_hide');
