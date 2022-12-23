@@ -11,8 +11,9 @@ body.modal-open {
   top: 0px;
   opacity: 1;
   background: rgba(0, 0, 0, 0.25);
-  //@include animation(opacity, null, null, 3500ms, cubic-bezier(0.4, 0, 0.2, 1));
-  //transition: opacity 250ms linear;
+  @include animation(opacity, null, null, 3500ms, cubic-bezier(0.4, 0, 0.2, 1));
+  transition: opacity 250ms linear;
+  
   &.is-hidden {
     opacity: 0;
     pointer-events: none;
@@ -25,7 +26,6 @@ body.modal-open {
   padding: 48px 20px 40px 20px;
   width: 440px;
   position: absolute;
-  width: 440px;
   top: 20px;
   left: 50%;
   transform: translate(-50%);
