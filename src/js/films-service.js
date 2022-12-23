@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { pagination } from './pagination';
+import Notiflix from 'notiflix';
 export const API_KEY = '62e7f60baa5f08ed1edf6bd3ed6b9146';
 export const BASE_URL = 'https://api.themoviedb.org/3';
 
@@ -19,7 +20,8 @@ export class FilmsApiService {
 
       return response.data;
     } catch (error) {
-      alert('ERROR');
+     return Notiflix.Notify.failure('Error');
+      // alert('ERROR');
     }
   }
   async fetchFilmsOnSearch() {
@@ -32,6 +34,7 @@ export class FilmsApiService {
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
       const response = await axios.get(url);
       //   this.incrementPage();
+      // Notiflix.Notify.failure('CHECK!!!!!!!!fetchFilmsOnSearch');
       console.log('CHECK!!!!!!!!fetchFilmsOnSearch');
 
       return response.data;
@@ -48,7 +51,8 @@ export class FilmsApiService {
 
       return response.data;
     } catch (error) {
-      console.log('ERROR - Mov is is not available');
+      return Notiflix.Notify.failure('Error - Mov is is not available');
+      // console.log('ERROR - Mov is is not available');
     }
   }
   async fetchMovieVideo(movieId) {
@@ -57,7 +61,8 @@ export class FilmsApiService {
       const response = await axios.get(url);
       return response.data.results;
     } catch (error) {
-      alert('ERROR');
+      return Notiflix.Notify.failure('Error');
+      // alert('ERROR');
     }
   }
 
