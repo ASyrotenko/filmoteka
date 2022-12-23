@@ -8,13 +8,14 @@ import './js/search-movie';
 import './js/change-color-scheme.js';
 import './js/library-auth';
 import './js/backToTop';
-// import './js/pagination';
+import './js/pagination';
 
 import { FilmsApiService } from './js/films-service';
 import { filmTpl } from './js/films-gallery';
 import { getRefs } from './js/get-refs';
 import { combineGenres } from './js/get-genres';
-// import { pagination } from './js/pagination';
+import { pagination } from './js/pagination';
+import { getPaginationFromMainRequest } from './js/pagination';
 const refs = getRefs();
 
 function renderFilmGallery(films, genres) {
@@ -24,9 +25,11 @@ function renderFilmGallery(films, genres) {
 }
 
 export const filmsApiService = new FilmsApiService();
-async function load() {
+export async function load(page) {
   const genres = await combineGenres();
-  const filmsTrending = await filmsApiService.fetchFilmsTrending();
+  const filmsTrending = await filmsApiService.fetchFilmsTrending(page);
   renderFilmGallery(filmsTrending, genres);
 }
-load();
+// load();
+// console.log(getPaginationFromMainRequest());
+getPaginationFromMainRequest();

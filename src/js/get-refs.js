@@ -1,3 +1,5 @@
+import { doc } from 'firebase/firestore';
+
 export function getRefs() {
   return {
     filmGallery: document.querySelector('.film__list'),
@@ -27,5 +29,6 @@ export function getRefs() {
     body: document.querySelector('body'),
     myLibrary: document.querySelector('.library'),
     btnUp: document.querySelector('.btn-up'),
+    paginationContainer: document.querySelector('#pagination'),
   };
 }
