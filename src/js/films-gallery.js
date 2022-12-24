@@ -17,7 +17,9 @@ export function filmTpl({ results }, genresDict) {
         const filmTitle =
           title ?? name ?? original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
-        const genresLabels = genre_ids.slice(0, 2).map(id => genresDict[id]);
+        const genresLabels = (genre_ids ?? [])
+          .slice(0, 2)
+          .map(id => genresDict[id]);
         if (genre_ids.length > 2) {
           genresLabels.push('Other');
         }
