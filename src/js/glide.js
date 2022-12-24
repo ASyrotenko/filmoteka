@@ -60,7 +60,6 @@ export function renderGlide(trendMovies) {
     .join('');
   slidesContainer.innerHTML = markup;
   glide.mount();
-  page = apiService.page;
   const slidesList = document.querySelector('#glide__slides');
-  slidesList.addEventListener('click', loadTrendMain(page));
+  slidesList.addEventListener('click', loadTrendMain);
 }
