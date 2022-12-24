@@ -1,4 +1,5 @@
 import './js/modal-team';
+import './js/glide';
 import './js/addvideo';
 import './js/firebase-auth';
 import './js/firebase-db-index';

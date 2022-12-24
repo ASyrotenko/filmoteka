@@ -3,6 +3,7 @@ import { getRefs } from './get-refs';
 import { FilmsApiService } from './films-service';
 import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
+import { renderGlide } from './glide';
 
 const refs = getRefs();
 const apiService = new FilmsApiService();
@@ -36,7 +37,7 @@ export async function getPaginationFromMainRequest() {
   const renderFilms = await apiService.fetchFilmsTrending().then(data => {
     paginationOptions.totalItems = data.total_results;
     paginationOptions.itemsPerPage = data.results.length;
-    console.log(data.total_results);
+    renderGlide(data.results);
   });
   const paginationT = new Pagination(
     refs.paginationContainer,
@@ -74,13 +75,11 @@ export async function getPaginationFromSerchRequest(query) {
   const renderFilms = await apiService
     .fetchFilmsOnSearch(query)
     .then(response => {
-      console.log(response.total_results);
       if (response.total_results >= 1000) {
         paginationOptions.totalItems = 500;
       } else {
         paginationOptions.totalItems = response.total_results;
       }
-
       paginationOptions.itemsPerPage = response.results.length;
     });
 
@@ -104,7 +103,6 @@ export async function getPaginationFromSerchRequest(query) {
 
   pagination.on('afterMove', e => {
     loadSearch(query, e.page);
-    console.log(e.page);
     window.scrollTo({
       top: 0,
       left: 0,
