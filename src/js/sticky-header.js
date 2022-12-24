@@ -2,10 +2,15 @@ import { debounce } from 'debounce';
 import throttle from 'lodash.throttle';
 const headerEl = document.querySelector('.header');
 const filmSectionEl = document.querySelector('.container__slider');
+const backdropEl = document.querySelector('.backdrop');
+
+const hiddenBackdrop = backdropEl.classList.contains('is-hidden');
+
+console.log(hiddenBackdrop);
 
 let lastScrollTop = 0;
 
-window.addEventListener('scroll', throttle(stickyHeaderOnScroll, 500), false);
+window.addEventListener('scroll', throttle(stickyHeaderOnScroll, 250), false);
 
 function stickyHeaderOnScroll() {
   let scrollPos = window.scrollY || document.documentElement.scrollTop;
