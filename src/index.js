@@ -9,3 +9,4 @@ import './js/change-color-scheme';
 import './js/library-auth';
 import './js/backToTop';
 import './js/pagination';
+import './js/sticky-header';
