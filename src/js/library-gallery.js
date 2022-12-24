@@ -1,8 +1,8 @@
 import { FilmsApiService } from './films-service';
-export const filmsApiService = new FilmsApiService();
 import { getRefs } from './get-refs';
 
 const refs = getRefs();
+const filmsApiService = new FilmsApiService();
 
 export function renderLibrary(filmsIds) {
   return filmsIds.map(renderMovieCardLib).join('');
@@ -114,7 +114,6 @@ function renderMovieCard(movie, path) {
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
 
   document.querySelector('.spinner').classList.remove('hidden');
-   
 }
 function movieCardTpl(movie) {
   const {
@@ -244,7 +243,7 @@ refs.filmGallery.addEventListener('click', onMovieCardClick);
 
 async function onMovieCardClick(e) {
   e.preventDefault();
-  
+
   if (!e.target.classList.contains('film__image')) {
     return;
   }

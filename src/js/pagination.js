@@ -5,10 +5,11 @@ import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 
 const refs = getRefs();
+const apiService = new FilmsApiService();
 
 const paginationOptions = {
   totalItems: 0,
-  itemsPerPage: 0,
+  itemsPerPage: 1,
   visiblePages: 5,
   centerAlign: true,
   page: 1,
@@ -31,11 +32,11 @@ const paginationOptions = {
   },
 };
 
-const apiService = new FilmsApiService();
-
 export async function getPaginationFromMainRequest() {
   const renderFilms = await apiService.fetchFilmsTrending().then(data => {
     paginationOptions.totalItems = data.total_results;
+    paginationOptions.itemsPerPage = data.results.length;
+    console.log(data.total_results);
   });
   const paginationT = new Pagination(
     refs.paginationContainer,
@@ -56,7 +57,7 @@ export async function getPaginationFromMainRequest() {
 
   loadTrendMain();
 
-  paginationT.on('beforeMove', e => {
+  paginationT.on('afterMove', e => {
     loadTrendMain(e.page);
     window.scrollTo({
       top: 0,
@@ -73,7 +74,13 @@ export async function getPaginationFromSerchRequest(query) {
   const renderFilms = await apiService
     .fetchFilmsOnSearch(query)
     .then(response => {
-      paginationOptions.totalItems = response.total_results;
+      console.log(response.total_results);
+      if (response.total_results >= 1000) {
+        paginationOptions.totalItems = 500;
+      } else {
+        paginationOptions.totalItems = response.total_results;
+      }
+
       paginationOptions.itemsPerPage = response.results.length;
     });
 

@@ -7,13 +7,12 @@ import { onMovieCardClick } from './movie-card';
 import { getPaginationFromSerchRequest } from './pagination';
 import Notiflix from 'notiflix';
 
-var debounce = require('debounce');
+const refs = getRefs();
+const filmsApiService = new FilmsApiService();
+
+const debounce = require('debounce');
 
 const DEBOUNCE_DELAY = 300;
-
-const refs = getRefs();
-
-const filmsApiService = new FilmsApiService();
 
 refs.searchForm.addEventListener('submit', onSearchSubmit);
 
@@ -71,7 +70,6 @@ async function onSearchSubmit(e) {
 
   clearGalleryContainer();
   getPaginationFromSerchRequest(filmsApiService.query);
-
   form.reset();
 
   document.querySelector('.spinner').classList.add('hidden');

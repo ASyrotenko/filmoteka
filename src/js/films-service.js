@@ -12,7 +12,7 @@ export class FilmsApiService {
   getOptionsMain(page = 1) {
     const options = new URLSearchParams({
       api_key: `${API_KEY}`,
-      page: this.page,
+      page: page,
     });
     return options;
   }
@@ -62,16 +62,10 @@ export class FilmsApiService {
     }
   }
 
-  get page() {
-    return this.page;
-  }
-  set page(newPage) {
-    this.page = newPage;
-  }
-
   get query() {
     return this.searchQuery;
   }
+
   set query(newQuery) {
     this.searchQuery = newQuery;
   }

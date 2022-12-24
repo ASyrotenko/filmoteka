@@ -1,9 +1,10 @@
-import { filmsApiService } from '../index';
+import { FilmsApiService } from './films-service';
 import { getRefs } from './get-refs';
 import { closeVideo, renderVideoBox } from './addvideo';
 import Notiflix from 'notiflix';
 
 const refs = getRefs();
+const filmsApiService = new FilmsApiService();
 
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
