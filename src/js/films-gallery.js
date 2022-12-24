@@ -2,6 +2,8 @@ export function filmTpl({ results }, genresDict) {
   return results
     .map(
       ({
+        title,
+        name,
         original_name,
         original_title,
         release_date,
@@ -12,7 +14,8 @@ export function filmTpl({ results }, genresDict) {
         poster_path: poster,
         id,
       }) => {
-        const filmTitle = original_name ?? original_title ?? '';
+        const filmTitle =
+          title ?? name ?? original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
 
         return ` <li   class="film__item">
