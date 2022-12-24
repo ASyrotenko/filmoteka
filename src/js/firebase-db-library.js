@@ -14,7 +14,6 @@ async function showWatched() {
 
   let watched = await firebase.getDoc('watched');
   if (watched.length === 0) {
-
     //SPINNER
     document.querySelector('.spinner').classList.add('hidden');
     refs.filmGallery.innerHTML = '';
@@ -39,12 +38,11 @@ async function showQueue() {
   // SPINNER
   document.querySelector('.spinner').classList.add('hidden');
 
-  
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
     refs.filmGallery.innerHTML = '';
-    document.querySelector(".footer").classList.add('footer--empty-library');
+    document.querySelector('.footer').classList.add('footer--empty-library');
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
       `<li class="film-list-error">
@@ -66,6 +64,6 @@ function getUserStatus(params) {
     showWatched();
     clearInterval(qwe);
   } catch (error) {
-    console.log('error');
+    // console.log('error');
   }
 }

@@ -138,12 +138,11 @@
   &__genres,
   &__date {
     display: inline-block;
+    margin-right: 8px;
 
     color: #ff6b08;
   }
   &__value {
-    margin-left: 8px;
-    margin-left: 8px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;
@@ -164,6 +163,7 @@
 }
 .film__wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 .film__item:hover .film__info,
