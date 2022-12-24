@@ -29,8 +29,10 @@ function movieTplLib(movie) {
   } = movie;
 
   const movieTitle = original_name ?? original_title ?? '';
-  const movieGenres = genres ? genres.map(genre => genre.name) : '';
-
+  const movieGenres = genres ? genres.slice(0, 2).map(genre => genre.name) : '';
+  if (genres.length > 2) {
+    movieGenres.push('Other');
+  }
   return ` <li   class="film__item">
     
         <a class="film__link"
@@ -114,7 +116,6 @@ function renderMovieCard(movie, path) {
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
 
   document.querySelector('.spinner').classList.remove('hidden');
-   
 }
 function movieCardTpl(movie) {
   const {
@@ -244,7 +245,7 @@ refs.filmGallery.addEventListener('click', onMovieCardClick);
 
 async function onMovieCardClick(e) {
   e.preventDefault();
-  
+
   if (!e.target.classList.contains('film__image')) {
     return;
   }
