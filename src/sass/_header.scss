@@ -1,30 +1,30 @@
 .sticky__header {
-  // @media screen and(min-width: 768px) {
-  position: fixed;
-  width: 100%;
-  z-index: 10;
-  // }
+  @media screen and(min-width: 768px) {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
 }
 
 .appearing__header-js {
-  // @media screen and (min-width: 768px) {
-  transform: translateY(0);
-  transition: transform 250ms linear;
-  // }
+  @media screen and (min-width: 768px) {
+    transform: translateY(0);
+    transition: transform 250ms linear;
+  }
 }
 
 .disappearing__header-js {
-  // @media screen and (min-width: 768px) {
-  transform: translateY(-216px);
-  transition: transform 250ms linear;
-  // }
+  @media screen and (min-width: 768px) {
+    transform: translateY(-216px);
+    transition: transform 250ms linear;
+  }
 }
 
 .container__slider-js {
-  // margin-top: 230px;
-  // @media screen and (min-width: 768px) {
-  margin-top: 216px;
-  // }
+  margin-top: 230px;
+  @media screen and (min-width: 768px) {
+    margin-top: 216px;
+  }
 }
 //---------------------------
 
