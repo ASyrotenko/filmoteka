@@ -18,6 +18,8 @@ async function renderMovieCardLib(movieId) {
 
 function movieTplLib(movie) {
   const {
+    title,
+    name,
     original_name,
     original_title,
     genres,
@@ -28,7 +30,7 @@ function movieTplLib(movie) {
     id,
   } = movie;
 
-  const movieTitle = original_name ?? original_title ?? '';
+  const movieTitle = title ?? name ?? original_name ?? original_title ?? '';
   const movieGenres = genres ? genres.slice(0, 2).map(genre => genre.name) : '';
   if (genres.length > 2) {
     movieGenres.push('Other');
