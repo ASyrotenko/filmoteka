@@ -23,7 +23,7 @@ export function filmTpl({ results }, genresDict) {
         if (genre_ids && genre_ids.length > 2) {
           genresLabels.push('Other');
         }
-        return ` <li   class="film__item">
+        return ` <li   class="film__item" data-itemId="${id}" data-imgpath="${poster}">
     
         <a class="film__link"
         href="#"
@@ -122,9 +122,9 @@ export function filmShortTpl({ results }) {
         const filmTitle = original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
 
-        return ` <li   class="header__form-list-item">
+        return ` <li   class="header__form-list-item" data-itemId="${id}" data-imgpath="${poster}">
     <div class="img-thumb">
-          <img
+          <img  
   id="${id}"
     data-imgpath=${poster}
   class="film__image"
