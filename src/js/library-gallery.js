@@ -83,14 +83,16 @@ function movieTplLib(movie) {
           ${movieTitle}</h3>
         `
             : ''
-        } ${
-    movieGenres
-      ? `
+        }
+      <div class="film__wrap">
+      ${
+        movieGenres
+          ? `
         <p class="film__genres">${movieGenres.join(', ')}
         </p>
         `
-      : ''
-  } 
+          : ''
+      } 
         
         ${
           release_date
@@ -106,7 +108,8 @@ function movieTplLib(movie) {
         `
             : ''
         }
-   
+        </div>
+   </div>
     </li>
     `;
 }
