@@ -1,7 +1,9 @@
+import { doc } from 'firebase/firestore';
+
 export function getRefs() {
   return {
     body: document.querySelector('body'),
-    filmGallery: document.querySelector('.film__list'),
+    filmGallery: document.querySelector('.film-list'),
     movieCard: document.querySelectorAll('.film__item'),
     searchQuery: document.querySelector('.header__form-input'),
     searchQueryList: document.querySelector('.header__form-list'),
@@ -22,7 +24,7 @@ export function getRefs() {
     insertVideoCont: document.querySelector('.film-tiezer'),
     videoBtnBox: document.querySelector('.film-btn-wrap'),
     iframeEl: document.querySelector('.iframe'),
-    trailerOverlay: document.querySelector('.trailer__overlay'),
+    trailerOverlay: document.querySelector('.trailer-overlay'),
     trailerBox: document.querySelector('.trailer-box'),
     openModalBtn: document.querySelector('[data-action="open-modal"]'),
     closeModalBtn: document.querySelector('[data-action="close-modal"]'),
@@ -30,5 +32,6 @@ export function getRefs() {
     body: document.querySelector('body'),
     myLibrary: document.querySelector('.library'),
     btnUp: document.querySelector('.btn-up'),
+    paginationContainer: document.querySelector('#pagination'),
   };
 }

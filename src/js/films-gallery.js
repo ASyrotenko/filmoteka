@@ -2,6 +2,8 @@ export function filmTpl({ results }, genresDict) {
   return results
     .map(
       ({
+        title,
+        name,
         original_name,
         original_title,
         release_date,
@@ -12,9 +14,15 @@ export function filmTpl({ results }, genresDict) {
         poster_path: poster,
         id,
       }) => {
-        const filmTitle = original_name ?? original_title ?? '';
+        const filmTitle =
+          title ?? name ?? original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
-
+        const genresLabels = (genre_ids ?? [])
+          .slice(0, 2)
+          .map(id => genresDict[id]);
+        if (genre_ids && genre_ids.length > 2) {
+          genresLabels.push('Other');
+        }
         return ` <li   class="film__item">
     
         <a class="film__link"
@@ -46,17 +54,28 @@ export function filmTpl({ results }, genresDict) {
 />
         </a>
         <div class="film__info">
-          <div class="aver-rate">
-            <p class="film__info--text"> Average rate ${vote_average.toFixed(
-              1
-            )} </p>
-          </div>
-          <div class="votes-amount">
-            <p class="film__info--text"> Votes ${vote_count}</p>
+          <div class="aver-rate">${
+            vote_average
+              ? `
+        <p class="film__info--text"> Average rate ${vote_average.toFixed(
+          1
+        )} </p>
+        `
+              : ''
+          }
+
+        </div>
+        <div class="votes-amount">
+        ${
+          vote_count
+            ? `
+              <p class="film__info--text"> Votes ${vote_count}</p>
+              `
+            : ''
+        }
           </div>
         </div>
-      </div>
-      
+      </div>    
       <div class="film__content">
         ${
           filmTitle
@@ -68,9 +87,7 @@ export function filmTpl({ results }, genresDict) {
         } ${
           genre_ids
             ? `
-        <p class="film__genres">${genre_ids
-          .map(id => genresDict[id])
-          .join(', ')}
+        <p class="film__genres">${genresLabels.join(', ')}
         </p>
         `
             : ''

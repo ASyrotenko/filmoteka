@@ -1,119 +1,119 @@
 //https://www.npmjs.com/package/tui-pagination#-documents
 
-// import Pagination from 'tui-pagination';
-// import { FilmsApiService } from './films-service';
-// import { filmTpl } from './films-gallery';
-// import { getRefs } from './get-refs';
-// import { combineGenres } from './get-genres';
+const refs = getRefs();
+const apiService = new FilmsApiService();
 
-// export const paginationOptions = {
-//   totalItems: 20,
-//   itemsPerPage: 20,
-//   visiblePages: 5,
-//   page: 1,
+const paginationOptions = {
+  totalItems: 0,
+  itemsPerPage: 1,
+  visiblePages: 5,
+  centerAlign: true,
+  page: 1,
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+      '<span class="tui-ico-{{type}}">☀</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
 
-//   template: {
-//     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-//     currentPage:
-//       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-//     moveButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">:::</span>' +
-//       '</a>',
-//     disabledMoveButton:
-//       '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">:::</span>' +
-//       '</span>',
-//     moreButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip custom-class-{{type}}">...' +
-//       '<span class="tui-ico-ellip"></span>' +
-//       '</a>',
-//   },
-// };
-// export let pagination = new Pagination('pagination', paginationOptions);
+export async function getPaginationFromMainRequest() {
+  const renderFilms = await apiService.fetchFilmsTrending().then(data => {
+    paginationOptions.totalItems = data.total_results;
+    paginationOptions.itemsPerPage = data.results.length;
+    console.log(data.total_results);
+  });
+  const paginationT = new Pagination(
+    refs.paginationContainer,
+    paginationOptions
+  );
 
-// // const paginationNumbers = document.getElementById("pagination-numbers");
-// // const paginatedList = document.getElementById("paginated-list");
-// // const listItems = paginatedList.querySelectorAll("li");
-// // const nextButton = document.getElementById("next-button");
-// // const prevButton = document.getElementById("prev-button");
+  function renderFilmGallery(films, genres) {
+    refs.filmGallery.innerHTML = '';
+    refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+    document.querySelector('.spinner').style.display = 'none';
+  }
 
-// // const paginationLimit = 20;
-// // const pageCount = Math.ceil(listItems.length / paginationLimit);
-// // let currentPage = 1;
-// // const fetchFilmsOnSearch = fetchFilmsOnSearch();
-// // const disableButton = (button) => {
-// //   button.classList.add("disabled");
-// //   button.setAttribute("disabled", true);
-// // };
+  async function loadTrendMain(page) {
+    const genres = await combineGenres();
+    const filmsTrending = await apiService.fetchFilmsTrending(page);
+    renderFilmGallery(filmsTrending, genres);
+  }
 
-// // const enableButton = (button) => {
-// //   button.classList.remove("disabled");
-// //   button.removeAttribute("disabled");
-// // };
+  loadTrendMain();
 
-// // const handlePageButtonsStatus = () => {
-// //   if (currentPage === 1) {
-// //     disableButton(prevButton);
-// //   } else {
-// //     enableButton(prevButton);
-// //   }
+  paginationT.on('afterMove', e => {
+    loadTrendMain(e.page);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  });
+}
 
-// //   if (pageCount === currentPage) {
-// //     disableButton(nextButton);
-// //   } else {
-// //     enableButton(nextButton);
-// //   }
-// // };
+//запуск пагінації головної сторінки
+getPaginationFromMainRequest();
 
-// // const handleActivePageNumber = () => {
-// //   document.querySelectorAll(".pagination-number").forEach((button) => {
-// //     button.classList.remove("active");
-// //     const pageIndex = Number(button.getAttribute("page-index"));
-// //     if (pageIndex == currentPage) {
-// //       button.classList.add("active");
-// //     }
-// //   });
-// // };
+export async function getPaginationFromSerchRequest(query) {
+  const renderFilms = await apiService
+    .fetchFilmsOnSearch(query)
+    .then(response => {
+      console.log(response.total_results);
+      if (response.total_results >= 1000) {
+        paginationOptions.totalItems = 500;
+      } else {
+        paginationOptions.totalItems = response.total_results;
+      }
 
-// // const appendPageNumber = (index) => {
-// //   const pageNumber = document.createElement("button");
-// //   pageNumber.className = "pagination-number";
-// //   pageNumber.innerHTML = index;
-// //   pageNumber.setAttribute("page-index", index);
-// //   pageNumber.setAttribute("aria-label", "Page " + index);
+      paginationOptions.itemsPerPage = response.results.length;
+    });
 
-// //   paginationNumbers.appendChild(pageNumber);
-// // };
+  const pagination = new Pagination(
+    refs.paginationContainer,
+    paginationOptions
+  );
 
-// // const getPaginationNumbers = () => {
-// //   for (let i = 1; i <= pageCount; i++) {
-// //     appendPageNumber(i);
-// //   }
-// // };
+  async function loadSearch(query, page) {
+    let genres = await combineGenres();
+    let filmOnSearch = await apiService.fetchFilmsOnSearch(query, page);
+    renderFilmGallery(filmOnSearch, genres);
+  }
 
-// // const setCurrentPage = (pageNum) => {
-// //   currentPage = pageNum;
+  async function renderFilmGallery(films, genres) {
+    refs.filmGallery.innerHTML = '';
+    refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+  }
 
-// //   handleActivePageNumber();
-// //   handlePageButtonsStatus();
+  loadSearch(query);
 
-// //   const prevRange = (pageNum - 1) * paginationLimit;
-// //   const currRange = pageNum * paginationLimit;
-// // //   jsonData
-// //   fetchFilmsOnSearch.forEach((item, index) => {
-// //     elementContainer.innerHTML = ''
-// //     if (index >= prevRange && index < currRange) {
-// //       elementContainer.appendChild(item)
-// //     }
-// //   });
-// // //   listItems.forEach((item, index) => {
-// // //     item.classList.add("hidden");
-// // //     if (index >= prevRange && index < currRange) {
-// // //       item.classList.remove("hidden");
-// // //     }
-// // //   });
-// // };
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+//   jsonData
+  fetchFilmsOnSearch.forEach((item, index) => {
+    elementContainer.innerHTML = ''
+    if (index >= prevRange && index < currRange) {
+      elementContainer.appendChild(item)
+    }
+  });
+  listItems.forEach((item, index) => {
+    item.classList.add("hidden");
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove("hidden");
+    }
+  });
+};
 
 // // window.addEventListener("load", () => {
 // //   getPaginationNumbers();
@@ -137,4 +137,4 @@
 // //     }
 // //   });
 // // });
-//-----------------------------my attempt
+

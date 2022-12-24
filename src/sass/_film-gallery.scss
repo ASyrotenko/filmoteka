@@ -1,6 +1,5 @@
 .film {
-  &__section {
-
+  &-section {
     flex: 1 1 auto;
 
     padding-top: 20px;
@@ -12,7 +11,7 @@
     }
   }
 
-  &__list {
+  &-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -61,6 +60,7 @@
     @media screen and (min-width: 768px) {
       width: 336px;
       height: 455px;
+      object-fit: cover;
     }
 
     @media screen and (min-width: 1280px) {
@@ -122,7 +122,7 @@
     line-height: 1.17;
 
     @media screen and (min-width: 768px) {
-      line-height: 1.33;
+      line-height: 1.17;
     }
 
     @media screen and (min-width: 1280px) {
@@ -142,18 +142,30 @@
     color: #ff6b08;
   }
   &__value {
+    margin-left: 8px;
+    margin-left: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.17;
     display: inline-flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     width: 36px;
-    border-radius: 5px;
     height: 16px;
+    border-radius: 5px;
     background-color: #ff6b01;
     color: var(--secondary-color);
-    font-size: 12px;
+
+    @media screen and (min-width: 1280px) {
+      width: 40px;
+      height: 20px;
+    }
   }
 }
-
+.film__wrap {
+  display: flex;
+  align-items: center;
+}
 .film__item:hover .film__info,
 .film__item:focus .film__info {
   transform: translateY(0);

@@ -1,8 +1,8 @@
 import { FilmsApiService } from './films-service';
-export const filmsApiService = new FilmsApiService();
 import { getRefs } from './get-refs';
 
 const refs = getRefs();
+const filmsApiService = new FilmsApiService();
 
 export function renderLibrary(filmsIds) {
   return filmsIds.map(renderMovieCardLib).join('');
@@ -18,6 +18,8 @@ async function renderMovieCardLib(movieId) {
 
 function movieTplLib(movie) {
   const {
+    title,
+    name,
     original_name,
     original_title,
     genres,
@@ -28,9 +30,11 @@ function movieTplLib(movie) {
     id,
   } = movie;
 
-  const movieTitle = original_name ?? original_title ?? '';
-  const movieGenres = genres ? genres.map(genre => genre.name) : '';
-
+  const movieTitle = title ?? name ?? original_name ?? original_title ?? '';
+  const movieGenres = genres ? genres.slice(0, 2).map(genre => genre.name) : '';
+  if (genres && genres.length > 2) {
+    movieGenres.push('Other');
+  }
   return ` <li   class="film__item">
     
         <a class="film__link"
@@ -79,14 +83,16 @@ function movieTplLib(movie) {
           ${movieTitle}</h3>
         `
             : ''
-        } ${
-    movieGenres
-      ? `
+        }
+      <div class="film__wrap">
+      ${
+        movieGenres
+          ? `
         <p class="film__genres">${movieGenres.join(', ')}
         </p>
         `
-      : ''
-  } 
+          : ''
+      } 
         
         ${
           release_date
@@ -102,7 +108,8 @@ function movieTplLib(movie) {
         `
             : ''
         }
-   
+        </div>
+   </div>
     </li>
     `;
 }
@@ -114,7 +121,6 @@ function renderMovieCard(movie, path) {
   refs.movieBox.insertAdjacentHTML('beforeend', movieCardTpl(movie));
 
   document.querySelector('.spinner').classList.remove('hidden');
-   
 }
 function movieCardTpl(movie) {
   const {
@@ -265,6 +271,7 @@ async function onMovieCardClick(e) {
   document.querySelector('body').classList.add('modal-open');
   let path = e.target.dataset.imgpath;
   renderMovieCard(movieCard, path);
+  document.querySelector('.spinner').classList.add('hidden');
   const movieCardIdRef = document.querySelector('.movie__id');
   const movieId = movieCardIdRef.id;
   const videos = await filmsApiService.fetchMovieVideo(movieId);

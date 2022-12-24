@@ -14,13 +14,15 @@ body {
   .close-modal-btn,
   .close-btn-icon,
   .footer,
-  .team-list-name {
+  .team-list-name
+   {
     background-color: #333;
     color: #fff;
   }
 
   .movie__about,
-  .under {
+  .under,
+  .tui-page-btn {
     color: #8c8c8c;
   }
 
@@ -32,6 +34,10 @@ body {
   .film__item,
   .film__film__title {
     background-color: transparent;
+    color: #fff;
+  }
+
+  .tui-is-selected {
     color: #fff;
   }
 }

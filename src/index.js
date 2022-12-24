@@ -5,11 +5,10 @@ import './js/firebase-db-index';
 import './js/firebase-class';
 import './js/movie-card';
 import './js/search-movie';
-import './js/change-color-scheme.js';
+import './js/change-color-scheme';
 import './js/library-auth';
 import './js/backToTop';
-import './js/sticky-header';
-// import './js/pagination';
+import './js/pagination';
 
 import { FilmsApiService } from './js/films-service';
 import { filmTpl } from './js/films-gallery';

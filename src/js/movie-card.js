@@ -1,8 +1,10 @@
-import { filmsApiService } from '../index';
+import { FilmsApiService } from './films-service';
 import { getRefs } from './get-refs';
 import { closeVideo, renderVideoBox } from './addvideo';
+import Notiflix from 'notiflix';
 
 const refs = getRefs();
+const filmsApiService = new FilmsApiService();
 
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
@@ -17,6 +19,7 @@ export function renderMovieCard(movie, path) {
 export function movieCardTpl(movie) {
   const {
     title,
+    name,
     original_name,
     original_title,
     popularity,
@@ -27,7 +30,7 @@ export function movieCardTpl(movie) {
     id,
   } = movie;
 
-  const movieTitle = original_name ?? original_title ?? '';
+  const movieTitle = title ?? name ?? original_name ?? original_title ?? '';
   const movieGenres = genres ? genres.map(genre => genre.name) : '';
 
   return `
@@ -154,10 +157,9 @@ export async function onMovieCardClick(e) {
 
   const movieCard = await filmsApiService.fetchMovie(e.target.id);
   if (!movieCard) {
-    return;
-    // Вивести повідомлення про помилку!!!!
+    return Notiflix.Notify.failure('Sorry, movie is not found');
   }
-
+  document.querySelector('.spinner').classList.add('hidden');
   refs.modalBackdrop.classList.remove('is-hidden');
   refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
