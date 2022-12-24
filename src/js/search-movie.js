@@ -4,6 +4,7 @@ import { filmTpl } from './films-gallery';
 import { filmShortTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 import { onMovieCardClick } from './movie-card';
+import { getPaginationFromSerchRequest } from './pagination';
 import Notiflix from 'notiflix';
 
 var debounce = require('debounce');
@@ -57,7 +58,6 @@ async function onSearchSubmit(e) {
     return;
   }
 
-  const genres = await combineGenres();
   const filmOnSearch = await filmsApiService.fetchFilmsOnSearch(
     filmsApiService.query
   );
@@ -70,16 +70,14 @@ async function onSearchSubmit(e) {
   }
 
   clearGalleryContainer();
-  renderFilmGallery(filmOnSearch, genres);
+  getPaginationFromSerchRequest(filmsApiService.query);
+
   form.reset();
 
   document.querySelector('.spinner').classList.add('hidden');
 }
 
 //render markup
-function renderFilmGallery(films, genres) {
-  refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
-}
 function renderFilmSearchList(films) {
   refs.searchQueryList.insertAdjacentHTML('beforeend', filmShortTpl(films));
 }
