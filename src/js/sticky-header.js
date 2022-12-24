@@ -5,7 +5,7 @@ const filmSectionEl = document.querySelector('.film__section');
 
 let lastScrollTop = 0;
 
-window.addEventListener('scroll', debounce(stickyHeaderOnScroll, 200), false);
+window.addEventListener('scroll', debounce(stickyHeaderOnScroll, 100), false);
 
 function stickyHeaderOnScroll() {
   let scrollPos = window.scrollY || document.documentElement.scrollTop;
@@ -20,7 +20,6 @@ function stickyHeaderOnScroll() {
     headerEl.classList.add('appearing__header-js');
     filmSectionEl.classList.add('film__section-js');
   }
-  console.dir(window.visualViewport.pageTop);
 
   lastScrollTop = scrollPos <= 0 ? 0 : scrollPos; // For Mobile or negative scrolling
 }
