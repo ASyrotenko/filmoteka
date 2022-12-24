@@ -8,6 +8,7 @@ import './js/search-movie';
 import './js/change-color-scheme.js';
 import './js/library-auth';
 import './js/backToTop';
+import './js/sticky-header';
 // import './js/pagination';
 
 import { FilmsApiService } from './js/films-service';

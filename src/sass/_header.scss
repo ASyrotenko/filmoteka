@@ -1,3 +1,27 @@
+.sticky__header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.appearing__header-js {
+  opacity: 1;
+  transition: opacity 250ms linear;
+}
+
+.disappearing__header-js {
+  opacity: 0;
+  transition: opacity 250ms linear;
+}
+
+.film__section-js {
+  margin-top: 230px;
+  @media screen and (min-width: 768px) {
+    margin-top: 216px;
+  }
+}
+
+//-----------------------------^^^^^^^
 .header__container {
   position: relative;
   padding-top: 36px;
