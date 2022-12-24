@@ -143,6 +143,7 @@
   }
   &__value {
     margin-left: 8px;
+    margin-left: 8px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;
@@ -161,7 +162,10 @@
     }
   }
 }
-
+.film__wrap {
+  display: flex;
+  align-items: center;
+}
 .film__item:hover .film__info,
 .film__item:focus .film__info {
   transform: translateY(0);
