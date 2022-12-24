@@ -3,7 +3,7 @@ import { doc } from 'firebase/firestore';
 export function getRefs() {
   return {
     body: document.querySelector('body'),
-    filmGallery: document.querySelector('.film__list'),
+    filmGallery: document.querySelector('.film-list'),
     movieCard: document.querySelectorAll('.film__item'),
     searchQuery: document.querySelector('.header__form-input'),
     searchQueryList: document.querySelector('.header__form-list'),

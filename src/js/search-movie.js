@@ -69,10 +69,12 @@ async function onSearchSubmit(e) {
   }
 
   clearGalleryContainer();
+
   getPaginationFromSerchRequest(filmsApiService.query);
+  document.querySelector('.spinner').classList.add('hidden');
   form.reset();
 
-  document.querySelector('.spinner').classList.add('hidden');
+
 }
 
 //render markup

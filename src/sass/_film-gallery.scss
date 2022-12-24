@@ -1,5 +1,5 @@
 .film {
-  &__section {
+  &-section {
     flex: 1 1 auto;
 
     padding-top: 20px;
@@ -11,7 +11,7 @@
     }
   }
 
-  &__list {
+  &-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -142,6 +142,7 @@
     color: #ff6b08;
   }
   &__value {
+    margin-left: 8px;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.17;

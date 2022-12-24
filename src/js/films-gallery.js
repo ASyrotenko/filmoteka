@@ -2,6 +2,8 @@ export function filmTpl({ results }, genresDict) {
   return results
     .map(
       ({
+        title,
+        name,
         original_name,
         original_title,
         release_date,
@@ -12,9 +14,13 @@ export function filmTpl({ results }, genresDict) {
         poster_path: poster,
         id,
       }) => {
-        const filmTitle = original_name ?? original_title ?? '';
+        const filmTitle =
+          title ?? name ?? original_name ?? original_title ?? '';
         const filmDate = release_date ?? first_air_date ?? '';
-
+        const genresLabels = genre_ids.slice(0, 2).map(id => genresDict[id]);
+        if (genre_ids.length > 2) {
+          genresLabels.push('Other');
+        }
         return ` <li   class="film__item">
     
         <a class="film__link"
@@ -79,9 +85,7 @@ export function filmTpl({ results }, genresDict) {
         } ${
           genre_ids
             ? `
-        <p class="film__genres">${genre_ids
-          .map(id => genresDict[id])
-          .join(', ')}
+        <p class="film__genres">${genresLabels.join(', ')}
         </p>
         `
             : ''

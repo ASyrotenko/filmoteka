@@ -19,6 +19,7 @@ export function renderMovieCard(movie, path) {
 export function movieCardTpl(movie) {
   const {
     title,
+    name,
     original_name,
     original_title,
     popularity,
@@ -29,7 +30,7 @@ export function movieCardTpl(movie) {
     id,
   } = movie;
 
-  const movieTitle = original_name ?? original_title ?? '';
+  const movieTitle = title ?? name ?? original_name ?? original_title ?? '';
   const movieGenres = genres ? genres.map(genre => genre.name) : '';
 
   return `
