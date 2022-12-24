@@ -20,7 +20,7 @@ export function filmTpl({ results }, genresDict) {
         const genresLabels = (genre_ids ?? [])
           .slice(0, 2)
           .map(id => genresDict[id]);
-        if (genre_ids.length > 2) {
+        if (genre_ids && genre_ids.length > 2) {
           genresLabels.push('Other');
         }
         return ` <li   class="film__item">
