@@ -8,8 +8,6 @@ export function renderLibrary(filmsIds) {
   return filmsIds.map(renderMovieCardLib).join('');
 }
 
-refs.filmGallery.addEventListener('click', onMovieCardClick);
-
 async function renderMovieCardLib(movieId) {
   const movie = await filmsApiService.fetchMovie(movieId);
   const markup = movieTplLib(movie);
@@ -244,38 +242,6 @@ function getPosterForCard(path) {
   alt="Movie title"
 />
 `;
-}
-
-refs.filmGallery.addEventListener('click', onMovieCardClick);
-
-async function onMovieCardClick(e) {
-  e.preventDefault();
-
-  if (!e.target.classList.contains('film__image')) {
-    return;
-  }
-
-  refs.insertImgCont.innerHTML = '';
-  refs.movieBox.innerHTML = '';
-  refs.watchBtn.classList.remove('not-active');
-
-  const movieCard = await filmsApiService.fetchMovie(e.target.id);
-  if (!movieCard) {
-    return;
-    // Вивести повідомлення про помилку!!!!
-  }
-
-  refs.modalBackdrop.classList.remove('is-hidden');
-  refs.btnUp.classList.add('btn-up_hide');
-  window.addEventListener('keydown', onEscPress);
-  document.querySelector('body').classList.add('modal-open');
-  let path = e.target.dataset.imgpath;
-  renderMovieCard(movieCard, path);
-  document.querySelector('.spinner').classList.add('hidden');
-  const movieCardIdRef = document.querySelector('.movie__id');
-  const movieId = movieCardIdRef.id;
-  const videos = await filmsApiService.fetchMovieVideo(movieId);
-  renderVideoBox(videos);
 }
 
 refs.modalCloseBtn.addEventListener('click', onMovieModalClose);
