@@ -1,6 +1,6 @@
 import Glide from '@glidejs/glide';
 import '~node_modules/@glidejs/glide/dist/css/glide.core.min.css';
-import { combineGenres } from './pagination';
+import { combineGenres } from './get-genres';
 import { FilmsApiService } from './films-service';
 
 const apiService = new FilmsApiService();
