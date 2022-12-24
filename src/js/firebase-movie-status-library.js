@@ -34,7 +34,7 @@ async function getMovieStatus(e) {
 function pullToWatched(e) {
   const textContentAdd = 'add to watched';
   const textContentRemove = 'remove from watched';
-  console.log(firebase.setDoc.userId);
+  // console.log(firebase.setDoc.userId);
   if (e.target.textContent.includes(textContentAdd)) {
     e.target.textContent = textContentRemove;
     firebase.setDoc('watched');

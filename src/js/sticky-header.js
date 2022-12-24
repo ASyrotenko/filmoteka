@@ -6,7 +6,7 @@ const backdropEl = document.querySelector('.backdrop');
 
 const hiddenBackdrop = backdropEl.classList.contains('is-hidden');
 
-console.log(hiddenBackdrop);
+// console.log(hiddenBackdrop);
 
 let lastScrollTop = 0;
 

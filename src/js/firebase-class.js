@@ -46,13 +46,13 @@ export class Firebase {
         singInBtn.classList.add('signOut');
         singOutBtn.classList.add('signIn');
         userPhoto.innerHTML = `<img class="user-img" src="${user.photoURL}">`;
-        console.log(user);
+        // console.log(user);
         Notify.success(`Hello - ${user.displayName}`, {
           position: 'center-top',
         });
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
@@ -64,7 +64,7 @@ export class Firebase {
         userPhoto.style.display = 'none';
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
@@ -74,7 +74,7 @@ export class Firebase {
     const userId = auth.currentUser.uid;
     const movieRef = doc(db, userId, value);
 
-    console.log(`add to ${value}: `, { userId, movieId });
+    // console.log(`add to ${value}: `, { userId, movieId });
 
     await setDoc(movieRef, { [movieId]: movieId }, { merge: true });
   }
@@ -88,7 +88,7 @@ export class Firebase {
       let values = Object.values(docSnap.data());
       return values;
     } else {
-      console.log('No such document!');
+      // console.log('No such document!');
     }
   }
 
@@ -98,7 +98,7 @@ export class Firebase {
     const movieId = movieCardIdRef.id;
     const movieRef = doc(db, userId, value);
 
-    console.log(`remove from ${value}: `, { userId, movieId });
+    // console.log(`remove from ${value}: `, { userId, movieId });
 
     await updateDoc(movieRef, {
       [movieId]: deleteField(),
