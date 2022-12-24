@@ -125,7 +125,7 @@ export async function getPaginationFromSerchRequest(query) {
     const firstPage = document.querySelector('.tui-ico-first');
     const lastPage = document.querySelector('.tui-ico-last');
 
-    console.log(e.page > 3);
+    // console.log(e.page > 3);
     if (e.page > 3) {
       firstPage.textContent = 1;
     } else firstPage.textContent = '';

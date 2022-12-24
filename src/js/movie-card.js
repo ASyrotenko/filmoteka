@@ -144,7 +144,7 @@ export function getPosterForCard(path) {
 
 //-----------------
 const headerElTest = document.querySelector('.header');
-console.log(headerElTest);
+// console.log(headerElTest);
 //-----------------
 
 export async function onMovieCardClick(e) {
