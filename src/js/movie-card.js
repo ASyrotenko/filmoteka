@@ -164,7 +164,8 @@ export async function onMovieCardClick(e) {
   refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
-  let path = e.target.dataset.imgpath;
+  let path =
+    e.target.dataset.imgpath === 'null' ? undefined : e.target.dataset.imgpath;
   renderMovieCard(movieCard, path);
   const movieCardIdRef = document.querySelector('.movie__id');
   const movieId = movieCardIdRef.id;
