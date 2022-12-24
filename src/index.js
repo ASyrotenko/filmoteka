@@ -1,4 +1,5 @@
 import './js/modal-team';
+import './js/glide';
 import './js/addvideo';
 import './js/firebase-auth';
 import './js/firebase-db-index';
@@ -9,3 +10,4 @@ import './js/change-color-scheme';
 import './js/library-auth';
 import './js/backToTop';
 import './js/pagination';
+import './js/sticky-header';
