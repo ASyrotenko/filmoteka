@@ -5,6 +5,7 @@ import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 import { renderGlide } from './glide';
 import { doc } from '@firebase/firestore';
+import { onMovieCardClick } from './movie-card';
 
 const refs = getRefs();
 const apiService = new FilmsApiService();
@@ -53,6 +54,9 @@ export async function getPaginationFromMainRequest() {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
     document.querySelector('.spinner').style.display = 'none';
+    document
+      .querySelectorAll('.film__item')
+      .forEach(node => node.addEventListener('click', onMovieCardClick));
   }
 
   async function loadTrendMain(page) {
@@ -101,8 +105,12 @@ export async function getPaginationFromSerchRequest(query) {
   }
 
   async function renderFilmGallery(films, genres) {
+    debugger;
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+    document
+      .querySelectorAll('.film__item')
+      .forEach(node => node.addEventListener('click', onMovieCardClick));
   }
 
   loadSearch(query);

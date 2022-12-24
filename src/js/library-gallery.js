@@ -1,19 +1,22 @@
 import { FilmsApiService } from './films-service';
 import { getRefs } from './get-refs';
+import { onMovieCardClick } from './movie-card';
 
 const refs = getRefs();
 const filmsApiService = new FilmsApiService();
 
-export function renderLibrary(filmsIds) {
-  return filmsIds.map(renderMovieCardLib).join('');
+export async function renderLibrary(filmsIds) {
+  const tmpl = (await Promise.all(filmsIds.map(renderMovieCardLib))).join('');
+  refs.filmGallery.insertAdjacentHTML('beforeend', tmpl);
+  document
+    .querySelectorAll('.film__item')
+    .forEach(node => node.addEventListener('click', onMovieCardClick));
 }
-
-refs.filmGallery.addEventListener('click', onMovieCardClick);
 
 async function renderMovieCardLib(movieId) {
   const movie = await filmsApiService.fetchMovie(movieId);
   const markup = movieTplLib(movie);
-  refs.filmGallery.insertAdjacentHTML('beforeend', markup);
+  return markup;
 }
 
 function movieTplLib(movie) {
@@ -35,7 +38,7 @@ function movieTplLib(movie) {
   if (genres && genres.length > 2) {
     movieGenres.push('Other');
   }
-  return ` <li   class="film__item">
+  return ` <li class="film__item" data-itemId="${id}" data-imgpath="${posterPath}">
     
         <a class="film__link"
         href="#"
@@ -244,38 +247,6 @@ function getPosterForCard(path) {
   alt="Movie title"
 />
 `;
-}
-
-refs.filmGallery.addEventListener('click', onMovieCardClick);
-
-async function onMovieCardClick(e) {
-  e.preventDefault();
-
-  if (!e.target.classList.contains('film__image')) {
-    return;
-  }
-
-  refs.insertImgCont.innerHTML = '';
-  refs.movieBox.innerHTML = '';
-  refs.watchBtn.classList.remove('not-active');
-
-  const movieCard = await filmsApiService.fetchMovie(e.target.id);
-  if (!movieCard) {
-    return;
-    // Вивести повідомлення про помилку!!!!
-  }
-
-  refs.modalBackdrop.classList.remove('is-hidden');
-  refs.btnUp.classList.add('btn-up_hide');
-  window.addEventListener('keydown', onEscPress);
-  document.querySelector('body').classList.add('modal-open');
-  let path = e.target.dataset.imgpath;
-  renderMovieCard(movieCard, path);
-  document.querySelector('.spinner').classList.add('hidden');
-  const movieCardIdRef = document.querySelector('.movie__id');
-  const movieId = movieCardIdRef.id;
-  const videos = await filmsApiService.fetchMovieVideo(movieId);
-  renderVideoBox(videos);
 }
 
 refs.modalCloseBtn.addEventListener('click', onMovieModalClose);

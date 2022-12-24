@@ -142,20 +142,19 @@ export function getPosterForCard(path) {
 `;
 }
 
-refs.filmGallery.addEventListener('click', onMovieCardClick);
-
 export async function onMovieCardClick(e) {
   e.preventDefault();
-
-  if (!e.target.classList.contains('film__image')) {
+  if (
+    !e.currentTarget.classList.contains('header__form-list-item') &&
+    !e.currentTarget.classList.contains('film__item')
+  ) {
     return;
   }
-
   refs.insertImgCont.innerHTML = '';
   refs.movieBox.innerHTML = '';
   refs.watchBtn.classList.remove('not-active');
-
-  const movieCard = await filmsApiService.fetchMovie(e.target.id);
+  const { itemid, imgpath } = e.currentTarget.dataset;
+  const movieCard = await filmsApiService.fetchMovie(itemid);
   if (!movieCard) {
     return Notiflix.Notify.failure('Sorry, movie is not found');
   }
@@ -164,8 +163,7 @@ export async function onMovieCardClick(e) {
   refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
-  let path =
-    e.target.dataset.imgpath === 'null' ? undefined : e.target.dataset.imgpath;
+  let path = imgpath === 'null' ? undefined : imgpath;
   renderMovieCard(movieCard, path);
   const movieCardIdRef = document.querySelector('.movie__id');
   const movieId = movieCardIdRef.id;

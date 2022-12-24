@@ -16,10 +16,6 @@ const DEBOUNCE_DELAY = 300;
 
 refs.searchForm.addEventListener('submit', onSearchSubmit);
 
-refs.searchQueryList.addEventListener('click', event => {
-  onMovieCardClick(event);
-});
-
 refs.body.addEventListener('click', inputClose);
 
 //Input Search
@@ -73,13 +69,14 @@ async function onSearchSubmit(e) {
   getPaginationFromSerchRequest(filmsApiService.query);
   document.querySelector('.spinner').classList.add('hidden');
   form.reset();
-
-
 }
 
 //render markup
 function renderFilmSearchList(films) {
   refs.searchQueryList.insertAdjacentHTML('beforeend', filmShortTpl(films));
+  document
+    .querySelectorAll('.header__form-list-item')
+    .forEach(node => node.addEventListener('click', onMovieCardClick));
 }
 
 //clear markup
