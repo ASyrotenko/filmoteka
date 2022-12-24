@@ -144,7 +144,7 @@ export function getPosterForCard(path) {
 
 //-----------------
 const headerElTest = document.querySelector('.header');
-console.log(headerElTest);
+
 //-----------------
 
 export async function onMovieCardClick(e) {
@@ -182,9 +182,17 @@ refs.modalCloseBtn.addEventListener('click', onMovieModalClose);
 
 function onMovieModalClose(e) {
   refs.trailerOverlay.classList.remove('not-active');
-
   refs.modalBackdrop.classList.add('is-hidden');
+  //--------------
+  if (
+    refs.modalBackdrop.classList.contains('is-hidden') &&
+    headerElTest.classList.contains('disappearing__header-js')
+  ) {
+    headerElTest;
+  }
   headerElTest.classList.remove('disappearing__header-js'); //sticky-header
+  //---------------
+
   window.removeEventListener('keydown', onEscPress);
   closeVideo();
   document.querySelector('body').classList.remove('modal-open');

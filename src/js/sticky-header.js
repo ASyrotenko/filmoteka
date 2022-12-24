@@ -2,11 +2,6 @@ import { debounce } from 'debounce';
 import throttle from 'lodash.throttle';
 const headerEl = document.querySelector('.header');
 const filmSectionEl = document.querySelector('.container__slider');
-const backdropEl = document.querySelector('.backdrop');
-
-const hiddenBackdrop = backdropEl.classList.contains('is-hidden');
-
-console.log(hiddenBackdrop);
 
 let lastScrollTop = 0;
 
