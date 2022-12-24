@@ -159,7 +159,6 @@
   }
 }
 .tui-pagination .tui-prev {
-  // width: 40px;
   height: 40px;
   background-color: var(--secondary-color);
   border: none;
@@ -172,7 +171,6 @@
 }
 
 .tui-pagination .tui-next {
-  // width: 40px;
   height: 40px;
   background-color: white;
   border: none;
@@ -202,7 +200,7 @@
 }
 
 .tui-pagination .tui-ico-first {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 .tui-pagination .tui-ico-prev {
@@ -222,7 +220,7 @@
 }
 
 .tui-pagination .tui-ico-last {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 

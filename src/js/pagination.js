@@ -4,6 +4,8 @@ import { FilmsApiService } from './films-service';
 import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 import { renderGlide } from './glide';
+import { doc } from '@firebase/firestore';
+import { onMovieCardClick } from './movie-card';
 
 const refs = getRefs();
 const apiService = new FilmsApiService();
@@ -13,14 +15,14 @@ const paginationOptions = {
   itemsPerPage: 1,
   visiblePages: 5,
   centerAlign: true,
-  page: 1,
+  totalPages: 1,
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-      '<span class="tui-ico-{{type}}">☀</span>' +
+      '<span class="tui-ico-{{type}}"></span>' +
       '</a>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
@@ -37,17 +39,24 @@ export async function getPaginationFromMainRequest() {
   const renderFilms = await apiService.fetchFilmsTrending().then(data => {
     paginationOptions.totalItems = data.total_results;
     paginationOptions.itemsPerPage = data.results.length;
+    paginationOptions.totalPages = data.total_pages;
     renderGlide(data.results);
   });
-  const paginationT = new Pagination(
+  const pagination = new Pagination(
     refs.paginationContainer,
     paginationOptions
   );
+
+  let lastPage = document.querySelector('.tui-ico-last');
+  lastPage.textContent = paginationOptions.totalPages;
 
   function renderFilmGallery(films, genres) {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
     document.querySelector('.spinner').style.display = 'none';
+    document
+      .querySelectorAll('.film__item')
+      .forEach(node => node.addEventListener('click', onMovieCardClick));
   }
 
   async function loadTrendMain(page) {
@@ -58,13 +67,17 @@ export async function getPaginationFromMainRequest() {
 
   loadTrendMain();
 
-  paginationT.on('afterMove', e => {
+  pagination.on('afterMove', e => {
     loadTrendMain(e.page);
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
+    const firstPage = document.querySelector('.tui-ico-first');
+    if (e.page > 3) {
+      firstPage.textContent = 1;
+    }
   });
 }
 
@@ -75,11 +88,8 @@ export async function getPaginationFromSerchRequest(query) {
   const renderFilms = await apiService
     .fetchFilmsOnSearch(query)
     .then(response => {
-      if (response.total_results >= 1000) {
-        paginationOptions.totalItems = 500;
-      } else {
-        paginationOptions.totalItems = response.total_results;
-      }
+      paginationOptions.totalPages = response.total_pages;
+      paginationOptions.totalItems = response.total_results;
       paginationOptions.itemsPerPage = response.results.length;
     });
 
@@ -95,8 +105,12 @@ export async function getPaginationFromSerchRequest(query) {
   }
 
   async function renderFilmGallery(films, genres) {
+    debugger;
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+    document
+      .querySelectorAll('.film__item')
+      .forEach(node => node.addEventListener('click', onMovieCardClick));
   }
 
   loadSearch(query);
@@ -108,5 +122,20 @@ export async function getPaginationFromSerchRequest(query) {
       left: 0,
       behavior: 'smooth',
     });
+    const firstPage = document.querySelector('.tui-ico-first');
+    const lastPage = document.querySelector('.tui-ico-last');
+
+    console.log(e.page > 3);
+    if (e.page > 3) {
+      firstPage.textContent = 1;
+    } else firstPage.textContent = '';
+
+    if (paginationOptions.totalPages >= 5) {
+      lastPage.textContent = paginationOptions.totalPages;
+    }
+    if (paginationOptions.totalPages === paginationOptions.visiblePages) {
+      lastPage.textContent = '';
+      firstPage.textContent = '';
+    }
   });
 }
