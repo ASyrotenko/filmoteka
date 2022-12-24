@@ -15,12 +15,12 @@
 
 .disappearing__header-js {
   // @media screen and (min-width: 768px) {
-  transform: translateY(0);
+  transform: translateY(-216px);
   transition: transform 250ms linear;
   // }
 }
 
-.film__section-js {
+.container__slider-js {
   // margin-top: 230px;
   // @media screen and (min-width: 768px) {
   margin-top: 216px;
