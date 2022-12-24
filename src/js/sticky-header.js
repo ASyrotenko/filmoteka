@@ -1,7 +1,7 @@
 import { debounce } from 'debounce';
 
 const headerEl = document.querySelector('.header');
-const filmSectionEl = document.querySelector('.film__section');
+const filmSectionEl = document.querySelector('.film-section');
 
 let lastScrollTop = 0;
 
@@ -18,7 +18,7 @@ function stickyHeaderOnScroll() {
     headerEl.classList.remove('disappearing__header-js');
     headerEl.classList.add('sticky__header');
     headerEl.classList.add('appearing__header-js');
-    filmSectionEl.classList.add('film__section-js');
+    filmSectionEl.classList.add('film-section-js');
   }
 
   lastScrollTop = scrollPos <= 0 ? 0 : scrollPos; // For Mobile or negative scrolling

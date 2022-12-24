@@ -1,17 +1,22 @@
 import { FilmsApiService } from './films-service';
 import { getRefs } from './get-refs';
+import { onMovieCardClick } from './movie-card';
 
 const refs = getRefs();
 const filmsApiService = new FilmsApiService();
 
-export function renderLibrary(filmsIds) {
-  return filmsIds.map(renderMovieCardLib).join('');
+export async function renderLibrary(filmsIds) {
+  const tmpl = (await Promise.all(filmsIds.map(renderMovieCardLib))).join('');
+  refs.filmGallery.insertAdjacentHTML('beforeend', tmpl);
+  document
+    .querySelectorAll('.film__item')
+    .forEach(node => node.addEventListener('click', onMovieCardClick));
 }
 
 async function renderMovieCardLib(movieId) {
   const movie = await filmsApiService.fetchMovie(movieId);
   const markup = movieTplLib(movie);
-  refs.filmGallery.insertAdjacentHTML('beforeend', markup);
+  return markup;
 }
 
 function movieTplLib(movie) {
@@ -33,7 +38,7 @@ function movieTplLib(movie) {
   if (genres && genres.length > 2) {
     movieGenres.push('Other');
   }
-  return ` <li   class="film__item">
+  return ` <li class="film__item" data-itemId="${id}" data-imgpath="${posterPath}">
     
         <a class="film__link"
         href="#"
