@@ -1,8 +1,8 @@
 import { FilmsApiService } from './films-service';
-export const filmsApiService = new FilmsApiService();
 import { getRefs } from './get-refs';
 
 const refs = getRefs();
+const filmsApiService = new FilmsApiService();
 
 export function renderLibrary(filmsIds) {
   return filmsIds.map(renderMovieCardLib).join('');

@@ -1,16 +1,15 @@
 import Pagination from 'tui-pagination';
 import { getRefs } from './get-refs';
 import { FilmsApiService } from './films-service';
-import { load } from '../index';
-import { renderFilmGallery } from './search-movie';
 import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 
 const refs = getRefs();
+const apiService = new FilmsApiService();
 
 const paginationOptions = {
   totalItems: 0,
-  itemsPerPage: 21,
+  itemsPerPage: 1,
   visiblePages: 5,
   centerAlign: true,
   page: 1,
@@ -33,23 +32,79 @@ const paginationOptions = {
   },
 };
 
-const apiService = new FilmsApiService();
-
 export async function getPaginationFromMainRequest() {
   const renderFilms = await apiService.fetchFilmsTrending().then(data => {
-    paginationOptions.totalItems = data.total_pages;
-    // console.log(data.total_results);
+    paginationOptions.totalItems = data.total_results;
+    paginationOptions.itemsPerPage = data.results.length;
+    console.log(data.total_results);
   });
+  const paginationT = new Pagination(
+    refs.paginationContainer,
+    paginationOptions
+  );
+
+  function renderFilmGallery(films, genres) {
+    refs.filmGallery.innerHTML = '';
+    refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+    document.querySelector('.spinner').style.display = 'none';
+  }
+
+  async function loadTrendMain(page) {
+    const genres = await combineGenres();
+    const filmsTrending = await apiService.fetchFilmsTrending(page);
+    renderFilmGallery(filmsTrending, genres);
+  }
+
+  loadTrendMain();
+
+  paginationT.on('afterMove', e => {
+    loadTrendMain(e.page);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  });
+}
+
+//запуск пагінації головної сторінки
+getPaginationFromMainRequest();
+
+export async function getPaginationFromSerchRequest(query) {
+  const renderFilms = await apiService
+    .fetchFilmsOnSearch(query)
+    .then(response => {
+      console.log(response.total_results);
+      if (response.total_results >= 1000) {
+        paginationOptions.totalItems = 500;
+      } else {
+        paginationOptions.totalItems = response.total_results;
+      }
+
+      paginationOptions.itemsPerPage = response.results.length;
+    });
+
   const pagination = new Pagination(
     refs.paginationContainer,
     paginationOptions
   );
 
-  load(pagination.page);
+  async function loadSearch(query, page) {
+    let genres = await combineGenres();
+    let filmOnSearch = await apiService.fetchFilmsOnSearch(query, page);
+    renderFilmGallery(filmOnSearch, genres);
+  }
 
-  pagination.on('beforeMove', e => {
-    load(e.page);
+  async function renderFilmGallery(films, genres) {
+    refs.filmGallery.innerHTML = '';
+    refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
+  }
 
+  loadSearch(query);
+
+  pagination.on('afterMove', e => {
+    loadSearch(query, e.page);
+    console.log(e.page);
     window.scrollTo({
       top: 0,
       left: 0,

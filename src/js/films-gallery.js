@@ -52,17 +52,28 @@ export function filmTpl({ results }, genresDict) {
 />
         </a>
         <div class="film__info">
-          <div class="aver-rate">
-            <p class="film__info--text"> Average rate ${vote_average.toFixed(
-              1
-            )} </p>
-          </div>
-          <div class="votes-amount">
-            <p class="film__info--text"> Votes ${vote_count}</p>
+          <div class="aver-rate">${
+            vote_average
+              ? `
+        <p class="film__info--text"> Average rate ${vote_average.toFixed(
+          1
+        )} </p>
+        `
+              : ''
+          }
+
+        </div>
+        <div class="votes-amount">
+        ${
+          vote_count
+            ? `
+              <p class="film__info--text"> Votes ${vote_count}</p>
+              `
+            : ''
+        }
           </div>
         </div>
-      </div>
-      
+      </div>    
       <div class="film__content">
         ${
           filmTitle

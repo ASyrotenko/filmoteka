@@ -6,6 +6,7 @@ export const BASE_URL = 'https://api.themoviedb.org/3';
 export class FilmsApiService {
   constructor() {
     this.searchQuery = '';
+    this.page = 1;
   }
 
   getOptionsMain(page = 1) {
@@ -27,14 +28,15 @@ export class FilmsApiService {
       // return Notiflix.Notify.failure('Error');
     }
   }
-  async fetchFilmsOnSearch() {
+  async fetchFilmsOnSearch(query, page) {
     try {
       //spinner
       document.querySelector('.spinner').classList.remove('hidden');
       // document
       //   .querySelector('.spinner')
       //   .setAttribute('style', 'display:inline !important');
-      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
+      const option = this.getOptionsMain(page);
+      const url = `${BASE_URL}/search/movie?${option}&query=${query}`;
       const response = await axios.get(url);
 
       return response.data;
@@ -60,15 +62,10 @@ export class FilmsApiService {
     }
   }
 
-  incrementPage() {
-    this.page += 1;
-  }
-  resetPage() {
-    this.page = 1;
-  }
   get query() {
     return this.searchQuery;
   }
+
   set query(newQuery) {
     this.searchQuery = newQuery;
   }

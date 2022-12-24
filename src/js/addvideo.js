@@ -1,6 +1,6 @@
 import { getRefs } from './get-refs';
 const refs = getRefs();
-import { filmsApiService } from '../index';
+import { filmsApiService } from './films-service';
 
 const stopVideos = () => {
   document.querySelectorAll('iframe').forEach(v => {
