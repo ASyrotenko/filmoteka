@@ -11,14 +11,14 @@ function stickyHeaderOnScroll() {
   let scrollPos = window.scrollY || document.documentElement.scrollTop;
   if (scrollPos > lastScrollTop) {
     // downscroll code
-    headerEl.classList.remove('appearing__header-js');
-    headerEl.classList.add('disappearing__header-js');
+    // headerEl.classList.remove('appearing__header-js');
+    // headerEl.classList.add('disappearing__header-js');
   } else {
     // upscroll code
-    headerEl.classList.remove('disappearing__header-js');
-    headerEl.classList.add('sticky__header');
+    // headerEl.classList.remove('disappearing__header-js');
+    // headerEl.classList.add('sticky__header');
     headerEl.classList.add('appearing__header-js');
-    filmSectionEl.classList.add('film__section-js');
+    // filmSectionEl.classList.add('film__section-js');
   }
 
   lastScrollTop = scrollPos <= 0 ? 0 : scrollPos; // For Mobile or negative scrolling
