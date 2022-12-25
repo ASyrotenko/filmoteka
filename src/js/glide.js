@@ -1,10 +1,10 @@
 import Glide from '@glidejs/glide';
 import '~node_modules/@glidejs/glide/dist/css/glide.core.min.css';
-import { combineGenres } from './get-genres';
 import { FilmsApiService } from './films-service';
+import { getRefs } from './get-refs';
 
+const refs = getRefs();
 const apiService = new FilmsApiService();
-
 const config = {
   type: 'carousel',
   perView: 10,
@@ -28,20 +28,10 @@ const config = {
     },
   },
 };
-
 const glide = new Glide('.glide', config);
-
-async function loadTrendMain(page) {
-  const genres = await combineGenres();
-
-  const filmsTrending = await apiService.fetchFilmsTrending(page);
-  // renderFilmGallery(filmsTrending, genres);
-}
 
 export function renderGlide(trendMovies) {
   const containerSlider = document.querySelector('.container__slider');
-  containerSlider.innerHTML = '';
-
   let markup = `
     <div class="glide">
           <div class="glide__track" data-glide-el="track">
@@ -58,6 +48,7 @@ export function renderGlide(trendMovies) {
         `<li class="glide__slide glide__slide--main" id="${el.id}" style="width: 148.2px; margin-left: 7.5px; margin-right: 7.5px;"><img class="cards__image-poster" data-imgid="${el.id}" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt="film__poster"></li>`
     )
     .join('');
-  slidesContainer.innerHTML = markup;
+  slidesContainer.insertAdjacentHTML('beforeend', markup);
+
   glide.mount();
 }
