@@ -1,7 +1,6 @@
 .pagination_container {
-  margin-bottom: 40px;
-  margin-top: 60px;
   height: 40px;
+  margin-bottom: 40px;
   display: block;
 
   @media screen and (min-width: 767px) {
@@ -37,8 +36,8 @@
 .tui-pagination .tui-page-btn {
   display: flex;
   position: relative;
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
   color: var(--primary-color);
   font-family: var(--primary-bg-color);
   font-size: 16px;
@@ -163,7 +162,6 @@
   background-color: var(--secondary-color);
   border: none;
   border-radius: 5px;
-  padding: 12px;
 
   @media screen and (min-width: 769px) {
     transform: translateX(-56px);
@@ -171,11 +169,11 @@
 }
 
 .tui-pagination .tui-next {
+  width: 40px;
   height: 40px;
   background-color: white;
   border: none;
   border-radius: 5px;
-  padding: 12px;
 
   @media screen and (min-width: 769px) {
     transform: translateX(56px);

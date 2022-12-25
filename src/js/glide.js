@@ -35,7 +35,7 @@ async function loadTrendMain(page) {
   const genres = await combineGenres();
 
   const filmsTrending = await apiService.fetchFilmsTrending(page);
-  renderFilmGallery(filmsTrending, genres);
+  // renderFilmGallery(filmsTrending, genres);
 }
 
 export function renderGlide(trendMovies) {
@@ -55,11 +55,9 @@ export function renderGlide(trendMovies) {
   markup = trendMovies
     .map(
       el =>
-        `<li class="glide__slide glide__slide--main" id="${el.id}" style="width: 148.2px; margin-left: 7.5px; margin-right: 7.5px;"><img class="cards__image-poster" data-img-id="${el.id}" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt="film__poster"></li>`
+        `<li class="glide__slide glide__slide--main" id="${el.id}" style="width: 148.2px; margin-left: 7.5px; margin-right: 7.5px;"><img class="cards__image-poster" data-imgid="${el.id}" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt="film__poster"></li>`
     )
     .join('');
   slidesContainer.innerHTML = markup;
   glide.mount();
-  const slidesList = document.querySelector('#glide__slides');
-  slidesList.addEventListener('click', loadTrendMain);
 }

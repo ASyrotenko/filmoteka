@@ -6,7 +6,9 @@ const refs = getRefs();
 const filmsApiService = new FilmsApiService();
 
 export async function renderLibrary(filmsIds) {
+  refs.filmGallery.innerHTML = '';
   const tmpl = (await Promise.all(filmsIds.map(renderMovieCardLib))).join('');
+
   refs.filmGallery.insertAdjacentHTML('beforeend', tmpl);
   document
     .querySelectorAll('.film__item')
@@ -116,6 +118,7 @@ function movieTplLib(movie) {
     </li>
     `;
 }
+
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
 
