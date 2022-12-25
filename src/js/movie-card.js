@@ -188,7 +188,7 @@ function onMovieModalClose(e) {
     refs.modalBackdrop.classList.contains('is-hidden') &&
     headerElTest.classList.contains('disappearing__header-js')
   ) {
-    headerElTest;
+    headerElTest.classList.add('appearing__header-js');
   }
   headerElTest.classList.remove('disappearing__header-js'); //sticky-header
   //---------------
