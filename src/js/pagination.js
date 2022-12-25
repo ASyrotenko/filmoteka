@@ -6,16 +6,20 @@ import { combineGenres } from './get-genres';
 import { renderGlide } from './glide';
 import { doc } from '@firebase/firestore';
 import { onMovieCardClick } from './movie-card';
+import { Firebase } from './firebase-class';
+import { renderLibrary } from './library-gallery';
 
 const refs = getRefs();
 const apiService = new FilmsApiService();
+const firebase = new Firebase();
 
 const paginationOptions = {
-  totalItems: 0,
-  itemsPerPage: 1,
+  totalItems: 1,
+  itemsPerPage: 20,
   visiblePages: 5,
   centerAlign: true,
   totalPages: 1,
+  page: 1,
   template: {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
@@ -40,8 +44,14 @@ export async function getPaginationFromMainRequest() {
     paginationOptions.totalItems = data.total_results;
     paginationOptions.itemsPerPage = data.results.length;
     paginationOptions.totalPages = data.total_pages;
-    renderGlide(data.results);
   });
+
+  const glideSearch = await apiService.fetchFilmsTrendingWeek().then(data => {
+    return data.results;
+  });
+
+  renderGlide(glideSearch);
+
   const pagination = new Pagination(
     refs.paginationContainer,
     paginationOptions
@@ -68,21 +78,20 @@ export async function getPaginationFromMainRequest() {
   loadTrendMain();
 
   pagination.on('afterMove', e => {
+    const firstPage = document.querySelector('.tui-ico-first');
+    firstPage.textContent = '';
     loadTrendMain(e.page);
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    const firstPage = document.querySelector('.tui-ico-first');
-    if (e.page > 3) {
+
+    if (e.page >= 4) {
       firstPage.textContent = 1;
     }
   });
 }
-
-//запуск пагінації головної сторінки
-getPaginationFromMainRequest();
 
 export async function getPaginationFromSerchRequest(query) {
   const renderFilms = await apiService
@@ -105,7 +114,6 @@ export async function getPaginationFromSerchRequest(query) {
   }
 
   async function renderFilmGallery(films, genres) {
-    debugger;
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
     document
@@ -125,7 +133,6 @@ export async function getPaginationFromSerchRequest(query) {
     const firstPage = document.querySelector('.tui-ico-first');
     const lastPage = document.querySelector('.tui-ico-last');
 
-    // console.log(e.page > 3);
     if (e.page > 3) {
       firstPage.textContent = 1;
     } else firstPage.textContent = '';
@@ -139,3 +146,39 @@ export async function getPaginationFromSerchRequest(query) {
     }
   });
 }
+
+export async function getPaginationFromLibrary(param) {
+  paginationOptions.totalItems = param.length;
+  let arrayParam = param;
+  let sizeOnPage = paginationOptions.itemsPerPage;
+  paginationOptions.totalPages = Math.ceil(arrayParam.length / sizeOnPage);
+  let totPage = paginationOptions.totalPages;
+
+  let arrayRenderLib = [];
+
+  for (let i = 0; i < totPage; i++) {
+    arrayRenderLib[i] = arrayParam.slice(
+      i * sizeOnPage,
+      i * sizeOnPage + sizeOnPage
+    );
+  }
+
+  const paginationLib = new Pagination(
+    refs.paginationContainer,
+    paginationOptions
+  );
+
+  renderLibrary(arrayRenderLib[0]);
+
+  paginationLib.on('afterMove', e => {
+    renderLibrary(arrayRenderLib[e.page - 1]);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  });
+}
+
+//запуск пагінації головної сторінки
+getPaginationFromMainRequest();

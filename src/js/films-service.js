@@ -28,6 +28,30 @@ export class FilmsApiService {
       // return Notiflix.Notify.failure('Error');
     }
   }
+
+  async fetchFilmsTrendingWeek(page) {
+    try {
+      const option = this.getOptionsMain(page);
+      const url = `${BASE_URL}/trending/all/week?${option}`;
+      const response = await axios.get(url);
+
+      return response.data;
+    } catch (error) {
+      // return Notiflix.Notify.failure('Error');
+    }
+  }
+
+  async fetchFilmsTrending(page) {
+    try {
+      const option = this.getOptionsMain(page);
+      const url = `${BASE_URL}/trending/all/day?${option}`;
+      const response = await axios.get(url);
+
+      return response.data;
+    } catch (error) {
+      // return Notiflix.Notify.failure('Error');
+    }
+  }
   async fetchFilmsOnSearch(query, page) {
     try {
       //spinner

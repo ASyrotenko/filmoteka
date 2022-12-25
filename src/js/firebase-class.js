@@ -46,7 +46,6 @@ export class Firebase {
         singInBtn.classList.add('signOut');
         singOutBtn.classList.add('signIn');
         userPhoto.innerHTML = `<img class="user-img" src="${user.photoURL}">`;
-        // console.log(user);
         Notify.success(`Hello - ${user.displayName}`, {
           position: 'center-top',
         });
@@ -104,6 +103,7 @@ export class Firebase {
       [movieId]: deleteField(),
     });
   }
+
   userStatus() {
     const userId = auth.currentUser.uid;
     return userId;
