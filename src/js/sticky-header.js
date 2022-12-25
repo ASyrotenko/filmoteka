@@ -10,14 +10,19 @@ window.addEventListener('scroll', throttle(stickyHeaderOnScroll, 250), false);
 function stickyHeaderOnScroll() {
   let scrollPos = window.scrollY || document.documentElement.scrollTop;
 
-  if (scrollPos < 400) {
+  if (scrollPos <= 50) {
+    headerEl.classList.remove('sticky__header');
+    filmSectionEl.classList.remove('container__slider-js');
     headerEl.classList.add('header__index');
+  }
+  if (scrollPos < 400) {
     headerEl.classList.remove('appearing__header-js');
     headerEl.classList.remove('disappearing__header-js');
   } else {
   }
   if (scrollPos > lastScrollTop && scrollPos > 400) {
     // downscroll code
+    headerEl.classList.remove('header__index');
     headerEl.classList.remove('appearing__header-js');
     headerEl.classList.add('disappearing__header-js');
   } else if (scrollPos < lastScrollTop && scrollPos > 400) {
