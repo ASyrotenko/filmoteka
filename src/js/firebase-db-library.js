@@ -1,6 +1,7 @@
 import { Firebase } from './firebase-class';
 import { getRefs } from './get-refs';
 import { renderLibrary } from './library-gallery';
+import { getPaginationFromLibrary } from './pagination';
 const refs = getRefs();
 
 const firebase = new Firebase();
@@ -14,7 +15,6 @@ async function showWatched() {
 
   let watched = await firebase.getDoc('watched');
   if (watched.length === 0) {
-
     //SPINNER
     document.querySelector('.spinner').classList.add('hidden');
     refs.filmGallery.innerHTML = '';
@@ -27,7 +27,7 @@ async function showWatched() {
     );
   } else {
     refs.filmGallery.innerHTML = '';
-    renderLibrary(watched);
+    getPaginationFromLibrary(watched);
     document.querySelector('.spinner').classList.add('hidden');
   }
 }
@@ -39,12 +39,11 @@ async function showQueue() {
   // SPINNER
   document.querySelector('.spinner').classList.add('hidden');
 
-  
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
     refs.filmGallery.innerHTML = '';
-    document.querySelector(".footer").classList.add('footer--empty-library');
+    document.querySelector('.footer').classList.add('footer--empty-library');
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
       `<li class="film-list-error">
@@ -54,18 +53,20 @@ async function showQueue() {
     );
   } else {
     refs.filmGallery.innerHTML = '';
-    renderLibrary(queue);
+    getPaginationFromLibrary(queue);
+    document.querySelector('.spinner').classList.add('hidden');
   }
 }
-const qwe = setInterval(getUserStatus, 250);
+
+const loadLibraryWatched = setInterval(getUserStatus, 250);
 
 function getUserStatus(params) {
   try {
     refs.watched.classList.add('film-btn--active');
     firebase.userStatus();
     showWatched();
-    clearInterval(qwe);
+    clearInterval(loadLibraryWatched);
   } catch (error) {
-    console.log('error');
+    // console.log('error');
   }
 }
