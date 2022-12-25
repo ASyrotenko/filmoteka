@@ -12,6 +12,7 @@ refs.queue.addEventListener('click', showQueue);
 async function showWatched() {
   refs.queue.classList.remove('film-btn--active');
   refs.watched.classList.add('film-btn--active');
+  refs.paginationContainer.innerHTML = '';
 
   let watched = await firebase.getDoc('watched');
   if (watched.length === 0) {
@@ -35,6 +36,7 @@ async function showWatched() {
 async function showQueue() {
   refs.watched.classList.remove('film-btn--active');
   refs.queue.classList.add('film-btn--active');
+  refs.paginationContainer.innerHTML = '';
 
   // SPINNER
   document.querySelector('.spinner').classList.add('hidden');
