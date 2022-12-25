@@ -27,7 +27,6 @@ function stickyHeaderOnScroll() {
     headerEl.classList.add('disappearing__header-js');
   } else if (scrollPos < lastScrollTop && scrollPos > 400) {
     // upscroll code
-    headerEl.classList.remove('backfloat__header-js');
     headerEl.classList.remove('disappearing__header-js');
     headerEl.classList.add('sticky__header');
     headerEl.classList.add('appearing__header-js');
