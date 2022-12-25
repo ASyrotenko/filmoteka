@@ -165,8 +165,12 @@ export async function onMovieCardClick(e) {
   }
   document.querySelector('.spinner').classList.add('hidden');
   refs.modalBackdrop.classList.remove('is-hidden');
-  headerElTest.classList.add('disappearing__header-js'); //sticky-header
 
+  //---------------------
+  if (window.scrollY > 300) {
+    headerElTest.classList.add('disappearing__header-js'); //sticky-header
+  }
+  //------------------------
   refs.btnUp.classList.add('btn-up_hide');
   window.addEventListener('keydown', onEscPress);
   document.querySelector('body').classList.add('modal-open');
