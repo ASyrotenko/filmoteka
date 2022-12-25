@@ -47,8 +47,10 @@ export async function getPaginationFromMainRequest() {
   });
 
   const glideSearch = await apiService.fetchFilmsTrendingWeek().then(data => {
-    renderGlide(data.results);
+    return data.results;
   });
+
+  renderGlide(glideSearch);
 
   const pagination = new Pagination(
     refs.paginationContainer,
@@ -112,7 +114,6 @@ export async function getPaginationFromSerchRequest(query) {
   }
 
   async function renderFilmGallery(films, genres) {
-    debugger;
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
     document
@@ -132,7 +133,6 @@ export async function getPaginationFromSerchRequest(query) {
     const firstPage = document.querySelector('.tui-ico-first');
     const lastPage = document.querySelector('.tui-ico-last');
 
-    // console.log(e.page > 3);
     if (e.page > 3) {
       firstPage.textContent = 1;
     } else firstPage.textContent = '';
