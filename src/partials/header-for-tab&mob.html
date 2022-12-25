@@ -1,0 +1,54 @@
+<header class="less__header">
+  <div class="container less__header__container">
+    <div class="header__wrap">
+      <a href="index.html" class="header__logo-link">
+        <svg aria-label="logo" class="header__logo-svg" width="24" height="24">
+          <use
+            class="header__logo-img"
+            href="./images/sprite.svg#icon-film"
+          ></use>
+        </svg>
+        <span class="header__logo-text">Filmoteka</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link nav__link--current">Home</a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link library">My library</a>
+          </li>
+          <li class="nav__item sign-in">
+            <button id="signin" class="navigation-button nav__link">
+              Sign in
+            </button>
+            <button id="signout" class="navigation-button nav__link signOut">
+              Sign out
+            </button>
+            <!-- <div id="googleUser"></div> -->
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <form class="header__form">
+      <input
+        type="text"
+        name="search"
+        placeholder="Movie search"
+        class="header__form-input"
+      />
+      <ul class="header__form-list"></ul>
+      <span class="fail-notification hidden"
+        >Search result not successful. Enter the correct movie name.</span
+      >
+      <button type="submit" class="header__form-button">
+        <svg aria-label="submit" class="header__form-svg">
+          <use
+            class="header__form-img"
+            href="./images/sprite.svg#icon-search"
+          ></use>
+        </svg>
+      </button>
+    </form>
+  </div>
+</header>
