@@ -62,13 +62,6 @@ export async function getPaginationFromMainRequest() {
   let lastPage = document.querySelector('.tui-ico-last');
   lastPage.textContent = paginationOptions.totalPages;
 
-  async function getGenresToMainPage() {
-    const genres = await combineGenres();
-    return genres;
-  }
-
-  const genres = getGenresToMainPage();
-
   function renderFilmGallery(films, genres) {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
@@ -78,17 +71,18 @@ export async function getPaginationFromMainRequest() {
       .forEach(node => node.addEventListener('click', onMovieCardClick));
   }
 
-  async function loadTrendMain(page, genres) {
+  async function loadTrendMain(page) {
+    const genres = await combineGenres();
     const filmsTrending = await apiService.fetchFilmsTrending(page);
     renderFilmGallery(filmsTrending, genres);
   }
 
-  loadTrendMain(1, genres);
+  loadTrendMain(1);
 
   pagination.on('afterMove', e => {
     const firstPage = document.querySelector('.tui-ico-first');
     firstPage.textContent = '';
-    loadTrendMain(e.page, genres);
+    loadTrendMain(e.page);
     window.scrollTo({
       top: 0,
       left: 0,
