@@ -16,12 +16,8 @@ async function showWatched() {
   let watched = await firebase.getDoc('watched');
 
   if (watched.length === 0) {
-    if (
-      watched.length === 0 &&
-      !refs.footer.classList.contains('footer--empty-library')
-    ) {
-      refs.footer.classList.toggle('footer--empty-library');
-    }
+    refs.footer.classList.add('footer--empty-library');
+
     //SPINNER
     document.querySelector('.spinner').classList.add('hidden');
 
@@ -48,12 +44,6 @@ async function showQueue() {
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
-    if (
-      watched.length === 0 &&
-      !refs.footer.classList.contains('footer--empty-library')
-    ) {
-    } else refs.footer.classList.toggle('footer--empty-library');
-
     //SPINNER
     document.querySelector('.spinner').classList.add('hidden');
 
@@ -66,6 +56,7 @@ async function showQueue() {
       </li>`
     );
   } else {
+    refs.footer.classList.remove('footer--empty-library');
     refs.filmGallery.innerHTML = '';
     getPaginationFromLibrary(queue);
     document.querySelector('.spinner').classList.add('hidden');
