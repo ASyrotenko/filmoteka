@@ -15,6 +15,9 @@ import {
   updateDoc,
   deleteField,
 } from 'firebase/firestore';
+import { getRefs } from './get-refs';
+
+const refs = getRefs();
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAulP83L0QY90_yCDYRohOctOjcPDqfmkw',
@@ -102,5 +105,66 @@ export class Firebase {
   userStatus() {
     const userId = auth.currentUser.uid;
     return userId;
+  }
+
+  async rateMovie(rate) {
+    const userId = auth.currentUser.uid;
+    const movieCardIdRef = document.querySelector('.movie__id');
+    const movieId = movieCardIdRef.id;
+    const movieRef = doc(db, movieId, rate);
+
+    await setDoc(movieRef, { [userId]: userId });
+    refs[rate].textContent -= 1 * -1;
+  }
+
+  async getMovieRateLikes(value) {
+    const movieCardIdRef = document.querySelector('.movie__id');
+    const movieId = movieCardIdRef.id;
+    const docRef = doc(db, movieId, value);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let values = Object.values(docSnap.data());
+      refs[value].textContent = values.length;
+
+      return values;
+    } else {
+    }
+  }
+
+  async removeRate(value) {
+    const userId = auth.currentUser.uid;
+    const movieCardIdRef = document.querySelector('.movie__id');
+    const movieId = movieCardIdRef.id;
+    const docRef = doc(db, movieId, value);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let values = Object.values(docSnap.data());
+      if (values.includes(userId)) {
+        await updateDoc(docRef, {
+          [userId]: deleteField(),
+        });
+      }
+      return values;
+    } else {
+    }
+  }
+
+  async disableVoteBtn(value, btn) {
+    const userId = auth.currentUser.uid;
+    const movieCardIdRef = document.querySelector('.movie__id');
+    const movieId = movieCardIdRef.id;
+    const docRef = doc(db, movieId, value);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let values = Object.values(docSnap.data());
+      if (values.includes(userId)) {
+        refs[btn].disabled = true;
+      }
+      return values;
+    } else {
+    }
   }
 }
