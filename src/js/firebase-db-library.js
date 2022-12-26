@@ -15,9 +15,17 @@ async function showWatched() {
   refs.paginationContainer.innerHTML = '';
 
   let watched = await firebase.getDoc('watched');
+
   if (watched.length === 0) {
+    if (
+      watched.length === 0 &&
+      !refs.footer.classList.contains('footer--empty-library')
+    ) {
+      refs.footer.classList.toggle('footer--empty-library');
+    }
     //SPINNER
     document.querySelector('.spinner').classList.add('hidden');
+
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
@@ -38,14 +46,19 @@ async function showQueue() {
   refs.queue.classList.add('film-btn--active');
   refs.paginationContainer.innerHTML = '';
 
-  // SPINNER
-  document.querySelector('.spinner').classList.add('hidden');
-
   let queue = await firebase.getDoc('queue');
 
   if (queue.length === 0) {
+    if (
+      watched.length === 0 &&
+      !refs.footer.classList.contains('footer--empty-library')
+    ) {
+    } else refs.footer.classList.toggle('footer--empty-library');
+
+    //SPINNER
+    document.querySelector('.spinner').classList.add('hidden');
+
     refs.filmGallery.innerHTML = '';
-    document.querySelector('.footer').classList.add('footer--empty-library');
     refs.filmGallery.insertAdjacentHTML(
       'beforeend',
       `<li class="film-list-error">
@@ -69,6 +82,6 @@ function getUserStatus(params) {
     showWatched();
     clearInterval(loadLibraryWatched);
   } catch (error) {
-    // console.log('error');
+    // console.log(error);
   }
 }

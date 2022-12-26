@@ -2,11 +2,9 @@
   &-section {
     flex: 1 1 auto;
 
-    padding-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 
     @media screen and (min-width: 768px) {
-      padding-top: 60px;
       margin-bottom: 60px;
     }
   }
