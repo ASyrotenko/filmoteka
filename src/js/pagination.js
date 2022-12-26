@@ -7,6 +7,7 @@ import { renderGlide } from './glide';
 import { onMovieCardClick } from './movie-card';
 import { Firebase } from './firebase-class';
 import { renderLibrary } from './library-gallery';
+import { async } from '@firebase/util';
 
 const refs = getRefs();
 const apiService = new FilmsApiService();
@@ -42,6 +43,7 @@ export async function getPaginationFromMainRequest() {
     paginationOptions.totalItems = data.total_results;
     paginationOptions.itemsPerPage = data.results.length;
     paginationOptions.totalPages = data.total_pages;
+
     if (data.total_pages <= 1) {
       refs.pagination.classList.add('visually-hidden');
     } else refs.pagination.classList.remove('visually-hidden');
@@ -61,6 +63,13 @@ export async function getPaginationFromMainRequest() {
   let lastPage = document.querySelector('.tui-ico-last');
   lastPage.textContent = paginationOptions.totalPages;
 
+  async function getGenresToMainPage() {
+    const genres = await combineGenres();
+    return genres;
+  }
+
+  const genres = getGenresToMainPage();
+
   function renderFilmGallery(films, genres) {
     refs.filmGallery.innerHTML = '';
     refs.filmGallery.insertAdjacentHTML('beforeend', filmTpl(films, genres));
@@ -70,18 +79,17 @@ export async function getPaginationFromMainRequest() {
       .forEach(node => node.addEventListener('click', onMovieCardClick));
   }
 
-  async function loadTrendMain(page) {
-    const genres = await combineGenres();
+  async function loadTrendMain(page, genres) {
     const filmsTrending = await apiService.fetchFilmsTrending(page);
     renderFilmGallery(filmsTrending, genres);
   }
 
-  loadTrendMain();
+  loadTrendMain(1, genres);
 
   pagination.on('afterMove', e => {
     const firstPage = document.querySelector('.tui-ico-first');
     firstPage.textContent = '';
-    loadTrendMain(e.page);
+    loadTrendMain(e.page, genres);
     window.scrollTo({
       top: 0,
       left: 0,
@@ -101,6 +109,7 @@ export async function getPaginationFromSerchRequest(query) {
       paginationOptions.totalPages = response.total_pages;
       paginationOptions.totalItems = response.total_results;
       paginationOptions.itemsPerPage = response.results.length;
+
       if (response.total_pages <= 1) {
         refs.pagination.classList.add('visually-hidden');
       } else refs.pagination.classList.remove('visually-hidden');
@@ -153,7 +162,6 @@ export async function getPaginationFromSerchRequest(query) {
 
 export async function getPaginationFromLibrary(param) {
   paginationOptions.totalItems = param.length;
-  console.log(param.length);
   let arrayParam = param;
   let sizeOnPage = paginationOptions.itemsPerPage;
   paginationOptions.totalPages = Math.ceil(arrayParam.length / sizeOnPage);
