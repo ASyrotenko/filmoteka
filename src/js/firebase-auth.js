@@ -12,8 +12,8 @@ onAuthStateChanged(auth, user => {
   if (user) {
     singInBtn.classList.add('signOut');
     singOutBtn.classList.add('signIn');
-    userPhoto.innerHTML = `<img class="user-img" src="${user.photoURL}">`;
-    userPhoto.style.display = 'block';
+    userPhoto.innerHTML = `<img class="user-img" src="${user.photoURL}" style: display="none">`;
+    //userPhoto.style.display = 'block';
   }
 });
 

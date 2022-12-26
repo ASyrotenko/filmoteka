@@ -12,11 +12,15 @@
 }
 
 #googleUser {
-  @media screen and (max-width: 767px) {
+  display: none;
+   @media screen and (max-width: 767px) {
     margin-left: 0px;
+    
   }
+
   @media screen and (min-width: 768px) {
     margin-left: 10px;
+    display: block;
   }
 }
 .navigation-button {
@@ -24,7 +28,10 @@
   align-items: center;
 }
 .navigation-button.signOut {
-  display: none;
+   display: none;
+   @media screen and (max-width: 767px){
+    color: red;
+   }
 }
 
 .navigation-button.signIn {
