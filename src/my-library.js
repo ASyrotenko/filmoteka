@@ -8,3 +8,4 @@ import './js/change-color-scheme.js';
 import './js/modal-team';
 import './js/backToTop';
 import './js/sticky-header';
+import './js/likes';

@@ -151,12 +151,11 @@ const headerElTest = document.querySelector('.header');
 
 export async function onMovieCardClick(e) {
   e.preventDefault();
-  
+
   if (
     !e.currentTarget.classList.contains('header__form-list-item') &&
-    !e.currentTarget.classList.contains('film__item')&&
+    !e.currentTarget.classList.contains('film__item') &&
     !e.currentTarget.classList.contains('glide__slide')
-    
   ) {
     return;
   }
@@ -191,6 +190,13 @@ export async function onMovieCardClick(e) {
   firebase.disableVoteBtn('dislike', 'dislikeBtn');
 }
 
+function resetLikes() {
+  refs.likeBtn.disabled = false;
+  refs.dislikeBtn.disabled = false;
+  refs.like.textContent = 0;
+  refs.dislike.textContent = 0;
+}
+
 refs.modalCloseBtn.addEventListener('click', onMovieModalClose);
 
 function onMovieModalClose(e) {
@@ -220,11 +226,13 @@ function onMovieModalClose(e) {
 function onEscPress(e) {
   if (e.code === 'Escape') {
     onMovieModalClose();
+    resetLikes();
   }
 }
 
 function backdropClick(e) {
   if (e.currentTarget === e.target) {
     onMovieModalClose();
+    resetLikes();
   }
 }
