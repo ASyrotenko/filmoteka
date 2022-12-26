@@ -346,10 +346,7 @@ input:-webkit-autofill:focus {
   }
 
   @media screen and (min-width: 768px) {
-    padding-top: 33px;
-    padding-bottom: 60px;
-    height: 216px;
-
+   
     background-image: linear-gradient(to right, #0000008f, #0000008f),
       url(../images/header/library-header-bg-768px.jpg);
 
@@ -363,8 +360,6 @@ input:-webkit-autofill:focus {
   }
 
   @media screen and (min-width: 1280px) {
-    padding-top: 40px;
-    padding-bottom: 60px;
 
     background-image: linear-gradient(to right, #0000008f, #0000008f),
       url(../images/header/library-header-bg-1280px.jpg);
@@ -381,10 +376,22 @@ input:-webkit-autofill:focus {
 
 .header__container__library {
   position: relative;
-  // padding-top: 36px;
+  padding-top: 36px;
   padding-bottom: 62px;
   height: 230px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 33px;
+    padding-bottom: 60px;
+    height: 216px;
+  
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 40px;
+    padding-bottom: 60px;}
 }
+
 
 .header__btn-wrap {
   //outline: 1px solid red;
