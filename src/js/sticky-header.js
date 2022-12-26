@@ -13,7 +13,6 @@ function stickyHeaderOnScroll() {
   if (scrollPos <= 50) {
     headerEl.classList.remove('sticky__header');
     filmSectionEl.classList.remove('container__slider-js');
-    headerEl.classList.add('header__index');
   }
   if (scrollPos < 400) {
     headerEl.classList.remove('appearing__header-js');
