@@ -5,7 +5,6 @@ import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 import { renderGlide } from './glide';
 import { onMovieCardClick } from './movie-card';
-import { Firebase } from './firebase-class';
 import { renderLibrary } from './library-gallery';
 import { async } from '@firebase/util';
 
