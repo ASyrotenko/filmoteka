@@ -33,5 +33,6 @@ export function getRefs() {
     myLibrary: document.querySelector('.library'),
     btnUp: document.querySelector('.btn-up'),
     paginationContainer: document.querySelector('#pagination'),
+    footer: document.querySelector('.footer'),
   };
 }

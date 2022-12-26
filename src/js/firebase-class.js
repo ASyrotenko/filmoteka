@@ -73,8 +73,6 @@ export class Firebase {
     const userId = auth.currentUser.uid;
     const movieRef = doc(db, userId, value);
 
-    // console.log(`add to ${value}: `, { userId, movieId });
-
     await setDoc(movieRef, { [movieId]: movieId }, { merge: true });
   }
 
@@ -87,7 +85,6 @@ export class Firebase {
       let values = Object.values(docSnap.data());
       return values;
     } else {
-      // console.log('No such document!');
     }
   }
 
@@ -96,8 +93,6 @@ export class Firebase {
     const movieCardIdRef = document.querySelector('.movie__id');
     const movieId = movieCardIdRef.id;
     const movieRef = doc(db, userId, value);
-
-    // console.log(`remove from ${value}: `, { userId, movieId });
 
     await updateDoc(movieRef, {
       [movieId]: deleteField(),

@@ -17,5 +17,10 @@ onAuthStateChanged(auth, user => {
   }
 });
 
+function goToIndex() {
+  window.open('index.html');
+}
+
 singInBtn.addEventListener('click', firebase.singInWithGoogle);
 singOutBtn.addEventListener('click', firebase.singOutUser);
+document.getElementById('signout').addEventListener('click', goToIndex);

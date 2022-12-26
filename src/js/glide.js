@@ -8,7 +8,7 @@ const apiService = new FilmsApiService();
 const config = {
   type: 'carousel',
   perView: 10,
-  autoplay: 2500,
+  autoplay: 2000,
   gap: 15,
   touchRatio: 0.5,
   keyboard: true,
@@ -45,7 +45,7 @@ export function renderGlide(trendMovies) {
   markup = trendMovies
     .map(
       el =>
-        `<li class="glide__slide glide__slide--main" id="${el.id}" style="width: 148.2px; margin-left: 7.5px; margin-right: 7.5px;"><img class="cards__image-poster" data-imgid="${el.id}" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt="film__poster"></li>`
+        `<li class="glide__slide glide__slide--main " id="${el.id}" style="width: 148.2px; margin-left: 7.5px; margin-right: 7.5px;"><a class="film__link" href="#"><img class="cards__image-poster" data-imgid="${el.id}" src="https://image.tmdb.org/t/p/w500${el.poster_path}" alt="film__poster"></a></li>`
     )
     .join('');
   slidesContainer.insertAdjacentHTML('beforeend', markup);

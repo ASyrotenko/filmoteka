@@ -1,14 +1,25 @@
 import { FilmsApiService } from './films-service';
 import { getRefs } from './get-refs';
 import { onMovieCardClick } from './movie-card';
+import { renderGlide } from './glide';
 
 const refs = getRefs();
 const filmsApiService = new FilmsApiService();
 
+async function playGlideLib() {
+  const glideSearch = await filmsApiService
+    .fetchFilmsTrendingWeek()
+    .then(data => {
+      return data.results;
+    });
+  renderGlide(glideSearch);
+}
+
+playGlideLib();
+
 export async function renderLibrary(filmsIds) {
   refs.filmGallery.innerHTML = '';
   const tmpl = (await Promise.all(filmsIds.map(renderMovieCardLib))).join('');
-
   refs.filmGallery.insertAdjacentHTML('beforeend', tmpl);
   document
     .querySelectorAll('.film__item')
@@ -267,16 +278,26 @@ function onMovieModalClose(e) {
   refs.addToWatched.classList.remove('film-btn--active');
   refs.addToQueue.textContent = 'add to queue';
   refs.addToQueue.classList.remove('film-btn--active');
-  if (refs.queue.classList.contains('film-btn--active')) {
-    refs.queue.click();
-  } else {
-    refs.watched.click();
+
+  if (refs.myLibrary.classList.contains('nav__link--current')) {
+    if (refs.queue.classList.contains('film-btn--active')) {
+      refs.queue.click();
+    } else {
+      refs.watched.click();
+    }
   }
 }
 
 function onEscPress(e) {
   if (e.code === 'Escape') {
     onMovieModalClose();
+    if (refs.myLibrary.classList.contains('nav__link--current')) {
+      if (refs.queue.classList.contains('film-btn--active')) {
+        refs.queue.click();
+      } else {
+        refs.watched.click();
+      }
+    }
   }
 }
 

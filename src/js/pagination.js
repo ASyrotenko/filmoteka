@@ -4,14 +4,12 @@ import { FilmsApiService } from './films-service';
 import { filmTpl } from './films-gallery';
 import { combineGenres } from './get-genres';
 import { renderGlide } from './glide';
-import { doc } from '@firebase/firestore';
 import { onMovieCardClick } from './movie-card';
 import { Firebase } from './firebase-class';
 import { renderLibrary } from './library-gallery';
 
 const refs = getRefs();
 const apiService = new FilmsApiService();
-const firebase = new Firebase();
 
 const paginationOptions = {
   totalItems: 1,
@@ -161,17 +159,17 @@ export async function getPaginationFromLibrary(param) {
       i * sizeOnPage,
       i * sizeOnPage + sizeOnPage
     );
+    renderLibrary(arrayRenderLib[i]);
   }
-
+  refs.filmGallery.innerHTML = '';
   const paginationLib = new Pagination(
     refs.paginationContainer,
     paginationOptions
   );
 
-  renderLibrary(arrayRenderLib[0]);
-
   paginationLib.on('afterMove', e => {
     renderLibrary(arrayRenderLib[e.page - 1]);
+
     window.scrollTo({
       top: 0,
       left: 0,
@@ -179,6 +177,3 @@ export async function getPaginationFromLibrary(param) {
     });
   });
 }
-
-//запуск пагінації головної сторінки
-getPaginationFromMainRequest();
