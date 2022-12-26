@@ -1,11 +1,10 @@
 import { getRefs } from './get-refs';
 import { FilmsApiService } from './films-service';
-import { filmTpl } from './films-gallery';
+
 import { filmShortTpl } from './films-gallery';
-import { combineGenres } from './get-genres';
+
 import { onMovieCardClick } from './movie-card';
 import { getPaginationFromSerchRequest } from './pagination';
-import Notiflix from 'notiflix';
 
 const refs = getRefs();
 const filmsApiService = new FilmsApiService();

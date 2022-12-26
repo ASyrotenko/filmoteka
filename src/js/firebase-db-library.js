@@ -1,6 +1,5 @@
 import { Firebase } from './firebase-class';
 import { getRefs } from './get-refs';
-import { renderLibrary } from './library-gallery';
 import { getPaginationFromLibrary } from './pagination';
 const refs = getRefs();
 
