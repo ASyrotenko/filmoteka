@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header header__library">
   <div class="container header__container__library">
     <div class="header__wrap">
       <a href="index.html" class="header__logo-link">
@@ -16,7 +16,9 @@
             <a href="index.html" class="nav__link">Home</a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link nav__link--current library">My library</a>
+            <a href="#" class="nav__link nav__link--current library"
+              >My library</a
+            >
           </li>
           <li class="nav__item sign-in">
             <button id="signin" class="navigation-button nav__link">
@@ -31,24 +33,16 @@
       </nav>
     </div>
     <div class="checkbox-wrap">
-      <input type="checkbox" class="checkbox" id="checkbox">
-    <label for="checkbox" class="label">
-      <i class="fas fa-moon"></i>
-      <i class='fas fa-sun'></i>
-      <span class='ball'></span>
-    </label>
-  </div>
+      <input type="checkbox" class="checkbox" id="checkbox" />
+      <label for="checkbox" class="label">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+        <span class="ball"></span>
+      </label>
+    </div>
     <div class="header__btn-wrap">
-      <button
-        type="button"
-        class="header__btn "
-        id="watched"
-      >
-        Watched
-      </button>
+      <button type="button" class="header__btn" id="watched">Watched</button>
       <button type="button" class="header__btn" id="queue">Queue</button>
     </div>
-    
-
   </div>
 </header>
