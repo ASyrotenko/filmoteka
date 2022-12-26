@@ -15,7 +15,9 @@ async function playGlideLib() {
   renderGlide(glideSearch);
 }
 
-playGlideLib();
+if (refs.myLibrary.classList.contains('nav__link--current')) {
+  playGlideLib();
+}
 
 export async function renderLibrary(filmsIds) {
   refs.filmGallery.innerHTML = '';
