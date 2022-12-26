@@ -13,7 +13,7 @@ function stickyHeaderOnScroll() {
   if (scrollPos <= 50) {
     headerEl.classList.remove('sticky__header');
     filmSectionEl.classList.remove('container__slider-js');
-    headerEl.classList.add('header__index');
+    //headerEl.classList.add('header__index');
   }
   if (scrollPos < 400) {
     headerEl.classList.remove('appearing__header-js');
@@ -22,7 +22,7 @@ function stickyHeaderOnScroll() {
   }
   if (scrollPos > lastScrollTop && scrollPos > 400) {
     // downscroll code
-    headerEl.classList.remove('header__index');
+    //headerEl.classList.remove('header__index');
     headerEl.classList.remove('appearing__header-js');
     headerEl.classList.add('disappearing__header-js');
   } else if (scrollPos < lastScrollTop && scrollPos > 400) {
