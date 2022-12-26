@@ -42,6 +42,9 @@ export async function getPaginationFromMainRequest() {
     paginationOptions.totalItems = data.total_results;
     paginationOptions.itemsPerPage = data.results.length;
     paginationOptions.totalPages = data.total_pages;
+    if (data.total_pages <= 1) {
+      refs.pagination.classList.add('visually-hidden');
+    } else refs.pagination.classList.remove('visually-hidden');
   });
 
   const glideSearch = await apiService.fetchFilmsTrendingWeek().then(data => {
@@ -98,6 +101,9 @@ export async function getPaginationFromSerchRequest(query) {
       paginationOptions.totalPages = response.total_pages;
       paginationOptions.totalItems = response.total_results;
       paginationOptions.itemsPerPage = response.results.length;
+      if (response.total_pages <= 1) {
+        refs.pagination.classList.add('visually-hidden');
+      } else refs.pagination.classList.remove('visually-hidden');
     });
 
   const pagination = new Pagination(
@@ -147,6 +153,7 @@ export async function getPaginationFromSerchRequest(query) {
 
 export async function getPaginationFromLibrary(param) {
   paginationOptions.totalItems = param.length;
+  console.log(param.length);
   let arrayParam = param;
   let sizeOnPage = paginationOptions.itemsPerPage;
   paginationOptions.totalPages = Math.ceil(arrayParam.length / sizeOnPage);
@@ -161,11 +168,16 @@ export async function getPaginationFromLibrary(param) {
     );
     renderLibrary(arrayRenderLib[i]);
   }
+
   refs.filmGallery.innerHTML = '';
   const paginationLib = new Pagination(
     refs.paginationContainer,
     paginationOptions
   );
+
+  if (totPage <= 1) {
+    refs.pagination.classList.add('visually-hidden');
+  } else refs.pagination.classList.remove('visually-hidden');
 
   paginationLib.on('afterMove', e => {
     renderLibrary(arrayRenderLib[e.page - 1]);
