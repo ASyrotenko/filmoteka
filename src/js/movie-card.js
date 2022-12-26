@@ -149,9 +149,12 @@ const headerElTest = document.querySelector('.header');
 
 export async function onMovieCardClick(e) {
   e.preventDefault();
+  
   if (
     !e.currentTarget.classList.contains('header__form-list-item') &&
-    !e.currentTarget.classList.contains('film__item')
+    !e.currentTarget.classList.contains('film__item')&&
+    !e.currentTarget.classList.contains('glide__slide')
+    
   ) {
     return;
   }

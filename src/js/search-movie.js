@@ -91,3 +91,5 @@ function inputClose(e) {
   if (e.target.className !== 'header__form-input')
     refs.searchQueryList.innerHTML = '';
 }
+
+
