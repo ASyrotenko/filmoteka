@@ -29,7 +29,6 @@ export function getRefs() {
     openModalBtn: document.querySelector('[data-action="open-modal"]'),
     closeModalBtn: document.querySelector('[data-action="close-modal"]'),
     backdropTeam: document.querySelector('.team-backdrop'),
-    body: document.querySelector('body'),
     myLibrary: document.querySelector('.library'),
     btnUp: document.querySelector('.btn-up'),
     paginationContainer: document.querySelector('#pagination'),

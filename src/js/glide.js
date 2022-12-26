@@ -1,10 +1,6 @@
 import Glide from '@glidejs/glide';
 import '~node_modules/@glidejs/glide/dist/css/glide.core.min.css';
-import { FilmsApiService } from './films-service';
-import { getRefs } from './get-refs';
 
-const refs = getRefs();
-const apiService = new FilmsApiService();
 const config = {
   type: 'carousel',
   perView: 10,

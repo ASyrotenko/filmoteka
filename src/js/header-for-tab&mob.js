@@ -1,7 +1,7 @@
 //--------------------
-import { debounce } from 'debounce';
+// import { debounce } from 'debounce';
 import throttle from 'lodash.throttle';
-const lessHeaderEl = document.querySelector('.header');
+// const lessHeaderEl = document.querySelector('.header');
 const filmSectionEl = document.querySelector('.container__slider');
 
 // lessHeaderEl.style.display = 'none'
