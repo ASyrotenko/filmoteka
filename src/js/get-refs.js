@@ -34,5 +34,9 @@ export function getRefs() {
     paginationContainer: document.querySelector('#pagination'),
     pagination: document.querySelector('.pagination_container'),
     footer: document.querySelector('.footer'),
+    likeBtn: document.querySelector('.like'),
+    dislikeBtn: document.querySelector('.dislike'),
+    like: document.querySelector('.likes'),
+    dislike: document.querySelector('.dislikes'),
   };
 }

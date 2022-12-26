@@ -14,6 +14,7 @@ import './js/sticky-header';
 
 
 // import './js/header-for-tab&mob';
+import './js/likes';
 
 import { getPaginationFromMainRequest } from './js/pagination';
 //запуск пагінації головної сторінки

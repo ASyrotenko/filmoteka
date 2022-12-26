@@ -2,9 +2,11 @@ import { FilmsApiService } from './films-service';
 import { getRefs } from './get-refs';
 import { closeVideo, renderVideoBox } from './addvideo';
 import Notiflix from 'notiflix';
+import { Firebase } from './firebase-class';
 
 const refs = getRefs();
 const filmsApiService = new FilmsApiService();
+const firebase = new Firebase();
 
 const backdrop = document.querySelector('.backdrop');
 backdrop.addEventListener('click', backdropClick);
@@ -183,6 +185,10 @@ export async function onMovieCardClick(e) {
   const movieId = movieCardIdRef.id;
   const videos = await filmsApiService.fetchMovieVideo(movieId);
   renderVideoBox(videos);
+  firebase.getMovieRateLikes('like');
+  firebase.getMovieRateLikes('dislike');
+  firebase.disableVoteBtn('like', 'likeBtn');
+  firebase.disableVoteBtn('dislike', 'dislikeBtn');
 }
 
 refs.modalCloseBtn.addEventListener('click', onMovieModalClose);
